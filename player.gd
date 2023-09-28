@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var speed = 250
+var speed = 100
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,6 +18,11 @@ func _physics_process(delta):
 		velocity.x -= speed
 	if Input.is_action_pressed("right"):
 		velocity.x += speed
+	   
+	if velocity.length_squared() > 0:
+		look_at(global_position + velocity)
+
+	print("global position: " + str(global_position))
+	print("velocity: " + str(global_position))
 	
 	move_and_slide()
-	look_at(get_global_mouse_position())

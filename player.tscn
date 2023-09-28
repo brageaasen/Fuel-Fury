@@ -1,20 +1,29 @@
-[gd_scene load_steps=4 format=3 uid="uid://dy2ak8axbab1p"]
+[gd_scene load_steps=6 format=3 uid="uid://dy2ak8axbab1p"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_ekqjv"]
-[ext_resource type="Texture2D" uid="uid://bl4ohekfuqc7t" path="res://ButtonSoundActive.png" id="2_kuw4x"]
+[ext_resource type="Texture2D" uid="uid://bm0nhp76nkn" path="res://Tanks.png" id="2_epnt1"]
+[ext_resource type="Texture2D" uid="uid://46l2eo8vqq38" path="res://Weapon.png" id="3_yrt3h"]
+[ext_resource type="Script" path="res://followMouse.gd" id="4_uffto"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2736q"]
-size = Vector2(30, 15)
+size = Vector2(16, 16)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_ekqjv")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Tanks" type="Sprite2D" parent="."]
+texture_filter = 1
 scale = Vector2(1, 0.991)
-texture = ExtResource("2_kuw4x")
+texture = ExtResource("2_epnt1")
+
+[node name="Weapon" type="Sprite2D" parent="Tanks"]
+texture_filter = 1
+scale = Vector2(1, 1.00908)
+texture = ExtResource("3_yrt3h")
+script = ExtResource("4_uffto")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 0.5)
+texture_filter = 1
 shape = SubResource("RectangleShape2D_2736q")
 
 [node name="Camera2D" type="Camera2D" parent="."]
