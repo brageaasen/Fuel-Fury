@@ -2,7 +2,7 @@
 
 Rougelike, should be similar to this game:
 https://www.youtube.com/watch?v=e-RP-GHxxQA&ab_channel=Phibian
-
+Color palette : https://lospec.com/palette-list/nyx8
 
 # MVP:
 
