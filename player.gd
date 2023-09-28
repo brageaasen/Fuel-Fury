@@ -18,9 +18,6 @@ func _physics_process(delta):
 		velocity.x -= speed
 	if Input.is_action_pressed("right"):
 		velocity.x += speed
-	   
-	if velocity.length_squared() > 0:
-		look_at(global_position + velocity)
 
 	print("global position: " + str(global_position))
 	print("velocity: " + str(global_position))
