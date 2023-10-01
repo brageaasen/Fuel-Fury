@@ -4,6 +4,10 @@ Rougelike, should be similar to this game:
 https://www.youtube.com/watch?v=e-RP-GHxxQA&ab_channel=Phibian
 Color palette : https://lospec.com/palette-list/nyx8
 
+# Work in progress
+- Participants:
+    - Sebastian Matthews, Brage Aasen, Casper Karlsen and Eivind Sulen
+
 # MVP:
 
 Tank(player) defends base against two types of enemies(infantry and tanks). Infantry can destroy base if close enough, tanks will only target player.
