@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c27lt7vwi1j4f"]
+
+[ext_resource type="Script" path="res://tanks/Player.gd" id="1_gawyv"]
+[ext_resource type="PackedScene" uid="uid://dy2ak8axbab1p" path="res://tanks/Tank.tscn" id="1_mvslc"]
+
+[node name="Player" instance=ExtResource("1_mvslc")]
+script = ExtResource("1_gawyv")
+speed = 60
+rotation_speed = 1.0
+gun_cooldown = 0.4
+health = 100

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c243alw3bhwg2"]
+
+[ext_resource type="Texture2D" uid="uid://cghivxwdge483" path="res://assets/Background.png" id="1_elsuy"]
+[ext_resource type="PackedScene" uid="uid://c27lt7vwi1j4f" path="res://tanks/Player.tscn" id="2_r8w0f"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.499987, 2)
+scale = Vector2(2.93125, 1.6375)
+texture = ExtResource("1_elsuy")
+
+[node name="Player" parent="." instance=ExtResource("2_r8w0f")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
