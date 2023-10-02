@@ -13,3 +13,5 @@ speed = 60
 rotation_speed = 1.0
 gun_cooldown = 0.4
 health = 100
+
+[connection signal="timeout" from="GunTimer" to="." method="_on_GunTimer_timeout"]
