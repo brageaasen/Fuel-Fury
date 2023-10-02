@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://darkjs45idgh1"]
+
+[ext_resource type="Texture2D" uid="uid://cghivxwdge483" path="res://assets/Background.png" id="1_gp332"]
+[ext_resource type="Script" path="res://MainScene.gd" id="1_lo4ee"]
+[ext_resource type="PackedScene" uid="uid://c27lt7vwi1j4f" path="res://tanks/Player.tscn" id="2_075rn"]
+[ext_resource type="PackedScene" uid="uid://bq1ywixvc2csc" path="res://tanks/EnemyTank.tscn" id="4_vblvd"]
+
+[node name="MainScene" type="Node2D"]
+script = ExtResource("1_lo4ee")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.499987, 2)
+scale = Vector2(2.93125, 1.6375)
+texture = ExtResource("1_gp332")
+
+[node name="Player" parent="." instance=ExtResource("2_075rn")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
+
+[node name="EnemyTank" parent="." instance=ExtResource("4_vblvd")]
+position = Vector2(-119, -52)
+turret_speed = 6.0
+detect_radius = 100
+
+[connection signal="shootSignal" from="Player" to="." method="_on_Tank_shootSignal"]
