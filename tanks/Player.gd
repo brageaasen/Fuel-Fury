@@ -2,7 +2,7 @@ extends "res://tanks/Tank.gd"
 
 var ammo_storage: int = 0
 
-signal ammo_updated
+signal ammo_updated # Signal til HUD
 
 func control(delta):
 	$Weapon.look_at(get_global_mouse_position())
@@ -20,13 +20,14 @@ func control(delta):
 	if Input.is_action_pressed("click"):
 		if ammo_storage > 0:
 			shoot()
-			ammo_storage -= 1
-			ammo_updated.emit()
+
 
 func _on_base_ammo_updated():
 	ammo_storage += 1
-	ammo_updated.emit()
+	ammo_updated.emit(ammo_storage)
 
 
-func _on_base_body_entered(body):
-	print("PLAYER body entered")
+# Litt bloat, men gadd ikke å implementere shoot anderledes.
+func _on_shoot_signal(bullet, _position, _direction):
+	ammo_storage -= 1
+	ammo_updated.emit(ammo_storage)

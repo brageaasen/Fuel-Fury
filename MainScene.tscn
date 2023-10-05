@@ -30,8 +30,6 @@ detect_radius = 100
 
 [node name="HUD" parent="." instance=ExtResource("6_knhln")]
 
-[connection signal="ammo_updated" from="Base" to="." method="_on_base_ammo_updated"]
 [connection signal="ammo_updated" from="Base" to="Player" method="_on_base_ammo_updated"]
-[connection signal="body_entered" from="Base" to="Player" method="_on_base_body_entered"]
 [connection signal="ammo_updated" from="Player" to="HUD" method="_on_player_ammo_updated"]
 [connection signal="shootSignal" from="Player" to="." method="_on_Tank_shootSignal"]
