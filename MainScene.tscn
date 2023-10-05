@@ -1,18 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://darkjs45idgh1"]
+[gd_scene load_steps=7 format=3 uid="uid://darkjs45idgh1"]
 
 [ext_resource type="Texture2D" uid="uid://cghivxwdge483" path="res://assets/Background.png" id="1_gp332"]
 [ext_resource type="Script" path="res://MainScene.gd" id="1_lo4ee"]
 [ext_resource type="PackedScene" uid="uid://c27lt7vwi1j4f" path="res://tanks/Player.tscn" id="2_075rn"]
 [ext_resource type="PackedScene" uid="uid://bq1ywixvc2csc" path="res://tanks/EnemyTank.tscn" id="4_vblvd"]
 [ext_resource type="PackedScene" uid="uid://dkt8ngtenq443" path="res://base/Base.tscn" id="5_dbrtg"]
+[ext_resource type="PackedScene" uid="uid://bjj2uflh2plre" path="res://HUD.tscn" id="6_knhln"]
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_lo4ee")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Ground" type="Sprite2D" parent="."]
 position = Vector2(0.499987, 2)
 scale = Vector2(2.93125, 1.6375)
 texture = ExtResource("1_gp332")
+
+[node name="Base" parent="." instance=ExtResource("5_dbrtg")]
+position = Vector2(119, -41)
 
 [node name="Player" parent="." instance=ExtResource("2_075rn")]
 
@@ -24,7 +28,10 @@ position = Vector2(-119, -52)
 turret_speed = 6.0
 detect_radius = 100
 
-[node name="Base" parent="." instance=ExtResource("5_dbrtg")]
-position = Vector2(119, -41)
+[node name="HUD" parent="." instance=ExtResource("6_knhln")]
 
+[connection signal="ammo_updated" from="Base" to="." method="_on_base_ammo_updated"]
+[connection signal="ammo_updated" from="Base" to="Player" method="_on_base_ammo_updated"]
+[connection signal="body_entered" from="Base" to="Player" method="_on_base_body_entered"]
+[connection signal="ammo_updated" from="Player" to="HUD" method="_on_player_ammo_updated"]
 [connection signal="shootSignal" from="Player" to="." method="_on_Tank_shootSignal"]
