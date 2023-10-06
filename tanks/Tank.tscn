@@ -8,14 +8,14 @@ size = Vector2(16, 16)
 
 [node name="Tank" type="CharacterBody2D"]
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+texture_filter = 1
+shape = SubResource("RectangleShape2D_2736q")
+
 [node name="Body" type="Sprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(1, 0.991)
 texture = ExtResource("1_fygv5")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-texture_filter = 1
-shape = SubResource("RectangleShape2D_2736q")
 
 [node name="Weapon" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -25,3 +25,4 @@ texture = ExtResource("2_gvam4")
 [node name="Muzzle" type="Marker2D" parent="Weapon"]
 
 [node name="GunTimer" type="Timer" parent="."]
+wait_time = 0.5
