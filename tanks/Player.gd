@@ -1,8 +1,11 @@
 extends "res://tanks/Tank.gd"
 
-var ammo_storage: int = 0
+var ammo_storage: int = 30
 
-signal ammo_updated # Signal til HUD
+signal ammo_updated # Signal for HUD
+
+func _ready():
+	ammo_updated.emit(ammo_storage)
 
 func control(delta):
 	$Weapon.look_at(get_global_mouse_position())

@@ -25,3 +25,4 @@ texture = ExtResource("2_gvam4")
 [node name="Muzzle" type="Marker2D" parent="Weapon"]
 
 [node name="GunTimer" type="Timer" parent="."]
+wait_time = 0.5
