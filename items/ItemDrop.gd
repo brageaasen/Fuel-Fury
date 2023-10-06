@@ -2,6 +2,7 @@ extends Node2D
 
 # TODO:
 # Denne noden skal ha en Item.tscn instansiert, og gi den en plassering på kartet, og pickup sone.
+# Eventuelt HP hvis den skal kunne bli fjernet av å bli eksplodert f. eks, eller despawn timer.
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

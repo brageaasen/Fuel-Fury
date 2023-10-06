@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cspjpdf2dvsr1"]
+[gd_scene load_steps=3 format=3 uid="uid://cspjpdf2dvsr1"]
 
 [ext_resource type="Script" path="res://items/Item.gd" id="1_1cthw"]
+[ext_resource type="Texture2D" uid="uid://dgedq6e1ie2ps" path="res://assets/items/generic-item.png" id="1_pn4oa"]
 
-[node name="Item" type="Node"]
+[node name="Item" type="Sprite2D"]
+texture = ExtResource("1_pn4oa")
 script = ExtResource("1_1cthw")

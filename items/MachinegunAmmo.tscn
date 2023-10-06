@@ -1,0 +1,9 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbnas40arqk18"]
+
+[ext_resource type="PackedScene" uid="uid://cspjpdf2dvsr1" path="res://items/Item.tscn" id="1_6k38c"]
+[ext_resource type="Script" path="res://items/MachinegunAmmo.gd" id="2_8y8xb"]
+[ext_resource type="Texture2D" uid="uid://cevkpvkkylbp0" path="res://assets/items/mg-rounds-item.png" id="2_d60mx"]
+
+[node name="Item" instance=ExtResource("1_6k38c")]
+texture = ExtResource("2_d60mx")
+script = ExtResource("2_8y8xb")
