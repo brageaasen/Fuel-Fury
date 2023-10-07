@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfmbdt2u6tpxo"]
+
+[ext_resource type="Texture2D" uid="uid://b3lwpmirdujn0" path="res://assets/Bullet.png" id="1_rxsp5"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6y3yw"]
+emission_shape = 1
+emission_sphere_radius = 20.0
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Explosion" type="GPUParticles2D" parent="."]
+amount = 24
+process_material = SubResource("ParticleProcessMaterial_6y3yw")
+texture = ExtResource("1_rxsp5")
+lifetime = 0.1
+explosiveness = 1.0

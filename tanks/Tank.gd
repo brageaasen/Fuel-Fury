@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 signal shootSignal
-signal health_changed
+signal health_changed # Keep or remove?
 signal dead
 
 @export var Bullet : PackedScene
@@ -25,7 +25,13 @@ func shoot():
 		$GunTimer.start()
 		var dir = Vector2(1, 0).rotated($Weapon.global_rotation)
 		emit_signal("shootSignal", Bullet, $Weapon/Muzzle.global_position, dir)
-		
+
+func take_damage(damage):
+	health -= damage
+	if (health <= 0):
+		alive = false
+		queue_free() # Destroy object
+		emit_signal("dead") # No one catches this signal yet
 
 func _physics_process(delta):
 	if not alive:

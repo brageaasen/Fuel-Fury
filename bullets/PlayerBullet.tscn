@@ -4,4 +4,7 @@
 [ext_resource type="Script" path="res://bullets/PlayerBullet.gd" id="2_hoi6o"]
 
 [node name="PlayerBullet" instance=ExtResource("1_07lw7")]
+collision_mask = 5
 script = ExtResource("2_hoi6o")
+speed = 250
+lifetime = 10.0
