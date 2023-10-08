@@ -34,4 +34,3 @@ metadata/_edit_use_anchors_ = true
 [connection signal="ammo_updated" from="Base" to="Player" method="_on_base_ammo_updated"]
 [connection signal="ammo_updated" from="Player" to="HUD" method="_on_player_ammo_updated"]
 [connection signal="shootSignal" from="Player" to="." method="_on_Tank_shootSignal"]
-[connection signal="dead" from="EnemyTank" to="." method="_on_enemy_tank_dead"]
