@@ -18,7 +18,6 @@ func _on_detect_radius_body_entered(body):
 	if body.name == "Player":
 		target = body
 
-
 func _on_detect_radius_body_exited(body):
 	if body == target:
 		target = null
