@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://dydi1sfsju10l"]
+
+[sub_resource type="Curve" id="Curve_fy8og"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0.0114943, 147.789), 0.0, 0.0, 0, 0, Vector2(1, -140.211), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_y3ssf"]
+width = 200
+curve = SubResource("Curve_fy8og")
+
+[sub_resource type="Curve" id="Curve_1x5bt"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_ucxlb"]
+width = 2048
+curve = SubResource("Curve_1x5bt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6y3yw"]
+emission_shape = 1
+emission_sphere_radius = 0.01
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 110.61
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_max = 145.4
+angle_curve = SubResource("CurveTexture_y3ssf")
+scale_min = 0.5
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_ucxlb")
+color = Color(0.175781, 0.417969, 0.507813, 1)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Explosion" type="GPUParticles2D" parent="."]
+process_material = SubResource("ParticleProcessMaterial_6y3yw")
+one_shot = true
+explosiveness = 1.0

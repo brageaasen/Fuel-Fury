@@ -15,4 +15,3 @@ func control(delta):
 		velocity = Vector2(-speed/2, 0).rotated(rotation)
 	if Input.is_action_pressed("click"):
 		shoot()
-		print(gun_cooldown)
