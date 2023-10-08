@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 [gd_scene load_steps=7 format=3 uid="uid://darkjs45idgh1"]
+=======
+[gd_scene load_steps=5 format=3 uid="uid://c243alw3bhwg2"]
+>>>>>>> 22f69eef3efb37717aac5ff70228a994ca08e66d
 
 [ext_resource type="Texture2D" uid="uid://cghivxwdge483" path="res://assets/Background.png" id="1_gp332"]
 [ext_resource type="Script" path="res://MainScene.gd" id="1_lo4ee"]
