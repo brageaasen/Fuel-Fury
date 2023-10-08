@@ -6,6 +6,5 @@ func _on_Tank_shootSignal(bullet, _position, _direction):
 	b.start(_position, _direction)	
 
 
-
 func _on_enemy_tank_dead():
 	pass # Replace with function body.

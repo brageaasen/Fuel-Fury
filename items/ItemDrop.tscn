@@ -1,6 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://d2ta1essuprry"]
+[gd_scene load_steps=4 format=3 uid="uid://d2ta1essuprry"]
 
 [ext_resource type="Script" path="res://items/ItemDrop.gd" id="1_pck64"]
+[ext_resource type="PackedScene" uid="uid://cspjpdf2dvsr1" path="res://items/Item.tscn" id="2_d8nfa"]
 
-[node name="ItemDrop" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_jlo6s"]
+
+[node name="ItemDrop" type="Area2D"]
+collision_layer = 16
+collision_mask = 2
 script = ExtResource("1_pck64")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_jlo6s")
+
+[node name="Item" parent="." instance=ExtResource("2_d8nfa")]
