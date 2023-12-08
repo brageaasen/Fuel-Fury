@@ -15,7 +15,6 @@ var can_shoot = true
 var alive = true
 
 func _ready():
-	print("Ready function called")
 	$GunTimer.wait_time = gun_cooldown
 	$MachineGunTimer.wait_time = machine_gun_cooldown
 	

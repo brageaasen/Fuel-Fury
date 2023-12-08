@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://bullets/MachineGunBullet.gd" id="2_wyfcg"]
 
 [node name="MachineGunBullet" instance=ExtResource("1_situ0")]
+scale = Vector2(0.525, 0.525)
 collision_mask = 5
 script = ExtResource("2_wyfcg")
 speed = 300
