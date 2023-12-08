@@ -11,8 +11,10 @@ script = ExtResource("1_gawyv")
 Bullet = ExtResource("3_xom67")
 speed = 60
 rotation_speed = 1.0
-gun_cooldown = 0.4
+gun_cooldown = 7.095
+machine_gun_cooldown = 0.435
 health = 100
 
 [connection signal="shootSignal" from="." to="." method="_on_shoot_signal"]
 [connection signal="timeout" from="GunTimer" to="." method="_on_GunTimer_timeout"]
+[connection signal="timeout" from="MachineGunTimer" to="." method="_on_MachineGunTimer_timeout"]
