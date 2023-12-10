@@ -26,3 +26,8 @@ texture = ExtResource("2_gvam4")
 
 [node name="GunTimer" type="Timer" parent="."]
 wait_time = 0.5
+one_shot = true
+
+[node name="MachineGunTimer" type="Timer" parent="."]
+wait_time = 0.102
+one_shot = true
