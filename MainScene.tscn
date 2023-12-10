@@ -29,6 +29,10 @@ turret_speed = 6.0
 detect_radius = 100
 
 [node name="HUD" parent="." instance=ExtResource("6_knhln")]
+offset_left = 158.0
+offset_top = 7.0
+offset_right = 158.0
+offset_bottom = 7.0
 metadata/_edit_use_anchors_ = true
 
 [connection signal="ammo_updated" from="Base" to="Player" method="_on_base_ammo_updated"]

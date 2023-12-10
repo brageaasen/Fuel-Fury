@@ -21,13 +21,18 @@ func _ready():
 func control(delta):
 	pass
 
-func shoot(bullet_type, turret):
+func shoot(bullet, turret):
+	# Find path of bullet scene
+	var bullet_scene_path = bullet.get_path().get_file()
+	
 	if can_shoot:
 		can_shoot = false
-		if (turret == "MG"): $MachineGunTimer.start()
+		
+		# Check what type of bullet was shot
+		if bullet_scene_path.match("*MachineGunBullet*"): $MachineGunTimer.start()
 		else: $GunTimer.start()
 		var dir = Vector2(1, 0).rotated($Weapon.global_rotation)
-		emit_signal("shootSignal", bullet_type, $Weapon/Muzzle.global_position, dir)
+		emit_signal("shootSignal", bullet, $Weapon/Muzzle.global_position, dir)
 
 func take_damage(damage):
 	health -= damage
