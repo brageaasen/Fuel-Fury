@@ -34,7 +34,7 @@ angle_curve = SubResource("CurveTexture_y3ssf")
 scale_min = 0.5
 scale_max = 2.0
 scale_curve = SubResource("CurveTexture_ucxlb")
-color = Color(0.175781, 0.417969, 0.507813, 1)
+color = Color(1, 0.584314, 0, 1)
 
 [node name="Node2D" type="Node2D"]
 

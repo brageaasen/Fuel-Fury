@@ -1,14 +1,16 @@
 extends Node2D
 
+# TODO: Should maybe get target position dynamically from the base object
+@export var target_position = Vector2(95, -1) # Current base position
+@export var distance_to_activate = 100
 var player
-var target_position = Vector2(95, -1) # Current base position
 var target_alpha = 0
 
 func _ready():
 	player = get_node("/root/MainScene/Player")
 
 func _process(_delta):
-	if player.position.distance_to(target_position) < 100:
+	if player.position.distance_to(target_position) < distance_to_activate:
 		target_alpha = 0
 	else:
 		target_alpha = 1
