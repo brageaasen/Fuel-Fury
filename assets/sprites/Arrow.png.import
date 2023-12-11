@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://myearbgbd82e"
-path="res://.godot/imported/nyx8-1x.png-5ca15c754357f9c19fa4168c615f5179.ctex"
+uid="uid://cnb5chdsrk2hw"
+path="res://.godot/imported/Arrow.png-fd614726478d146e66c63c2f0a24eeec.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/aseprite/nyx8-1x.png"
-dest_files=["res://.godot/imported/nyx8-1x.png-5ca15c754357f9c19fa4168c615f5179.ctex"]
+source_file="res://assets/sprites/Arrow.png"
+dest_files=["res://.godot/imported/Arrow.png-fd614726478d146e66c63c2f0a24eeec.ctex"]
 
 [params]
 

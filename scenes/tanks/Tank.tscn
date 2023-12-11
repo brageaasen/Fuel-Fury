@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://dy2ak8axbab1p"]
+
+[ext_resource type="Texture2D" uid="uid://bya6xqrlmodhh" path="res://assets/sprites/TanksNew.png" id="1_6nafw"]
+[ext_resource type="Texture2D" uid="uid://crlo74pakghxn" path="res://assets/sprites/WeaponNew.png" id="2_c8a2w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vinng"]
+radius = 7.07107
+
+[node name="Tank" type="CharacterBody2D"]
+z_index = 1
+y_sort_enabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+texture_filter = 1
+scale = Vector2(1.12, 1.12)
+shape = SubResource("CircleShape2D_vinng")
+
+[node name="Body" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(1, 0.991)
+texture = ExtResource("1_6nafw")
+
+[node name="Weapon" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(1, 0.999998)
+texture = ExtResource("2_c8a2w")
+offset = Vector2(4, 0)
+
+[node name="Muzzle" type="Marker2D" parent="Weapon"]
+
+[node name="GunTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="MachineGunTimer" type="Timer" parent="."]
+wait_time = 0.102
+one_shot = true

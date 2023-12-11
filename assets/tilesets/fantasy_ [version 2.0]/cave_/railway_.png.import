@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://myearbgbd82e"
-path="res://.godot/imported/nyx8-1x.png-5ca15c754357f9c19fa4168c615f5179.ctex"
+uid="uid://bo5giqga0uo8c"
+path="res://.godot/imported/railway_.png-95412d81950ed0e46d030521f099279c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/aseprite/nyx8-1x.png"
-dest_files=["res://.godot/imported/nyx8-1x.png-5ca15c754357f9c19fa4168c615f5179.ctex"]
+source_file="res://assets/tilesets/fantasy_ [version 2.0]/cave_/railway_.png"
+dest_files=["res://.godot/imported/railway_.png-95412d81950ed0e46d030521f099279c.ctex"]
 
 [params]
 

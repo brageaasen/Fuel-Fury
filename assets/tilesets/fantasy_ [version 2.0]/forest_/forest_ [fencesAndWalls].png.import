@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://myearbgbd82e"
-path="res://.godot/imported/nyx8-1x.png-5ca15c754357f9c19fa4168c615f5179.ctex"
+uid="uid://duowx7jwcwu2x"
+path="res://.godot/imported/forest_ [fencesAndWalls].png-47360ff24bdbcac26ceef3474e62edaf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/aseprite/nyx8-1x.png"
-dest_files=["res://.godot/imported/nyx8-1x.png-5ca15c754357f9c19fa4168c615f5179.ctex"]
+source_file="res://assets/tilesets/fantasy_ [version 2.0]/forest_/forest_ [fencesAndWalls].png"
+dest_files=["res://.godot/imported/forest_ [fencesAndWalls].png-47360ff24bdbcac26ceef3474e62edaf.ctex"]
 
 [params]
 

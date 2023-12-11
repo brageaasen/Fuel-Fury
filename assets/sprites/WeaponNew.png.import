@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://myearbgbd82e"
-path="res://.godot/imported/nyx8-1x.png-5ca15c754357f9c19fa4168c615f5179.ctex"
+uid="uid://crlo74pakghxn"
+path="res://.godot/imported/WeaponNew.png-796b419ba1bf8d01d7b6a15a07f2503c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/aseprite/nyx8-1x.png"
-dest_files=["res://.godot/imported/nyx8-1x.png-5ca15c754357f9c19fa4168c615f5179.ctex"]
+source_file="res://assets/sprites/WeaponNew.png"
+dest_files=["res://.godot/imported/WeaponNew.png-796b419ba1bf8d01d7b6a15a07f2503c.ctex"]
 
 [params]
 

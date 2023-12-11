@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6l7quk1tdtpf"]
+
+[ext_resource type="PackedScene" uid="uid://bocuou03h0uf3" path="res://scenes/bullets/Bullet.tscn" id="1_354ge"]
+[ext_resource type="Script" path="res://scripts/bullets/PlayerBullet.gd" id="2_glmyg"]
+[ext_resource type="PackedScene" uid="uid://dydi1sfsju10l" path="res://scenes/particles/Explosion.tscn" id="3_p6q1i"]
+
+[node name="PlayerBullet" instance=ExtResource("1_354ge")]
+collision_mask = 5
+script = ExtResource("2_glmyg")
+Explosion_particles = ExtResource("3_p6q1i")
+speed = 250
+damage = 20
+lifetime = 2.0

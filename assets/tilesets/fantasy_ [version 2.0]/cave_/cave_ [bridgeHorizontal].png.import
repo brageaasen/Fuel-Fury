@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://myearbgbd82e"
-path="res://.godot/imported/nyx8-1x.png-5ca15c754357f9c19fa4168c615f5179.ctex"
+uid="uid://dj3thil12d37t"
+path="res://.godot/imported/cave_ [bridgeHorizontal].png-0d76d7c8f4db32d3d2a511a3b9917d4b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/aseprite/nyx8-1x.png"
-dest_files=["res://.godot/imported/nyx8-1x.png-5ca15c754357f9c19fa4168c615f5179.ctex"]
+source_file="res://assets/tilesets/fantasy_ [version 2.0]/cave_/cave_ [bridgeHorizontal].png"
+dest_files=["res://.godot/imported/cave_ [bridgeHorizontal].png-0d76d7c8f4db32d3d2a511a3b9917d4b.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://myearbgbd82e"
-path="res://.godot/imported/nyx8-1x.png-5ca15c754357f9c19fa4168c615f5179.ctex"
+uid="uid://db8af4v0myyxa"
+path="res://.godot/imported/swamp_ [bridgeVertical].png-d8fa76730028e69ae0fd63290ce828c1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/aseprite/nyx8-1x.png"
-dest_files=["res://.godot/imported/nyx8-1x.png-5ca15c754357f9c19fa4168c615f5179.ctex"]
+source_file="res://assets/tilesets/fantasy_ [version 2.0]/swamp_/swamp_ [bridgeVertical].png"
+dest_files=["res://.godot/imported/swamp_ [bridgeVertical].png-d8fa76730028e69ae0fd63290ce828c1.ctex"]
 
 [params]
 

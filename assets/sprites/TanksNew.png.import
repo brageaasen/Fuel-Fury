@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://myearbgbd82e"
-path="res://.godot/imported/nyx8-1x.png-5ca15c754357f9c19fa4168c615f5179.ctex"
+uid="uid://bya6xqrlmodhh"
+path="res://.godot/imported/TanksNew.png-72c8ea9fdc07989ef3d9d3ec6faee378.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/aseprite/nyx8-1x.png"
-dest_files=["res://.godot/imported/nyx8-1x.png-5ca15c754357f9c19fa4168c615f5179.ctex"]
+source_file="res://assets/sprites/TanksNew.png"
+dest_files=["res://.godot/imported/TanksNew.png-72c8ea9fdc07989ef3d9d3ec6faee378.ctex"]
 
 [params]
 

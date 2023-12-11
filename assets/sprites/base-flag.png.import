@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://myearbgbd82e"
-path="res://.godot/imported/nyx8-1x.png-5ca15c754357f9c19fa4168c615f5179.ctex"
+uid="uid://dweqhien0fcil"
+path="res://.godot/imported/base-flag.png-3d0415ad663308990370eb60b5e38a5d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/aseprite/nyx8-1x.png"
-dest_files=["res://.godot/imported/nyx8-1x.png-5ca15c754357f9c19fa4168c615f5179.ctex"]
+source_file="res://assets/sprites/base-flag.png"
+dest_files=["res://.godot/imported/base-flag.png-3d0415ad663308990370eb60b5e38a5d.ctex"]
 
 [params]
 

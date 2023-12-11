@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://myearbgbd82e"
-path="res://.godot/imported/nyx8-1x.png-5ca15c754357f9c19fa4168c615f5179.ctex"
+uid="uid://mbs8tpicqe6s"
+path="res://.godot/imported/desert_ [bridgeHorizontal].png-b1b5f6b518254205beb923c641b1e899.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/aseprite/nyx8-1x.png"
-dest_files=["res://.godot/imported/nyx8-1x.png-5ca15c754357f9c19fa4168c615f5179.ctex"]
+source_file="res://assets/tilesets/fantasy_ [version 2.0]/desert_/desert_ [bridgeHorizontal].png"
+dest_files=["res://.godot/imported/desert_ [bridgeHorizontal].png-b1b5f6b518254205beb923c641b1e899.ctex"]
 
 [params]
 

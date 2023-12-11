@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://myearbgbd82e"
-path="res://.godot/imported/nyx8-1x.png-5ca15c754357f9c19fa4168c615f5179.ctex"
+uid="uid://cbvro8y4l0s4q"
+path="res://.godot/imported/tundraSwamp_.png-fcc2b3931f9dc230942efbea0e3b2d8e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/aseprite/nyx8-1x.png"
-dest_files=["res://.godot/imported/nyx8-1x.png-5ca15c754357f9c19fa4168c615f5179.ctex"]
+source_file="res://assets/tilesets/fantasy_ [version 2.0]/fantasy_/tundraSwamp_.png"
+dest_files=["res://.godot/imported/tundraSwamp_.png-fcc2b3931f9dc230942efbea0e3b2d8e.ctex"]
 
 [params]
 

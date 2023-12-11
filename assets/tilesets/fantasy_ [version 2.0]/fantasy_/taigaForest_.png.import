@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://myearbgbd82e"
-path="res://.godot/imported/nyx8-1x.png-5ca15c754357f9c19fa4168c615f5179.ctex"
+uid="uid://bkq0iwh1ernbl"
+path="res://.godot/imported/taigaForest_.png-18a83f7443ec4f1cf7e45a4cb1b989a3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/aseprite/nyx8-1x.png"
-dest_files=["res://.godot/imported/nyx8-1x.png-5ca15c754357f9c19fa4168c615f5179.ctex"]
+source_file="res://assets/tilesets/fantasy_ [version 2.0]/fantasy_/taigaForest_.png"
+dest_files=["res://.godot/imported/taigaForest_.png-18a83f7443ec4f1cf7e45a4cb1b989a3.ctex"]
 
 [params]
 

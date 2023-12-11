@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://myearbgbd82e"
-path="res://.godot/imported/nyx8-1x.png-5ca15c754357f9c19fa4168c615f5179.ctex"
+uid="uid://76kthr3a7gbn"
+path="res://.godot/imported/base-circle.png-90f2c9421c1c2035244c210533dca495.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/aseprite/nyx8-1x.png"
-dest_files=["res://.godot/imported/nyx8-1x.png-5ca15c754357f9c19fa4168c615f5179.ctex"]
+source_file="res://assets/sprites/base-circle.png"
+dest_files=["res://.godot/imported/base-circle.png-90f2c9421c1c2035244c210533dca495.ctex"]
 
 [params]
 

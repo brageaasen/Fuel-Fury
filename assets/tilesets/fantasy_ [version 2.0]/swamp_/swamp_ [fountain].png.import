@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://myearbgbd82e"
-path="res://.godot/imported/nyx8-1x.png-5ca15c754357f9c19fa4168c615f5179.ctex"
+uid="uid://cyp3pecgd2qn8"
+path="res://.godot/imported/swamp_ [fountain].png-7b5a41510174c9631442bcefb9f7283e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/aseprite/nyx8-1x.png"
-dest_files=["res://.godot/imported/nyx8-1x.png-5ca15c754357f9c19fa4168c615f5179.ctex"]
+source_file="res://assets/tilesets/fantasy_ [version 2.0]/swamp_/swamp_ [fountain].png"
+dest_files=["res://.godot/imported/swamp_ [fountain].png-7b5a41510174c9631442bcefb9f7283e.ctex"]
 
 [params]
 

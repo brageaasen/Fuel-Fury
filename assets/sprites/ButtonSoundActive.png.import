@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://myearbgbd82e"
-path="res://.godot/imported/nyx8-1x.png-5ca15c754357f9c19fa4168c615f5179.ctex"
+uid="uid://bl4ohekfuqc7t"
+path="res://.godot/imported/ButtonSoundActive.png-79305c95370d28d58f4259c1263eeb94.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/aseprite/nyx8-1x.png"
-dest_files=["res://.godot/imported/nyx8-1x.png-5ca15c754357f9c19fa4168c615f5179.ctex"]
+source_file="res://assets/sprites/ButtonSoundActive.png"
+dest_files=["res://.godot/imported/ButtonSoundActive.png-79305c95370d28d58f4259c1263eeb94.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://myearbgbd82e"
-path="res://.godot/imported/nyx8-1x.png-5ca15c754357f9c19fa4168c615f5179.ctex"
+uid="uid://cg3fo1jt6skwh"
+path="res://.godot/imported/puddle_.png-49cd2667b90a71655a93146feca147c9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/aseprite/nyx8-1x.png"
-dest_files=["res://.godot/imported/nyx8-1x.png-5ca15c754357f9c19fa4168c615f5179.ctex"]
+source_file="res://assets/tilesets/fantasy_ [version 2.0]/swamp_/puddle_.png"
+dest_files=["res://.godot/imported/puddle_.png-49cd2667b90a71655a93146feca147c9.ctex"]
 
 [params]
 

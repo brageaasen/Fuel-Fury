@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://myearbgbd82e"
-path="res://.godot/imported/nyx8-1x.png-5ca15c754357f9c19fa4168c615f5179.ctex"
+uid="uid://cm1iwudkgxgog"
+path="res://.godot/imported/igloo_.png-47c1a6b82cbc24be326a89ab604693d0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/aseprite/nyx8-1x.png"
-dest_files=["res://.godot/imported/nyx8-1x.png-5ca15c754357f9c19fa4168c615f5179.ctex"]
+source_file="res://assets/tilesets/fantasy_ [version 2.0]/tundra_/igloo_.png"
+dest_files=["res://.godot/imported/igloo_.png-47c1a6b82cbc24be326a89ab604693d0.ctex"]
 
 [params]
 

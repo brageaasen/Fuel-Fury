@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://myearbgbd82e"
-path="res://.godot/imported/nyx8-1x.png-5ca15c754357f9c19fa4168c615f5179.ctex"
+uid="uid://bcm73chi2oomd"
+path="res://.godot/imported/tundraPath_.png-26ee66240c4153f6a18ac3750d706a92.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/aseprite/nyx8-1x.png"
-dest_files=["res://.godot/imported/nyx8-1x.png-5ca15c754357f9c19fa4168c615f5179.ctex"]
+source_file="res://assets/tilesets/fantasy_ [version 2.0]/tundra_/tundraPath_.png"
+dest_files=["res://.godot/imported/tundraPath_.png-26ee66240c4153f6a18ac3750d706a92.ctex"]
 
 [params]
 

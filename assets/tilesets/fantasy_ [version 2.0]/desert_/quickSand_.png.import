@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://myearbgbd82e"
-path="res://.godot/imported/nyx8-1x.png-5ca15c754357f9c19fa4168c615f5179.ctex"
+uid="uid://0ntprp6hlvag"
+path="res://.godot/imported/quickSand_.png-5c4a5795b9b5e50c8587198ba671f922.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/aseprite/nyx8-1x.png"
-dest_files=["res://.godot/imported/nyx8-1x.png-5ca15c754357f9c19fa4168c615f5179.ctex"]
+source_file="res://assets/tilesets/fantasy_ [version 2.0]/desert_/quickSand_.png"
+dest_files=["res://.godot/imported/quickSand_.png-5c4a5795b9b5e50c8587198ba671f922.ctex"]
 
 [params]
 
