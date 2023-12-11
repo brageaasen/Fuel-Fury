@@ -4,6 +4,7 @@ signal ammo_updated
 
 
 func _ready():
+	print(self.position)
 	$AmmoFillTimer.start()
 	$AmmoFillTimer.set_paused(true)
 

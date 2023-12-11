@@ -14,7 +14,6 @@ func _ready():
 
 # Move and attack with player
 func control(delta):
-	#print(mg_ammo_storage)
 	$Weapon.look_at(get_global_mouse_position())
 	var rotation_direction = 0
 	if Input.is_action_pressed("turn_right"):
