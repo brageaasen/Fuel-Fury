@@ -63,7 +63,6 @@ func _physics_process(delta):
 	var recoil_increment = max_recoil * 0.05
 	if not Input.is_action_pressed("left_click") or Input.is_action_pressed("right_click"):
 		current_recoil = clamp(current_recoil - recoil_increment, 0.0, max_recoil)
-	print(current_recoil)
 
 func _on_GunTimer_timeout():
 	can_shoot = true
