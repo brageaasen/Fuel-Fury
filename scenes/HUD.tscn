@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bjj2uflh2plre"]
 
-[ext_resource type="Script" path="res://HUD.gd" id="1_i3q1x"]
+[ext_resource type="Script" path="res://scripts/HUD.gd" id="1_ewyae"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -9,7 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_i3q1x")
+script = ExtResource("1_ewyae")
 
 [node name="AmmoStorage" type="Label" parent="."]
 layout_mode = 1
@@ -46,3 +46,5 @@ theme_override_font_sizes/font_size = 20
 text = "MG Ammo: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Node2D" type="Node2D" parent="."]

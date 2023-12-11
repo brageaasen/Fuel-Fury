@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://bq1ywixvc2csc"]
 
-[ext_resource type="PackedScene" uid="uid://dy2ak8axbab1p" path="res://tanks/Tank.tscn" id="1_51wds"]
-[ext_resource type="Script" path="res://tanks/EnemyTank.gd" id="2_b13bm"]
-[ext_resource type="PackedScene" uid="uid://bocuou03h0uf3" path="res://bullets/Bullet.tscn" id="3_adp4b"]
+[ext_resource type="PackedScene" uid="uid://dy2ak8axbab1p" path="res://scenes/tanks/Tank.tscn" id="1_51wds"]
+[ext_resource type="Script" path="res://scripts/tanks/EnemyTank.gd" id="2_b13bm"]
+[ext_resource type="PackedScene" uid="uid://bocuou03h0uf3" path="res://scenes/bullets/Bullet.tscn" id="3_adp4b"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0pwx2"]
 radius = 66.0

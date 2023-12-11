@@ -1,19 +1,19 @@
 [gd_scene load_steps=18 format=3 uid="uid://darkjs45idgh1"]
 
-[ext_resource type="Script" path="res://MainScene.gd" id="1_lo4ee"]
-[ext_resource type="PackedScene" uid="uid://c27lt7vwi1j4f" path="res://tanks/Player.tscn" id="2_075rn"]
-[ext_resource type="Texture2D" uid="uid://cghivxwdge483" path="res://assets/sprites/Background.png" id="2_gtvn0"]
-[ext_resource type="PackedScene" uid="uid://bq1ywixvc2csc" path="res://tanks/EnemyTank.tscn" id="4_vblvd"]
-[ext_resource type="PackedScene" uid="uid://dkt8ngtenq443" path="res://base/Base.tscn" id="5_dbrtg"]
-[ext_resource type="PackedScene" uid="uid://bjj2uflh2plre" path="res://HUD.tscn" id="6_knhln"]
-[ext_resource type="Texture2D" uid="uid://bj15jpw5xnp7u" path="res://assets/tilesets/fantasy_ [version 2.0]/forest_/forest_.png" id="7_05uvy"]
-[ext_resource type="Texture2D" uid="uid://vnxcrcas534i" path="res://assets/tilesets/fantasy_ [version 2.0]/forest_/forest_ [resources].png" id="8_of04v"]
-[ext_resource type="Texture2D" uid="uid://duowx7jwcwu2x" path="res://assets/tilesets/fantasy_ [version 2.0]/forest_/forest_ [fencesAndWalls].png" id="9_1caua"]
-[ext_resource type="Texture2D" uid="uid://cstunfouic7av" path="res://assets/tilesets/fantasy_ [version 2.0]/forest_/forest_ [bridgeVertical].png" id="10_0k2gt"]
-[ext_resource type="Texture2D" uid="uid://cg32oc5n1wcj4" path="res://assets/tilesets/fantasy_ [version 2.0]/forest_/forest_ [bridgeHorizontal].png" id="11_l1w2o"]
+[ext_resource type="Script" path="res://scripts/MainScene.gd" id="1_f01k8"]
+[ext_resource type="Texture2D" uid="uid://bj15jpw5xnp7u" path="res://assets/tilesets/fantasy_ [version 2.0]/forest_/forest_.png" id="2_iiu5o"]
+[ext_resource type="Texture2D" uid="uid://vnxcrcas534i" path="res://assets/tilesets/fantasy_ [version 2.0]/forest_/forest_ [resources].png" id="3_87agy"]
+[ext_resource type="Texture2D" uid="uid://duowx7jwcwu2x" path="res://assets/tilesets/fantasy_ [version 2.0]/forest_/forest_ [fencesAndWalls].png" id="4_7hmyb"]
+[ext_resource type="Texture2D" uid="uid://cstunfouic7av" path="res://assets/tilesets/fantasy_ [version 2.0]/forest_/forest_ [bridgeVertical].png" id="5_beajn"]
+[ext_resource type="Texture2D" uid="uid://cg32oc5n1wcj4" path="res://assets/tilesets/fantasy_ [version 2.0]/forest_/forest_ [bridgeHorizontal].png" id="6_bhh3s"]
+[ext_resource type="Texture2D" uid="uid://cghivxwdge483" path="res://assets/sprites/Background.png" id="7_4lput"]
+[ext_resource type="PackedScene" uid="uid://dkt8ngtenq443" path="res://scenes/base/Base.tscn" id="8_i0bkt"]
+[ext_resource type="PackedScene" uid="uid://c27lt7vwi1j4f" path="res://scenes/tanks/Player.tscn" id="9_0hll4"]
+[ext_resource type="PackedScene" uid="uid://bjj2uflh2plre" path="res://scenes/HUD.tscn" id="10_nv74w"]
+[ext_resource type="PackedScene" uid="uid://bq1ywixvc2csc" path="res://scenes/tanks/EnemyTank.tscn" id="11_ts76y"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lsplo"]
-texture = ExtResource("7_05uvy")
+texture = ExtResource("2_iiu5o")
 1:1/0 = 0
 1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:1/0/physics_layer_0/angular_velocity = 0.0
@@ -341,7 +341,7 @@ texture = ExtResource("7_05uvy")
 6:3/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tlo06"]
-texture = ExtResource("8_of04v")
+texture = ExtResource("3_87agy")
 use_texture_padding = false
 10:1/0 = 0
 10:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -549,7 +549,7 @@ use_texture_padding = false
 1:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-5.125, -3.375, 4.875, -3.25, 5, 2.125, -5, 1.875)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t0i5e"]
-texture = ExtResource("9_1caua")
+texture = ExtResource("4_7hmyb")
 11:0/0 = 0
 11:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 11:0/0/physics_layer_0/angular_velocity = 0.0
@@ -856,7 +856,7 @@ texture = ExtResource("9_1caua")
 12:7/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ocbdk"]
-texture = ExtResource("10_0k2gt")
+texture = ExtResource("5_beajn")
 1:0/0 = 0
 1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:0/0/physics_layer_0/angular_velocity = 0.0
@@ -937,7 +937,7 @@ texture = ExtResource("10_0k2gt")
 3:8/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ux752"]
-texture = ExtResource("11_l1w2o")
+texture = ExtResource("6_bhh3s")
 1:0/0 = 0
 1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:0/0/physics_layer_0/angular_velocity = 0.0
@@ -1087,7 +1087,7 @@ sources/4 = SubResource("TileSetAtlasSource_ux752")
 
 [node name="MainScene" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_lo4ee")
+script = ExtResource("1_f01k8")
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -1109,12 +1109,12 @@ layer_1/tile_data = PackedInt32Array(-196620, 65537, 1, -458752, 65537, 1, 32767
 visible = false
 position = Vector2(0.499987, 2)
 scale = Vector2(2.93125, 1.6375)
-texture = ExtResource("2_gtvn0")
+texture = ExtResource("7_4lput")
 
-[node name="Base" parent="." instance=ExtResource("5_dbrtg")]
+[node name="Base" parent="." instance=ExtResource("8_i0bkt")]
 position = Vector2(95, -1)
 
-[node name="Player" parent="." instance=ExtResource("2_075rn")]
+[node name="Player" parent="." instance=ExtResource("9_0hll4")]
 y_sort_enabled = false
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -1122,10 +1122,10 @@ zoom = Vector2(4, 4)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Player/Camera2D"]
 
-[node name="HUD" parent="Player/Camera2D/CanvasLayer" instance=ExtResource("6_knhln")]
+[node name="HUD" parent="Player/Camera2D/CanvasLayer" instance=ExtResource("10_nv74w")]
 metadata/_edit_use_anchors_ = true
 
-[node name="EnemyTank" parent="." instance=ExtResource("4_vblvd")]
+[node name="EnemyTank" parent="." instance=ExtResource("11_ts76y")]
 y_sort_enabled = false
 position = Vector2(-119, -52)
 turret_speed = 6.0

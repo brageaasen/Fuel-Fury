@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://3w5jh4kcf4th"]
+
+[ext_resource type="PackedScene" uid="uid://bocuou03h0uf3" path="res://scenes/bullets/Bullet.tscn" id="1_3crq8"]
+[ext_resource type="Script" path="res://scripts/bullets/MachineGunBullet.gd" id="2_k8b37"]
+
+[node name="MachineGunBullet" instance=ExtResource("1_3crq8")]
+scale = Vector2(0.525, 0.525)
+collision_mask = 5
+script = ExtResource("2_k8b37")
+speed = 300
+damage = 1
+lifetime = 2.0

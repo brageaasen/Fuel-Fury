@@ -1,4 +1,4 @@
-extends "res://tanks/Tank.gd"
+extends "res://scripts/tanks/Tank.gd"
 
 @export var turret_speed : float
 @export var detect_radius : int

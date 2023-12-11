@@ -13,6 +13,6 @@ func _on_explode_particles_signal(Explosion_particles, _position):
 	# TODO: Make us of generic ( Explosion_particles ) instead of just using
 	#		singular explosion particles.
 	#var name = particles.get_filename()
-	var p = preload("res://particles/Explosion.tscn").instantiate()
+	var p = preload("res://scenes/particles/Explosion.tscn").instantiate()
 	add_child(p)
 	p.global_position = _position

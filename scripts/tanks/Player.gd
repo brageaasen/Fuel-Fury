@@ -1,9 +1,9 @@
-extends "res://tanks/Tank.gd"
+extends "res://scripts/tanks/Tank.gd"
 
 @export var ammo_storage : int = 30
 @export var mg_ammo_storage : int = 120
-var heavy_bullet : PackedScene = load( "res://bullets/PlayerBullet.tscn" )
-var machine_gun_bullet : PackedScene = load( "res://bullets/MachineGunBullet.tscn" )
+var heavy_bullet : PackedScene = load( "res://scenes/bullets/PlayerBullet.tscn" )
+var machine_gun_bullet : PackedScene = load( "res://scenes/bullets/MachineGunBullet.tscn" )
 
 signal ammo_updated # Signal for HUD
 

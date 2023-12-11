@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://c27lt7vwi1j4f"]
+
+[ext_resource type="Script" path="res://scripts/tanks/Player.gd" id="1_gawyv"]
+[ext_resource type="PackedScene" uid="uid://dy2ak8axbab1p" path="res://scenes/tanks/Tank.tscn" id="1_mvslc"]
+[ext_resource type="PackedScene" uid="uid://c6l7quk1tdtpf" path="res://scenes/bullets/PlayerBullet.tscn" id="3_xom67"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nnsnr"]
+radius = 7.07107
+
+[node name="Player" instance=ExtResource("1_mvslc")]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_gawyv")
+Bullet = ExtResource("3_xom67")
+speed = 60
+rotation_speed = 2.5
+gun_cooldown = 0.5
+machine_gun_cooldown = 0.1
+health = 100
+
+[node name="CollisionShape2D" parent="." index="0"]
+y_sort_enabled = true
+shape = SubResource("CircleShape2D_nnsnr")
+
+[node name="GunTimer" parent="." index="3"]
+wait_time = 0.4
+
+[node name="MachineGunTimer" parent="." index="4"]
+wait_time = 0.1
+
+[connection signal="shootSignal" from="." to="." method="_on_shoot_signal"]
+[connection signal="timeout" from="GunTimer" to="." method="_on_GunTimer_timeout"]
+[connection signal="timeout" from="MachineGunTimer" to="." method="_on_MachineGunTimer_timeout"]
