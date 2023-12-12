@@ -1,8 +1,8 @@
-class_name EnemyChaseState
+class_name EnemyTankChaseState
 extends State
 
 @export var actor : Enemy
-@export var animator : AnimatedSprite2D
+@export var animator : AnimationPlayer
 @export var vision_cast : RayCast2D
 
 signal lost_player

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://darkjs45idgh1"]
+[gd_scene load_steps=18 format=3 uid="uid://darkjs45idgh1"]
 
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_x0pv1"]
 [ext_resource type="Texture2D" uid="uid://bj15jpw5xnp7u" path="res://assets/tilesets/fantasy_ [version 2.0]/forest_/forest_.png" id="2_o7rec"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://duowx7jwcwu2x" path="res://assets/tilesets/fantasy_ [version 2.0]/forest_/forest_ [fencesAndWalls].png" id="4_ja4ic"]
 [ext_resource type="Texture2D" uid="uid://cstunfouic7av" path="res://assets/tilesets/fantasy_ [version 2.0]/forest_/forest_ [bridgeVertical].png" id="5_4f0jg"]
 [ext_resource type="Texture2D" uid="uid://cg32oc5n1wcj4" path="res://assets/tilesets/fantasy_ [version 2.0]/forest_/forest_ [bridgeHorizontal].png" id="6_uc7s2"]
-[ext_resource type="Texture2D" uid="uid://cghivxwdge483" path="res://assets/sprites/Background.png" id="7_tfh5q"]
 [ext_resource type="PackedScene" uid="uid://dkt8ngtenq443" path="res://scenes/base/base.tscn" id="8_gyq5b"]
 [ext_resource type="PackedScene" uid="uid://c27lt7vwi1j4f" path="res://scenes/tanks/player.tscn" id="9_ixxsp"]
 [ext_resource type="PackedScene" uid="uid://bjj2uflh2plre" path="res://scenes/hud.tscn" id="10_54g1t"]
@@ -1105,12 +1104,6 @@ layer_1/y_sort_enabled = true
 layer_1/y_sort_origin = 0
 layer_1/z_index = 1
 layer_1/tile_data = PackedInt32Array(-196620, 65537, 1, -458752, 65537, 1, 327673, 65537, 1, -327669, 65537, 1, 327691, 65537, 1, -196607, 65537, 1, 393218, 393217, 1, -393208, 393217, 1, 65526, 393217, 1, 393203, 393217, 1, 393223, 196609, 1, 262143, 196609, 1, -393220, 196609, 1, 458749, 131073, 1, -393226, 131073, 1, -131062, 131073, 1, -327677, 131073, 1, 262139, 131073, 3, 65523, 131073, 3)
-
-[node name="Ground" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(0.499987, 2)
-scale = Vector2(2.93125, 1.6375)
-texture = ExtResource("7_tfh5q")
 
 [node name="Base" parent="." instance=ExtResource("8_gyq5b")]
 position = Vector2(95, -1)

@@ -5,6 +5,7 @@ extends "res://scripts/tanks/tank.gd"
 var heavy_bullet : PackedScene = load( "res://scenes/bullets/player_bullet.tscn" )
 var machine_gun_bullet : PackedScene = load( "res://scenes/bullets/machine_gun_bullet.tscn" )
 
+@onready var animation_player = $AnimationPlayer
 signal ammo_updated # Signal for HUD
 
 func _ready():
@@ -18,14 +19,18 @@ func control(delta):
 	var rotation_direction = 0
 	if Input.is_action_pressed("turn_right"):
 		rotation_direction += 1
+		animation_player.play("move")
 	if Input.is_action_pressed("turn_left"):
 		rotation_direction -= 1
+		animation_player.play("move")
 	rotation += rotation_speed * rotation_direction * delta
 	velocity = Vector2()
 	if Input.is_action_pressed("forward"):
 		velocity = Vector2(speed, 0).rotated(rotation)
+		animation_player.play("move")
 	if Input.is_action_pressed("back"):
 		velocity = Vector2(-speed/2, 0).rotated(rotation)
+		animation_player.play("move")
 		
 	# Make seperate ammo storage for Machine Gun (MG) / Gun
 	if Input.is_action_pressed("left_click"):

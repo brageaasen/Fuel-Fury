@@ -6,10 +6,19 @@ extends "res://scripts/ai/enemy.gd"
 @export var machine_gun_cooldown : float
 @export var turret_speed : float
 
+@onready var ray_cast_2d = $RayCast2D
+@onready var fsm = $FiniteStateMachine as FiniteStateMachine
+@onready var enemy_wander_state = $FiniteStateMachine/EnemyTankWanderState as EnemyTankWanderState
+@onready var enemy_chase_state = $FiniteStateMachine/EnemyTankChaseState as EnemyTankChaseState
+
 func _ready():
 	super._ready() # Make parent also run its ready function
 	$GunTimer.wait_time = gun_cooldown
 	$MachineGunTimer.wait_time = machine_gun_cooldown
+	# On found_player, wander -> chase
+	enemy_wander_state.found_player.connect(fsm.change_state.bind(enemy_chase_state))
+	# On lost_player, chase -> wander
+	enemy_chase_state.lost_player.connect(fsm.change_state.bind(enemy_wander_state))
 
 func shoot(bullet):
 	# Find path of bullet scene
@@ -34,9 +43,9 @@ func shoot(bullet):
 		emit_signal("shootSignal", bullet, $Weapon/Muzzle.global_position, actual_bullet_direction)
 
 func _physics_process(delta):
-	super._physics_process(delta)
 	if not alive:
 		return
+	ray_cast_2d.target_position = get_local_mouse_position()
 	
 	var recoil_increment = max_recoil * 0.05
 	if not Input.is_action_pressed("left_click") or Input.is_action_pressed("right_click"):
