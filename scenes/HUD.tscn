@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://bjj2uflh2plre"]
 
-[ext_resource type="Script" path="res://scripts/HUD/hud.gd" id="1_mtgwt"]
+[ext_resource type="Script" path="res://scripts/hud/hud.gd" id="1_mtgwt"]
 [ext_resource type="Texture2D" uid="uid://cnb5chdsrk2hw" path="res://assets/sprites/Arrow.png" id="2_0uvut"]
-[ext_resource type="Script" path="res://scripts/HUD/arrow_to_base_hud.gd" id="3_2p476"]
+[ext_resource type="Script" path="res://scripts/hud/arrow_to_base_hud.gd" id="3_2p476"]
 
 [node name="Control" type="Control"]
 layout_mode = 3

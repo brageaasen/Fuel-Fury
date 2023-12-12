@@ -8,7 +8,7 @@ var machine_gun_bullet : PackedScene = load( "res://scenes/bullets/machine_gun_b
 signal ammo_updated # Signal for HUD
 
 func _ready():
-	super._ready()
+	super._ready() # Make parent also run its ready function
 	ammo_updated.emit(heavy_bullet, ammo_storage)
 	ammo_updated.emit(machine_gun_bullet, mg_ammo_storage)
 

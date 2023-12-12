@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://darkjs45idgh1"]
+[gd_scene load_steps=19 format=3 uid="uid://darkjs45idgh1"]
 
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_x0pv1"]
 [ext_resource type="Texture2D" uid="uid://bj15jpw5xnp7u" path="res://assets/tilesets/fantasy_ [version 2.0]/forest_/forest_.png" id="2_o7rec"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c27lt7vwi1j4f" path="res://scenes/tanks/player.tscn" id="9_ixxsp"]
 [ext_resource type="PackedScene" uid="uid://bjj2uflh2plre" path="res://scenes/hud.tscn" id="10_54g1t"]
 [ext_resource type="PackedScene" uid="uid://bn0crofij5cnc" path="res://scenes/enemy/enemy_tank.tscn" id="11_joq8a"]
+[ext_resource type="PackedScene" uid="uid://bocuou03h0uf3" path="res://scenes/bullets/bullet.tscn" id="12_ofthw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lsplo"]
 texture = ExtResource("2_o7rec")
@@ -1126,6 +1127,13 @@ zoom = Vector2(4, 4)
 metadata/_edit_use_anchors_ = true
 
 [node name="EnemyTank" parent="." instance=ExtResource("11_joq8a")]
+Bullet = ExtResource("12_ofthw")
+rotation_speed = 2.0
+gun_cooldown = 2.0
+machine_gun_cooldown = 1.0
+turret_speed = 1.0
+health = 100
+detect_radius = 100
 
 [connection signal="ammo_updated" from="Base" to="Player" method="_on_base_ammo_updated"]
 [connection signal="ammo_updated" from="Player" to="Player/MainCamera/CanvasLayer/HUD" method="_on_player_ammo_updated"]

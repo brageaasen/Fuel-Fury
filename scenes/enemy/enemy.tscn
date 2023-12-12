@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cs306kobnhuyg"]
+[gd_scene load_steps=7 format=3 uid="uid://cs306kobnhuyg"]
 
 [ext_resource type="Script" path="res://scripts/ai/enemy.gd" id="1_w1fwa"]
 [ext_resource type="Script" path="res://scripts/ai/finite_state_machine.gd" id="2_pwvxs"]
 [ext_resource type="Script" path="res://scripts/ai/enemy_wander_state.gd" id="3_3j0s7"]
+[ext_resource type="Script" path="res://scripts/ai/enemy_chase_state.gd" id="4_jo3rr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vinng"]
 radius = 7.07107
@@ -53,8 +54,17 @@ shape = SubResource("CircleShape2D_0pwx2")
 script = ExtResource("2_pwvxs")
 state = NodePath("EnemyWanderState")
 
-[node name="EnemyWanderState" type="Node" parent="FiniteStateMachine"]
+[node name="EnemyWanderState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("actor", "animator", "vision_cast")]
 script = ExtResource("3_3j0s7")
+actor = NodePath("../..")
+animator = NodePath("../../AnimatedSprite2D")
+vision_cast = NodePath("../../RayCast2D")
+
+[node name="EnemyChaseState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("actor", "animator", "vision_cast")]
+script = ExtResource("4_jo3rr")
+actor = NodePath("../..")
+animator = NodePath("../../AnimatedSprite2D")
+vision_cast = NodePath("../../RayCast2D")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, 30)
