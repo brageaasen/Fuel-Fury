@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://bjj2uflh2plre"]
 
-[ext_resource type="Script" path="res://scripts/HUD/HUD.gd" id="1_p7dpq"]
+[ext_resource type="Script" path="res://scripts/HUD/hud.gd" id="1_mtgwt"]
 [ext_resource type="Texture2D" uid="uid://cnb5chdsrk2hw" path="res://assets/sprites/Arrow.png" id="2_0uvut"]
-[ext_resource type="Script" path="res://scripts/HUD/ArrowToBaseHUD.gd" id="2_3pv42"]
+[ext_resource type="Script" path="res://scripts/HUD/arrow_to_base_hud.gd" id="3_2p476"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -15,7 +15,7 @@ offset_right = 4.0
 offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_p7dpq")
+script = ExtResource("1_mtgwt")
 
 [node name="AmmoStorage" type="Label" parent="."]
 layout_mode = 1
@@ -56,4 +56,4 @@ vertical_alignment = 1
 [node name="ArrowToBase" type="Sprite2D" parent="."]
 position = Vector2(-4, 3)
 texture = ExtResource("2_0uvut")
-script = ExtResource("2_3pv42")
+script = ExtResource("3_2p476")

@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://c27lt7vwi1j4f"]
 
-[ext_resource type="Script" path="res://scripts/tanks/Player.gd" id="1_gawyv"]
-[ext_resource type="PackedScene" uid="uid://dy2ak8axbab1p" path="res://scenes/tanks/Tank.tscn" id="1_mvslc"]
-[ext_resource type="PackedScene" uid="uid://c6l7quk1tdtpf" path="res://scenes/bullets/PlayerBullet.tscn" id="3_xom67"]
+[ext_resource type="PackedScene" uid="uid://dy2ak8axbab1p" path="res://scenes/tanks/tank.tscn" id="1_mvslc"]
+[ext_resource type="Script" path="res://scripts/tanks/player.gd" id="2_irr7l"]
+[ext_resource type="PackedScene" uid="uid://c6l7quk1tdtpf" path="res://scenes/bullets/player_bullet.tscn" id="3_dd57m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nnsnr"]
 radius = 7.07107
@@ -10,8 +10,8 @@ radius = 7.07107
 [node name="Player" instance=ExtResource("1_mvslc")]
 collision_layer = 2
 collision_mask = 5
-script = ExtResource("1_gawyv")
-Bullet = ExtResource("3_xom67")
+script = ExtResource("2_irr7l")
+Bullet = ExtResource("3_dd57m")
 speed = 60
 rotation_speed = 2.5
 gun_cooldown = 0.5

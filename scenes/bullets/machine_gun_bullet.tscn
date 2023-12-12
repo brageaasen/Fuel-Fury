@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://3w5jh4kcf4th"]
+
+[ext_resource type="PackedScene" uid="uid://bocuou03h0uf3" path="res://scenes/bullets/bullet.tscn" id="1_3crq8"]
+[ext_resource type="Script" path="res://scripts/bullets/machine_gun_bullet.gd" id="2_k8b37"]
+[ext_resource type="PackedScene" uid="uid://dydi1sfsju10l" path="res://scenes/particles/explosion.tscn" id="3_61x2v"]
+
+[node name="MachineGunBullet" instance=ExtResource("1_3crq8")]
+scale = Vector2(0.525, 0.525)
+collision_mask = 5
+script = ExtResource("2_k8b37")
+Explosion_particles = ExtResource("3_61x2v")
+speed = 300
+damage = 1
+lifetime = 2.0
