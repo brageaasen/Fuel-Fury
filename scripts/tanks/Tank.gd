@@ -29,7 +29,7 @@ func shoot(bullet):
 	var bullet_scene_path = bullet.get_path().get_file()
 	
 	if can_shoot:
-		can_shoot = false	
+		can_shoot = false
 		
 		# Check what type of bullet was shot
 		if bullet_scene_path.match("*machine_gun_bullet*"): $MachineGunTimer.start()

@@ -1120,8 +1120,8 @@ zoom = Vector2(4, 4)
 metadata/_edit_use_anchors_ = true
 
 [node name="EnemyTank" parent="." instance=ExtResource("11_joq8a")]
+position = Vector2(-29, -30)
 Bullet = ExtResource("12_ofthw")
-rotation_speed = 2.0
 gun_cooldown = 2.0
 machine_gun_cooldown = 1.0
 turret_speed = 1.0

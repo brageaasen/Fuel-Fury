@@ -11,10 +11,16 @@ extends "res://scripts/ai/enemy.gd"
 @onready var enemy_wander_state = $FiniteStateMachine/EnemyTankWanderState as EnemyTankWanderState
 @onready var enemy_chase_state = $FiniteStateMachine/EnemyTankChaseState as EnemyTankChaseState
 
+var player # Reference to the player node or position
+var target_dir
+
 func _ready():
 	super._ready() # Make parent also run its ready function
+	player = get_node("/root/MainScene/Player")
 	$GunTimer.wait_time = gun_cooldown
 	$MachineGunTimer.wait_time = machine_gun_cooldown
+	ray_cast_2d.target_position.x = detect_radius
+	
 	# On found_player, wander -> chase
 	enemy_wander_state.found_player.connect(fsm.change_state.bind(enemy_chase_state))
 	# On lost_player, chase -> wander
@@ -45,18 +51,15 @@ func shoot(bullet):
 func _physics_process(delta):
 	if not alive:
 		return
-	ray_cast_2d.target_position = get_local_mouse_position()
-	
+
 	var recoil_increment = max_recoil * 0.05
 	if not Input.is_action_pressed("left_click") or Input.is_action_pressed("right_click"):
 		current_recoil = clamp(current_recoil - recoil_increment, 0.0, max_recoil)
-
-func _process(delta):
+	
 	if target:
-		var target_dir = (target.global_position - global_position).normalized()
+		target_dir = (target.global_position - global_position).normalized()
 		var current_dir = Vector2(1, 0).rotated($Weapon.global_rotation)
 		$Weapon.global_rotation = lerp(current_dir, target_dir, turret_speed * delta).angle()
-
 
 func _on_GunTimer_timeout():
 	can_shoot = true
