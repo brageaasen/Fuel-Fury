@@ -2,7 +2,7 @@ extends Area2D
 
 signal explode_particles
 
-@export var Explosion_particles : PackedScene
+@export var explosion_particles : PackedScene
 @export var speed: int
 @export var damage: int
 @export var lifetime: float
@@ -21,7 +21,7 @@ func _process(delta):
 # Explode bullet
 func explode():
 	queue_free()
-	emit_signal("explode_particles", Explosion_particles, position)
+	emit_signal("explode_particles", explosion_particles, position)
 
 func _on_body_entered(body):
 	explode()

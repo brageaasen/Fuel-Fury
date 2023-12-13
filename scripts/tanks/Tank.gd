@@ -21,18 +21,18 @@ func _ready():
 	$GunTimer.wait_time = gun_cooldown
 	$MachineGunTimer.wait_time = machine_gun_cooldown
 	
-func control(delta):
+func control(_delta):
 	pass
 
-func shoot(bullet, turret):
+func shoot(bullet):
 	# Find path of bullet scene
 	var bullet_scene_path = bullet.get_path().get_file()
 	
 	if can_shoot:
-		can_shoot = false	
+		can_shoot = false
 		
 		# Check what type of bullet was shot
-		if bullet_scene_path.match("*MachineGunBullet*"): $MachineGunTimer.start()
+		if bullet_scene_path.match("*machine_gun_bullet*"): $MachineGunTimer.start()
 		else: $GunTimer.start()
 		var dir = Vector2(1, 0).rotated($Weapon.global_rotation)
 		var recoil_degree_max = current_recoil * 0.5

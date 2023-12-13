@@ -1,0 +1,87 @@
+[gd_scene load_steps=11 format=3 uid="uid://bn0crofij5cnc"]
+
+[ext_resource type="PackedScene" uid="uid://cs306kobnhuyg" path="res://scenes/enemy/enemy.tscn" id="1_gkk5u"]
+[ext_resource type="Script" path="res://scripts/ai/tank/enemy_tank.gd" id="2_apri0"]
+[ext_resource type="Texture2D" uid="uid://bdrqpd16jjkdw" path="res://assets/sprites/enemy_tanks_sheet.png" id="3_87gux"]
+[ext_resource type="Texture2D" uid="uid://crlo74pakghxn" path="res://assets/sprites/player_weapon.png" id="4_cl8xb"]
+[ext_resource type="Script" path="res://scripts/ai/finite_state_machine.gd" id="5_4s5xb"]
+[ext_resource type="Script" path="res://scripts/ai/tank/enemy_tank_wander_state.gd" id="5_ihe5d"]
+[ext_resource type="Script" path="res://scripts/ai/tank/enemy_tank_chase_state.gd" id="6_cby33"]
+
+[sub_resource type="Animation" id="Animation_dap7q"]
+resource_name = "move"
+length = 0.4
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_rg8k7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1ywkr"]
+_data = {
+"RESET": SubResource("Animation_rg8k7"),
+"move": SubResource("Animation_dap7q")
+}
+
+[node name="EnemyTank" instance=ExtResource("1_gkk5u")]
+script = ExtResource("2_apri0")
+Bullet = null
+rotation_speed = 0.0
+gun_cooldown = 0.0
+machine_gun_cooldown = 0.0
+turret_speed = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_1ywkr")
+}
+
+[node name="Body" parent="." index="2"]
+texture = ExtResource("3_87gux")
+hframes = 2
+
+[node name="Weapon" parent="." index="3"]
+texture = ExtResource("4_cl8xb")
+
+[node name="FiniteStateMachine" type="Node" parent="." index="7" node_paths=PackedStringArray("state")]
+script = ExtResource("5_4s5xb")
+state = NodePath("EnemyTankWanderState")
+
+[node name="EnemyTankWanderState" type="Node" parent="FiniteStateMachine" index="0" node_paths=PackedStringArray("actor", "animator", "vision_cast")]
+script = ExtResource("5_ihe5d")
+actor = NodePath("../..")
+animator = NodePath("../../AnimationPlayer")
+vision_cast = NodePath("../../RayCast2D")
+
+[node name="EnemyTankChaseState" type="Node" parent="FiniteStateMachine" index="1" node_paths=PackedStringArray("actor", "animator", "vision_cast")]
+script = ExtResource("6_cby33")
+actor = NodePath("../..")
+animator = NodePath("../../AnimationPlayer")
+vision_cast = NodePath("../../RayCast2D")
+
+[node name="RayCast2D" type="RayCast2D" parent="." index="8"]
+target_position = Vector2(0, 30)

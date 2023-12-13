@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dkt8ngtenq443"]
 
-[ext_resource type="Script" path="res://scripts/base/Base.gd" id="1_dmws7"]
+[ext_resource type="Script" path="res://scripts/base/base.gd" id="1_dmws7"]
 [ext_resource type="Texture2D" uid="uid://76kthr3a7gbn" path="res://assets/sprites/base-circle.png" id="2_dhk1k"]
 [ext_resource type="Texture2D" uid="uid://dweqhien0fcil" path="res://assets/sprites/base-flag.png" id="3_uou7u"]
 

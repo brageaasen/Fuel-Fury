@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bya6xqrlmodhh"
-path="res://.godot/imported/TanksNew.png-72c8ea9fdc07989ef3d9d3ec6faee378.ctex"
+uid="uid://bdrqpd16jjkdw"
+path="res://.godot/imported/enemy_tanks_sheet.png-e767d2a146ed840aa12e3d120a118c87.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/TanksNew.png"
-dest_files=["res://.godot/imported/TanksNew.png-72c8ea9fdc07989ef3d9d3ec6faee378.ctex"]
+source_file="res://assets/sprites/enemy_tanks_sheet.png"
+dest_files=["res://.godot/imported/enemy_tanks_sheet.png-e767d2a146ed840aa12e3d120a118c87.ctex"]
 
 [params]
 

@@ -1,8 +1,47 @@
-[gd_scene load_steps=5 format=3 uid="uid://c27lt7vwi1j4f"]
+[gd_scene load_steps=9 format=3 uid="uid://c27lt7vwi1j4f"]
 
-[ext_resource type="Script" path="res://scripts/tanks/Player.gd" id="1_gawyv"]
-[ext_resource type="PackedScene" uid="uid://dy2ak8axbab1p" path="res://scenes/tanks/Tank.tscn" id="1_mvslc"]
-[ext_resource type="PackedScene" uid="uid://c6l7quk1tdtpf" path="res://scenes/bullets/PlayerBullet.tscn" id="3_xom67"]
+[ext_resource type="PackedScene" uid="uid://dy2ak8axbab1p" path="res://scenes/tanks/tank.tscn" id="1_mvslc"]
+[ext_resource type="Script" path="res://scripts/tanks/player.gd" id="2_irr7l"]
+[ext_resource type="PackedScene" uid="uid://c6l7quk1tdtpf" path="res://scenes/bullets/player_bullet.tscn" id="3_dd57m"]
+[ext_resource type="Texture2D" uid="uid://clc3i6mhj7qx3" path="res://assets/sprites/player_sheet.png" id="4_sp5a3"]
+
+[sub_resource type="Animation" id="Animation_4jnfs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gyo26"]
+resource_name = "move"
+length = 0.4
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u4dfh"]
+_data = {
+"RESET": SubResource("Animation_4jnfs"),
+"move": SubResource("Animation_gyo26")
+}
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nnsnr"]
 radius = 7.07107
@@ -10,22 +49,31 @@ radius = 7.07107
 [node name="Player" instance=ExtResource("1_mvslc")]
 collision_layer = 2
 collision_mask = 5
-script = ExtResource("1_gawyv")
-Bullet = ExtResource("3_xom67")
+script = ExtResource("2_irr7l")
+Bullet = ExtResource("3_dd57m")
 speed = 60
 rotation_speed = 2.5
 gun_cooldown = 0.5
 machine_gun_cooldown = 0.1
 health = 100
 
-[node name="CollisionShape2D" parent="." index="0"]
+[node name="AnimationPlayer" parent="." index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_u4dfh")
+}
+
+[node name="CollisionShape2D" parent="." index="1"]
 y_sort_enabled = true
 shape = SubResource("CircleShape2D_nnsnr")
 
-[node name="GunTimer" parent="." index="3"]
+[node name="Body" parent="." index="2"]
+texture = ExtResource("4_sp5a3")
+hframes = 2
+
+[node name="GunTimer" parent="." index="4"]
 wait_time = 0.4
 
-[node name="MachineGunTimer" parent="." index="4"]
+[node name="MachineGunTimer" parent="." index="5"]
 wait_time = 0.1
 
 [connection signal="shootSignal" from="." to="." method="_on_shoot_signal"]

@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://cs306kobnhuyg"]
+
+[ext_resource type="Script" path="res://scripts/ai/enemy.gd" id="1_w1fwa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vinng"]
+radius = 7.07107
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0pwx2"]
+radius = 66.0
+
+[node name="Enemy" type="CharacterBody2D"]
+z_index = 1
+y_sort_enabled = true
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_w1fwa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+texture_filter = 1
+scale = Vector2(1.12, 1.12)
+shape = SubResource("CircleShape2D_vinng")
+
+[node name="Body" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(1, 0.991)
+
+[node name="Weapon" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(1, 0.999998)
+offset = Vector2(4, 0)
+
+[node name="Muzzle" type="Marker2D" parent="Weapon"]
+
+[node name="GunTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="MachineGunTimer" type="Timer" parent="."]
+wait_time = 0.102
+one_shot = true
+
+[node name="DetectRadius" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectRadius"]
+shape = SubResource("CircleShape2D_0pwx2")
+
+[connection signal="body_entered" from="DetectRadius" to="." method="_on_detect_radius_body_entered"]
+[connection signal="body_exited" from="DetectRadius" to="." method="_on_detect_radius_body_exited"]

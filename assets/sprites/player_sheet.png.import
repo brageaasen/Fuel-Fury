@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bl4ohekfuqc7t"
-path="res://.godot/imported/ButtonSoundActive.png-79305c95370d28d58f4259c1263eeb94.ctex"
+uid="uid://clc3i6mhj7qx3"
+path="res://.godot/imported/player_sheet.png-a57ad25fe907c7e4181b43212d555b82.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ButtonSoundActive.png"
-dest_files=["res://.godot/imported/ButtonSoundActive.png-79305c95370d28d58f4259c1263eeb94.ctex"]
+source_file="res://assets/sprites/player_sheet.png"
+dest_files=["res://.godot/imported/player_sheet.png-a57ad25fe907c7e4181b43212d555b82.ctex"]
 
 [params]
 

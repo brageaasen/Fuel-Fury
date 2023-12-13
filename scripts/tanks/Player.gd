@@ -1,14 +1,15 @@
-extends "res://scripts/tanks/Tank.gd"
+extends "res://scripts/tanks/tank.gd"
 
 @export var ammo_storage : int = 30
 @export var mg_ammo_storage : int = 120
-var heavy_bullet : PackedScene = load( "res://scenes/bullets/PlayerBullet.tscn" )
-var machine_gun_bullet : PackedScene = load( "res://scenes/bullets/MachineGunBullet.tscn" )
+var heavy_bullet : PackedScene = load( "res://scenes/bullets/player_bullet.tscn" )
+var machine_gun_bullet : PackedScene = load( "res://scenes/bullets/machine_gun_bullet.tscn" )
 
+@onready var animation_player = $AnimationPlayer
 signal ammo_updated # Signal for HUD
 
 func _ready():
-	super._ready()
+	super._ready() # Make parent also run its ready function
 	ammo_updated.emit(heavy_bullet, ammo_storage)
 	ammo_updated.emit(machine_gun_bullet, mg_ammo_storage)
 
@@ -18,22 +19,26 @@ func control(delta):
 	var rotation_direction = 0
 	if Input.is_action_pressed("turn_right"):
 		rotation_direction += 1
+		animation_player.play("move")
 	if Input.is_action_pressed("turn_left"):
 		rotation_direction -= 1
+		animation_player.play("move")
 	rotation += rotation_speed * rotation_direction * delta
 	velocity = Vector2()
 	if Input.is_action_pressed("forward"):
 		velocity = Vector2(speed, 0).rotated(rotation)
+		animation_player.play("move")
 	if Input.is_action_pressed("back"):
 		velocity = Vector2(-speed/2, 0).rotated(rotation)
+		animation_player.play("move")
 		
 	# Make seperate ammo storage for Machine Gun (MG) / Gun
 	if Input.is_action_pressed("left_click"):
 		if mg_ammo_storage > 0:
-			shoot(machine_gun_bullet, "MG")
+			shoot(machine_gun_bullet)
 	if Input.is_action_pressed("right_click"):
 		if ammo_storage > 0:
-			shoot(heavy_bullet, "Gun")
+			shoot(heavy_bullet)
 
 
 func _on_base_ammo_updated():
@@ -48,9 +53,9 @@ func _on_shoot_signal(bullet, _position, _direction):
 	var bullet_scene_path = bullet.get_path().get_file()
 	
 	# Check what type of bullet was shot
-	if bullet_scene_path.match("*PlayerBullet*"):
+	if bullet_scene_path.match("*player_bullet*"):
 		ammo_storage -= 1
 		ammo_updated.emit(bullet, ammo_storage)
-	elif bullet_scene_path.match("*MachineGunBullet*"):
+	elif bullet_scene_path.match("*machine_gun_bullet*"):
 		mg_ammo_storage -= 1
 		ammo_updated.emit(bullet, mg_ammo_storage)
