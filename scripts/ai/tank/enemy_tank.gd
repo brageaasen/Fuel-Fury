@@ -8,8 +8,9 @@ extends "res://scripts/ai/enemy.gd"
 
 @onready var ray_cast_2d = $RayCast2D
 @onready var fsm = $FiniteStateMachine as FiniteStateMachine
-@onready var enemy_wander_state = $FiniteStateMachine/EnemyTankWanderState as EnemyTankWanderState
-@onready var enemy_chase_state = $FiniteStateMachine/EnemyTankChaseState as EnemyTankChaseState
+@onready var enemy_tank_wander_state = $FiniteStateMachine/EnemyTankWanderState as EnemyTankWanderState
+@onready var enemy_tank_chase_state = $FiniteStateMachine/EnemyTankChaseState as EnemyTankChaseState
+@onready var enemy_tank_attack_state = $FiniteStateMachine/EnemyTankAttackState as EnemyTankAttackState
 
 var player # Reference to the player node or position
 var target_dir
@@ -22,9 +23,13 @@ func _ready():
 	ray_cast_2d.target_position.x = detect_radius
 	
 	# On found_player, wander -> chase
-	enemy_wander_state.found_player.connect(fsm.change_state.bind(enemy_chase_state))
+	enemy_tank_wander_state.found_player.connect(fsm.change_state.bind(enemy_tank_chase_state))
 	# On lost_player, chase -> wander
-	enemy_chase_state.lost_player.connect(fsm.change_state.bind(enemy_wander_state))
+	enemy_tank_chase_state.lost_player.connect(fsm.change_state.bind(enemy_tank_wander_state))
+	# On attack_player, chase -> wander
+	enemy_tank_chase_state.attack_player.connect(fsm.change_state.bind(enemy_tank_attack_state))
+	# On out_of_range, attack -> chase
+	enemy_tank_attack_state.out_of_range.connect(fsm.change_state.bind(enemy_tank_chase_state))
 
 func shoot(bullet):
 	# Find path of bullet scene
@@ -36,7 +41,8 @@ func shoot(bullet):
 		
 		# Check what type of bullet was shot
 		if bullet_scene_path.match("*machine_gun_bullet*"): $MachineGunTimer.start()
-		else: $GunTimer.start()
+		else:
+			$GunTimer.start()
 		
 		# Calculate direction and recoil
 		var dir = Vector2(1, 0).rotated($Weapon.global_rotation)
@@ -51,15 +57,13 @@ func shoot(bullet):
 func _physics_process(delta):
 	if not alive:
 		return
-
-	var recoil_increment = max_recoil * 0.05
-	if not Input.is_action_pressed("left_click") or Input.is_action_pressed("right_click"):
-		current_recoil = clamp(current_recoil - recoil_increment, 0.0, max_recoil)
 	
 	if target:
 		target_dir = (target.global_position - global_position).normalized()
-		var current_dir = Vector2(1, 0).rotated($Weapon.global_rotation)
-		$Weapon.global_rotation = lerp(current_dir, target_dir, turret_speed * delta).angle()
+	var recoil_increment = max_recoil * 0.05
+	# TODO: Make recoil for enemy aswell
+	if not Input.is_action_pressed("left_click") or Input.is_action_pressed("right_click"):
+		current_recoil = clamp(current_recoil - recoil_increment, 0.0, max_recoil)
 
 func _on_GunTimer_timeout():
 	can_shoot = true

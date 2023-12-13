@@ -6,6 +6,7 @@ signal health_changed # Keep or remove?
 signal dead
 
 @export var health : int
+@export var attack_range : float = 60
 @export var max_speed = 40.0
 @export var acceleration = 50.0
 @export var detect_radius : int

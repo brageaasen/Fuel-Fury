@@ -33,7 +33,9 @@ func _physics_process(delta):
 	#if collision:
 	#	var bounce_velocity = actor.velocity.bounce(collision.get_normal())
 	#	actor.velocity = bounce_velocity
+	
 	if actor.target:
+		# Raycast
 		var dir = player.global_position - actor.global_position
 		vision_cast.look_at(actor.global_position + dir)
 	

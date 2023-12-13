@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcijncf5y34wm"]
+
+[ext_resource type="PackedScene" uid="uid://bocuou03h0uf3" path="res://scenes/bullets/bullet.tscn" id="1_vvexy"]
+[ext_resource type="PackedScene" uid="uid://dydi1sfsju10l" path="res://scenes/particles/explosion.tscn" id="2_7fh8w"]
+
+[node name="EnemyBullet" instance=ExtResource("1_vvexy")]
+collision_mask = 3
+explosion_particles = ExtResource("2_7fh8w")
+speed = 250
+damage = 20
+lifetime = 2.0
