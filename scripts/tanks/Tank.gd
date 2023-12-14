@@ -12,7 +12,10 @@ var experience_to_level = 5
 var health
 var alive = true
 # Movement
-@export var speed : int
+@export var max_speed = 200
+var acceleration = max_speed * 10
+#var friction = acceleration / max_speed
+var friction = 0
 @export var rotation_speed : float
 # Combat
 @export var Bullet : PackedScene
@@ -26,7 +29,8 @@ var can_shoot = true
 
 func _ready():
 	health = max_health
-	emit_signal('health_changed', health * 100/max_health)
+	emit_signal("health_changed", health * 100/max_health)
+	emit_signal("experience_changed", experience * 100/experience_to_level, level)
 	$GunTimer.wait_time = gun_cooldown
 	$MachineGunTimer.wait_time = machine_gun_cooldown
 	
@@ -68,15 +72,19 @@ func die():
 	queue_free() # Should maybe not queue free the player object?
 
 func gain_experience(experience_gain):
-	print("Gained experience")
+	print("Gained experience:")
 	experience += experience_gain
-	emit_signal("experience_changed", experience * 100/experience_to_level)
+	print(experience)
+	emit_signal("experience_changed", experience * 100/experience_to_level, level)
 	if experience >= experience_to_level:
 		level_up()
-		experience -= experience_to_level
 
 func level_up():
+	print("Leveled up!")
 	level += 1
+	experience -= experience_to_level
+	print(experience)
+	emit_signal("experience_changed", experience * 100/experience_to_level, level)
 	# Upgrades?
 
 func _physics_process(delta):

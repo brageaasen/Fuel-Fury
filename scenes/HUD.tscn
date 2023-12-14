@@ -51,6 +51,22 @@ position = Vector2(-4, 3)
 texture = ExtResource("2_0uvut")
 script = ExtResource("3_2p476")
 
+[node name="Health" type="Label" parent="."]
+layout_mode = 2
+offset_left = 24.0
+offset_right = 1136.0
+offset_bottom = 26.0
+text = "HP:
+"
+
+[node name="Level" type="Label" parent="."]
+layout_mode = 0
+offset_left = 92.0
+offset_top = -1.0
+offset_right = 133.0
+offset_bottom = 25.0
+text = "Level:"
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15

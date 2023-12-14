@@ -11,6 +11,8 @@ func _on_pickup_radius_body_entered(body):
 		play_pickup_sound()
 		queue_free()
 
+func on_spawn():
+	pass
 
 func play_pickup_sound():
 	pass

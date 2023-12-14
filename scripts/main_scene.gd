@@ -21,3 +21,4 @@ func _on_enemy_tank_died(experience_drop, _position):
 	var e = experience_drop.instantiate()
 	add_child(e)
 	e.global_position = _position
+	e.on_spawn()
