@@ -6,7 +6,7 @@ extends "res://scripts/ai/enemy.gd"
 @export var machine_gun_cooldown : float
 @export var turret_speed : float
 
-@onready var ray_cast_2d = $RayCast2D
+@onready var ray_cast_player = $PlayerDetection
 @onready var fsm = $FiniteStateMachine as FiniteStateMachine
 @onready var enemy_tank_wander_state = $FiniteStateMachine/EnemyTankWanderState as EnemyTankWanderState
 @onready var enemy_tank_chase_state = $FiniteStateMachine/EnemyTankChaseState as EnemyTankChaseState
@@ -20,7 +20,7 @@ func _ready():
 	player = get_node("/root/MainScene/Player")
 	$GunTimer.wait_time = gun_cooldown
 	$MachineGunTimer.wait_time = machine_gun_cooldown
-	ray_cast_2d.target_position.x = detect_radius
+	ray_cast_player.target_position.x = detect_radius
 	
 	# On found_player, wander -> chase
 	enemy_tank_wander_state.found_player.connect(fsm.change_state.bind(enemy_tank_chase_state))

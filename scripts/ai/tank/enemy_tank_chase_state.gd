@@ -4,7 +4,7 @@ extends State
 
 @export var actor : Enemy
 @export var animator : AnimationPlayer
-@export var vision_cast : RayCast2D
+@export var ray_cast_player : RayCast2D
 
 var player # Reference to the player node or position
 
@@ -28,7 +28,7 @@ func _physics_process(delta) -> void:
 	if actor.target:
 		# Raycast
 		var dir = player.global_position - actor.global_position
-		vision_cast.look_at(actor.global_position + dir)
+		ray_cast_player.look_at(actor.global_position + dir)
 		
 		# Rotate the enemy tank towards the player's direction
 		var current_dir = Vector2(1, 0).rotated(actor.global_rotation)
@@ -47,5 +47,5 @@ func _physics_process(delta) -> void:
 		else:
 			attack_player.emit()
 
-	if not actor.target or vision_cast.is_colliding():
+	if not actor.target or ray_cast_player.is_colliding():
 		lost_player.emit()

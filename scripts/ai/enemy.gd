@@ -10,6 +10,8 @@ signal died
 # Movement
 @export var max_speed = 40.0
 @export var acceleration = 50.0
+var max_steering : float = 2.5
+var avoid_force : int = 1000
 # Combat
 @export var attack_range : float = 60
 @export var detect_radius : int
@@ -24,7 +26,7 @@ var health : int
 
 func _ready():
 	health = max_health
-	emit_signal('health_changed', health * 100/max_health)
+	emit_signal("health_changed", health * 100/max_health)
 	$DetectRadius/CollisionShape2D.shape.radius = detect_radius
 
 func shoot(bullet):

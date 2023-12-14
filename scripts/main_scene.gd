@@ -2,6 +2,9 @@ extends Node2D
 
 #const PARTICLES_PATH = "res://particles/"
 
+func _init():
+	randomize()
+
 func _on_Tank_shootSignal(bullet, _position, _direction):
 	var b = bullet.instantiate()
 	add_child(b)

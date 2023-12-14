@@ -12,8 +12,8 @@ var experience_to_level = 5
 var health
 var alive = true
 # Movement
-@export var max_speed = 200
-var acceleration = max_speed * 10
+@export var max_speed = 60
+#var acceleration = max_speed * 10
 #var friction = acceleration / max_speed
 var friction = 0
 @export var rotation_speed : float
