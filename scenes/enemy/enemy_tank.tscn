@@ -72,8 +72,12 @@ rotation_speed = 2.0
 gun_cooldown = 2.0
 machine_gun_cooldown = 1.0
 turret_speed = 2.0
-health = 60
+max_health = null
+max_speed = null
+acceleration = null
+attack_range = null
 detect_radius = 100
+max_recoil = null
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
 libraries = {

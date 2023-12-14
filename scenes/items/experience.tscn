@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://ba1h2yk2m8uj8"]
+
+[ext_resource type="PackedScene" uid="uid://dji1yd852mete" path="res://scenes/items/item.tscn" id="1_ydsen"]
+[ext_resource type="Script" path="res://scripts/items/experience.gd" id="2_4s6u4"]
+[ext_resource type="Texture2D" uid="uid://c2caxheoyph1a" path="res://assets/sprites/icon.svg" id="3_qy5nk"]
+
+[node name="Experience" instance=ExtResource("1_ydsen")]
+script = ExtResource("2_4s6u4")
+experience = 1
+
+[node name="Body" parent="." index="1"]
+scale = Vector2(0.09, 0.09)
+texture = ExtResource("3_qy5nk")

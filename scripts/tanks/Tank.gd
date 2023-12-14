@@ -1,22 +1,28 @@
 extends CharacterBody2D
 
 signal shootSignal
-signal health_changed # Keep or remove?
-signal dead
+signal health_changed
+signal experience_changed
+signal died
 
-@export var Bullet : PackedScene
+@export var max_health : int
+var level = 1
+var experience = 0
+var experience_to_level = 5
+var health
+var alive = true
+# Movement
 @export var speed : int
 @export var rotation_speed : float
+# Combat
+@export var Bullet : PackedScene
 @export var gun_cooldown : float
 @export var machine_gun_cooldown : float
-@export var max_health : int
-
 @export var max_recoil : float = 10.0
 var current_recoil = 0.0
-
 var can_shoot = true
-var alive = true
-var health
+
+
 
 func _ready():
 	health = max_health
@@ -52,14 +58,26 @@ func shoot(bullet):
 
 func take_damage(damage):
 	health -= damage
-	emit_signal('health_changed', health * 100/max_health)
+	emit_signal("health_changed", health * 100/max_health)
 	if (health <= 0):
 		alive = false
-		explode() # Destroy object
-		emit_signal("dead") # No one catches this signal yet
+		die() # Destroy object
+		emit_signal("died") # No one catches this signal yet
 
-func explode():
-	queue_free()
+func die():
+	queue_free() # Should maybe not queue free the player object?
+
+func gain_experience(experience_gain):
+	print("Gained experience")
+	experience += experience_gain
+	emit_signal("experience_changed", experience * 100/experience_to_level)
+	if experience >= experience_to_level:
+		level_up()
+		experience -= experience_to_level
+
+func level_up():
+	level += 1
+	# Upgrades?
 
 func _physics_process(delta):
 	if not alive:

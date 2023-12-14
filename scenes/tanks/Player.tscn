@@ -50,9 +50,9 @@ radius = 7.07107
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("2_irr7l")
-Bullet = ExtResource("3_dd57m")
 speed = 60
 rotation_speed = 2.5
+Bullet = ExtResource("3_dd57m")
 gun_cooldown = 0.5
 machine_gun_cooldown = 0.1
 

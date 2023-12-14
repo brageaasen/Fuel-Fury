@@ -3,12 +3,15 @@ extends CharacterBody2D
 
 signal shootSignal
 signal health_changed
-signal dead
+signal died
 
 @export var max_health : int
-@export var attack_range : float = 60
+@export var experience_drop : PackedScene
+# Movement
 @export var max_speed = 40.0
 @export var acceleration = 50.0
+# Combat
+@export var attack_range : float = 60
 @export var detect_radius : int
 @export var max_recoil : float = 10.0
 var current_recoil = 0.0
@@ -17,6 +20,7 @@ var alive = true
 var target = null 
 
 var health : int
+
 
 func _ready():
 	health = max_health
@@ -30,9 +34,9 @@ func take_damage(damage):
 	health -= damage
 	emit_signal('health_changed', health * 100/max_health)
 	if (health <= 0):
-		alive = false
-		explode() # Destroy object
-		emit_signal("dead") # No one catches this signal yet
+		die() # Destroy object
 
-func explode():
+func die():
+	alive = false
 	queue_free()
+	emit_signal("died", experience_drop, global_position)

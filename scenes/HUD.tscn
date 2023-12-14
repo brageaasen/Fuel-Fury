@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bjj2uflh2plre"]
+[gd_scene load_steps=7 format=3 uid="uid://bjj2uflh2plre"]
 
 [ext_resource type="Script" path="res://scripts/hud/hud.gd" id="1_mtgwt"]
 [ext_resource type="Texture2D" uid="uid://cnb5chdsrk2hw" path="res://assets/sprites/Arrow.png" id="2_0uvut"]
 [ext_resource type="Script" path="res://scripts/hud/arrow_to_base_hud.gd" id="3_2p476"]
 [ext_resource type="Texture2D" uid="uid://cf2ssqdtolqln" path="res://assets/sprites/health_bar.png" id="4_74fs3"]
 [ext_resource type="Texture2D" uid="uid://bcl7j1l7v8ay" path="res://assets/sprites/health_bar_progress.png" id="5_g2x8q"]
+[ext_resource type="Texture2D" uid="uid://6cd7sy7d8epl" path="res://assets/sprites/experience_bar_progress.png" id="6_oe234"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -73,3 +74,8 @@ layout_mode = 2
 value = 100.0
 texture_under = ExtResource("4_74fs3")
 texture_progress = ExtResource("5_g2x8q")
+
+[node name="ExperienceBar" type="TextureProgressBar" parent="MarginContainer/Container"]
+layout_mode = 2
+texture_under = ExtResource("4_74fs3")
+texture_progress = ExtResource("6_oe234")
