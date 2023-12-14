@@ -9,15 +9,18 @@ signal dead
 @export var rotation_speed : float
 @export var gun_cooldown : float
 @export var machine_gun_cooldown : float
-@export var health : int
+@export var max_health : int
 
 @export var max_recoil : float = 10.0
 var current_recoil = 0.0
 
 var can_shoot = true
 var alive = true
+var health
 
 func _ready():
+	health = max_health
+	emit_signal('health_changed', health * 100/max_health)
 	$GunTimer.wait_time = gun_cooldown
 	$MachineGunTimer.wait_time = machine_gun_cooldown
 	
@@ -49,10 +52,14 @@ func shoot(bullet):
 
 func take_damage(damage):
 	health -= damage
+	emit_signal('health_changed', health * 100/max_health)
 	if (health <= 0):
 		alive = false
-		queue_free() # Destroy object
+		explode() # Destroy object
 		emit_signal("dead") # No one catches this signal yet
+
+func explode():
+	queue_free()
 
 func _physics_process(delta):
 	if not alive:

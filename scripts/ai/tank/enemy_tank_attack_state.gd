@@ -34,7 +34,7 @@ func _physics_process(delta) -> void:
 		var weapon = get_node("/root/MainScene/EnemyTank/Weapon")
 		var current_weapon_dir = Vector2(1, 0).rotated(weapon.global_rotation)
 		weapon.global_rotation = lerp(current_weapon_dir, actor.target_dir, actor.turret_speed * delta).angle()
-		if actor.target_dir.dot(current_weapon_dir) > 0.9:
+		if actor.target_dir.dot(current_weapon_dir) > 0.9 and not vision_cast.is_colliding():
 			actor.shoot(actor.Bullet)
 	
 	if not actor.target or vision_cast.is_colliding():

@@ -1109,21 +1109,23 @@ position = Vector2(95, -1)
 
 [node name="Player" parent="." instance=ExtResource("9_ixxsp")]
 y_sort_enabled = false
+max_health = 100
 
 [node name="MainCamera" type="Camera2D" parent="Player"]
 zoom = Vector2(4, 4)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Player/MainCamera"]
+[node name="HUD" type="CanvasLayer" parent="Player/MainCamera"]
 
-[node name="HUD" parent="Player/MainCamera/CanvasLayer" instance=ExtResource("10_54g1t")]
+[node name="HUD" parent="Player/MainCamera/HUD" instance=ExtResource("10_54g1t")]
 metadata/_edit_use_anchors_ = true
 
 [node name="EnemyTank" parent="." instance=ExtResource("11_joq8a")]
 position = Vector2(-29, -30)
 turret_speed = 1.0
-health = 100
+max_health = 100
 
 [connection signal="ammo_updated" from="Base" to="Player" method="_on_base_ammo_updated"]
-[connection signal="ammo_updated" from="Player" to="Player/MainCamera/CanvasLayer/HUD" method="_on_player_ammo_updated"]
+[connection signal="ammo_updated" from="Player" to="Player/MainCamera/HUD/HUD" method="_on_player_ammo_updated"]
+[connection signal="health_changed" from="Player" to="Player/MainCamera/HUD/HUD" method="update_healthbar"]
 [connection signal="shootSignal" from="Player" to="." method="_on_Tank_shootSignal"]
 [connection signal="shootSignal" from="EnemyTank" to="." method="_on_Tank_shootSignal"]

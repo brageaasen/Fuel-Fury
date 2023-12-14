@@ -70,6 +70,6 @@ layout_mode = 2
 
 [node name="HealthBar" type="TextureProgressBar" parent="MarginContainer/Container"]
 layout_mode = 2
-value = 100.0
+value = 75.0
 texture_under = ExtResource("4_74fs3")
 texture_progress = ExtResource("5_g2x8q")
