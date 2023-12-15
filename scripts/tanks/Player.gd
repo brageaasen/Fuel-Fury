@@ -8,6 +8,7 @@ var machine_gun_bullet : PackedScene = load( "res://scenes/bullets/machine_gun_b
 @onready var animation_player = $AnimationPlayer
 signal ammo_updated # Signal for HUD
 
+
 var target_velocity
 
 func _ready():

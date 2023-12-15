@@ -1122,7 +1122,8 @@ metadata/_edit_use_anchors_ = true
 [node name="Player" parent="." instance=ExtResource("9_ixxsp")]
 y_sort_enabled = false
 position = Vector2(129, 50)
-max_health = 100
+max_fuel = 200
+fuel_usage = 0.2
 
 [node name="EnemyTank" parent="." instance=ExtResource("11_joq8a")]
 position = Vector2(-81, -30)
@@ -1133,6 +1134,7 @@ acceleration = 20.0
 [connection signal="ammo_updated" from="Base" to="Player" method="_on_base_ammo_updated"]
 [connection signal="ammo_updated" from="Player" to="MainCamera/HUD" method="_on_player_ammo_updated"]
 [connection signal="experience_changed" from="Player" to="MainCamera/HUD" method="update_experiencebar"]
+[connection signal="fuel_changed" from="Player" to="Base" method="update_fuel_container"]
 [connection signal="health_changed" from="Player" to="MainCamera/HUD" method="update_healthbar"]
 [connection signal="shootSignal" from="Player" to="." method="_on_Tank_shootSignal"]
 [connection signal="died" from="EnemyTank" to="." method="_on_enemy_tank_died"]

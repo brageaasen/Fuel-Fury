@@ -3,13 +3,18 @@ extends CharacterBody2D
 signal shootSignal
 signal health_changed
 signal experience_changed
+signal fuel_changed
 signal died
 
 @export var max_health : int
+var health
+@export var max_fuel : int
+@export var fuel_usage : float
+var fuel_depletion_rate : float = 0.03
+var fuel
 var level = 1
 var experience = 0
 var experience_to_level = 5
-var health
 var alive = true
 # Movement
 @export var max_speed = 60
@@ -30,9 +35,12 @@ var can_shoot = true
 func _ready():
 	health = max_health
 	emit_signal("health_changed", health * 100/max_health)
+	fuel = max_fuel
+	emit_signal("fuel_changed", fuel * 100/max_fuel)
 	emit_signal("experience_changed", experience * 100/experience_to_level, level)
 	$GunTimer.wait_time = gun_cooldown
 	$MachineGunTimer.wait_time = machine_gun_cooldown
+	$FuelUsageTimer.wait_time = fuel_depletion_rate
 	
 func control(_delta):
 	pass
@@ -90,8 +98,16 @@ func level_up():
 func _physics_process(delta):
 	if not alive:
 		return
-	control(delta)
-	move_and_slide()
+	
+	if fuel > 0:
+		control(delta)
+		move_and_slide()
+		# Start the fuel timer if it's not running
+		if $FuelUsageTimer.is_stopped():
+			$FuelUsageTimer.start()
+	if velocity == Vector2.ZERO:
+		# Stop the fuel timer if the player isn't moving
+		$FuelUsageTimer.stop()
 	
 	var recoil_increment = max_recoil * 0.05
 	if not Input.is_action_pressed("left_click") or Input.is_action_pressed("right_click"):
@@ -102,3 +118,7 @@ func _on_GunTimer_timeout():
 	
 func _on_MachineGunTimer_timeout():
 	can_shoot = true
+
+func _on_fuel_usage_timer_timeout():
+	fuel -= fuel_usage
+	emit_signal("fuel_changed", fuel * 100/max_fuel)

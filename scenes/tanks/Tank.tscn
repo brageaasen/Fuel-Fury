@@ -38,3 +38,6 @@ one_shot = true
 [node name="MachineGunTimer" type="Timer" parent="."]
 wait_time = 0.102
 one_shot = true
+
+[node name="FuelUsageTimer" type="Timer" parent="."]
+one_shot = true

@@ -23,15 +23,13 @@ func take_damage(damage):
 		die() # Destroy object
 		emit_signal("died") # No one catches this signal yet
 
+# Unused code
 func die():
-	queue_free() # Should maybe not queue free the player object?
+	queue_free() # Should maybe not queue free the player object?w
 
-
-func update_healthbar(value):
+func update_fuel_container(value):
 	var tween = create_tween()
-	tween.tween_property($Container/HealthBar, "value", value, 0.2).set_trans(Tween.TRANS_LINEAR)
-	$Container/Health.text = "HP: " + str(value)
-
+	tween.tween_property($FuelContainer/FuelBar, "value", value, 0.2).set_trans(Tween.TRANS_LINEAR)
 
 func _on_ammo_fill_timer_timeout():
 	ammo_updated.emit()
