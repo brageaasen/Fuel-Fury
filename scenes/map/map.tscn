@@ -67,97 +67,98 @@ size = Vector2(13, 44)
 
 [node name="Map" type="Node2D"]
 
-[node name="EdgesAndFences" type="StaticBody2D" parent="."]
+[node name="StaticBody" type="StaticBody2D" parent="."]
+z_index = 2
 collision_mask = 6
 
-[node name="Sprite" type="Sprite2D" parent="EdgesAndFences"]
+[node name="Edges" type="Sprite2D" parent="StaticBody"]
 texture = ExtResource("1_0s1fb")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EdgesAndFences"]
+[node name="Doors" type="Sprite2D" parent="StaticBody"]
+texture = ExtResource("2_fvimn")
+
+[node name="Fences" type="Sprite2D" parent="StaticBody"]
+texture = ExtResource("4_nymq2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody"]
 position = Vector2(-309, -103.5)
 shape = SubResource("RectangleShape2D_1drul")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="EdgesAndFences"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody"]
 position = Vector2(-201.5, -169.5)
 shape = SubResource("RectangleShape2D_cgoog")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="EdgesAndFences"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody"]
 position = Vector2(212.5, -169)
 shape = SubResource("RectangleShape2D_o6qcr")
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="EdgesAndFences"]
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody"]
 position = Vector2(-58.5, -154.5)
 shape = SubResource("RectangleShape2D_icng3")
 
-[node name="CollisionShape2D5" type="CollisionShape2D" parent="EdgesAndFences"]
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody"]
 position = Vector2(58.5, -154.5)
 shape = SubResource("RectangleShape2D_xg4cc")
 
-[node name="CollisionShape2D6" type="CollisionShape2D" parent="EdgesAndFences"]
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="StaticBody"]
 position = Vector2(0, -175.5)
 shape = SubResource("RectangleShape2D_sp3wu")
 
-[node name="CollisionShape2D7" type="CollisionShape2D" parent="EdgesAndFences"]
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="StaticBody"]
 position = Vector2(-309, 103.5)
 shape = SubResource("RectangleShape2D_m5ljn")
 
-[node name="CollisionShape2D8" type="CollisionShape2D" parent="EdgesAndFences"]
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="StaticBody"]
 position = Vector2(-162.5, 169.5)
 shape = SubResource("RectangleShape2D_2t1d1")
 
-[node name="CollisionShape2D9" type="CollisionShape2D" parent="EdgesAndFences"]
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="StaticBody"]
 position = Vector2(173.5, 169.5)
 shape = SubResource("RectangleShape2D_gv3dn")
 
-[node name="CollisionShape2D10" type="CollisionShape2D" parent="EdgesAndFences"]
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="StaticBody"]
 position = Vector2(309, 93.5)
 shape = SubResource("RectangleShape2D_ni8b2")
 
-[node name="CollisionShape2D11" type="CollisionShape2D" parent="EdgesAndFences"]
+[node name="CollisionShape2D11" type="CollisionShape2D" parent="StaticBody"]
 position = Vector2(309, -92.5)
 shape = SubResource("RectangleShape2D_nssln")
 
-[node name="CollisionShape2D12" type="CollisionShape2D" parent="EdgesAndFences"]
+[node name="CollisionShape2D12" type="CollisionShape2D" parent="StaticBody"]
 position = Vector2(-295, 19.25)
 shape = SubResource("RectangleShape2D_84na6")
 
-[node name="CollisionShape2D13" type="CollisionShape2D" parent="EdgesAndFences"]
+[node name="CollisionShape2D13" type="CollisionShape2D" parent="StaticBody"]
 position = Vector2(-295, -19)
 shape = SubResource("RectangleShape2D_0a34v")
 
-[node name="CollisionShape2D14" type="CollisionShape2D" parent="EdgesAndFences"]
+[node name="CollisionShape2D14" type="CollisionShape2D" parent="StaticBody"]
 position = Vector2(-313.5, 3)
 shape = SubResource("RectangleShape2D_kee0p")
 
-[node name="CollisionShape2D15" type="CollisionShape2D" parent="EdgesAndFences"]
+[node name="CollisionShape2D15" type="CollisionShape2D" parent="StaticBody"]
 position = Vector2(-20, 155.5)
 shape = SubResource("RectangleShape2D_2kyjb")
 
-[node name="CollisionShape2D16" type="CollisionShape2D" parent="EdgesAndFences"]
+[node name="CollisionShape2D16" type="CollisionShape2D" parent="StaticBody"]
 position = Vector2(19.5, 155.5)
 shape = SubResource("RectangleShape2D_t2o06")
 
-[node name="CollisionShape2D17" type="CollisionShape2D" parent="EdgesAndFences"]
+[node name="CollisionShape2D17" type="CollisionShape2D" parent="StaticBody"]
 position = Vector2(1.5, 174)
 shape = SubResource("RectangleShape2D_w6bdc")
 
-[node name="CollisionShape2D18" type="CollisionShape2D" parent="EdgesAndFences"]
+[node name="CollisionShape2D18" type="CollisionShape2D" parent="StaticBody"]
 position = Vector2(295, 19)
 shape = SubResource("RectangleShape2D_udq8i")
 
-[node name="CollisionShape2D19" type="CollisionShape2D" parent="EdgesAndFences"]
+[node name="CollisionShape2D19" type="CollisionShape2D" parent="StaticBody"]
 position = Vector2(295, -19.5)
 shape = SubResource("RectangleShape2D_0v8eu")
 
-[node name="CollisionShape2D20" type="CollisionShape2D" parent="EdgesAndFences"]
+[node name="CollisionShape2D20" type="CollisionShape2D" parent="StaticBody"]
 position = Vector2(312.5, 6)
 shape = SubResource("RectangleShape2D_2w36f")
 
 [node name="DoorsShadow" type="Sprite2D" parent="."]
 texture = ExtResource("1_kud61")
-
-[node name="Doors" type="Sprite2D" parent="."]
-texture = ExtResource("2_fvimn")
-
-[node name="Fences" type="Sprite2D" parent="."]
-texture = ExtResource("4_nymq2")

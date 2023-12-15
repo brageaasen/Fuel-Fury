@@ -12,20 +12,25 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 4.0
-offset_top = -3.0
-offset_right = 4.0
-offset_bottom = -3.0
+offset_left = -1.0
+offset_top = -180.0
+offset_right = -1.0
+offset_bottom = -180.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mtgwt")
 
+[node name="ArrowToBase" type="Sprite2D" parent="."]
+position = Vector2(-4, 3)
+texture = ExtResource("2_0uvut")
+script = ExtResource("3_2p476")
+
 [node name="AmmoStorage" type="Label" parent="."]
 layout_mode = 2
-offset_left = 600.0
-offset_top = 580.0
-offset_right = 686.0
-offset_bottom = 611.0
+offset_left = 7.0
+offset_top = 28.0
+offset_right = 93.0
+offset_bottom = 59.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 20
@@ -35,10 +40,10 @@ vertical_alignment = 1
 
 [node name="MachineGunAmmoStorage" type="Label" parent="."]
 layout_mode = 2
-offset_left = 400.0
-offset_top = 580.0
-offset_right = 524.0
-offset_bottom = 611.0
+offset_left = -193.0
+offset_top = 28.0
+offset_right = -69.0
+offset_bottom = 59.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 20
@@ -46,57 +51,38 @@ text = "MG Ammo: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ArrowToBase" type="Sprite2D" parent="."]
-position = Vector2(-4, 3)
-texture = ExtResource("2_0uvut")
-script = ExtResource("3_2p476")
+[node name="ExperienceBar" type="TextureProgressBar" parent="."]
+layout_mode = 2
+offset_left = -11.0
+offset_top = -121.0
+offset_right = 53.0
+offset_bottom = -105.0
+texture_under = ExtResource("4_74fs3")
+texture_progress = ExtResource("6_oe234")
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+layout_mode = 2
+offset_left = -135.0
+offset_top = -121.0
+offset_right = -71.0
+offset_bottom = -105.0
+value = 100.0
+texture_under = ExtResource("4_74fs3")
+texture_progress = ExtResource("5_g2x8q")
 
 [node name="Health" type="Label" parent="."]
 layout_mode = 2
-offset_left = 41.0
-offset_top = 78.0
-offset_right = 1921.0
-offset_bottom = 104.0
+offset_left = -133.0
+offset_top = -125.0
+offset_right = 1747.0
+offset_bottom = -99.0
 text = "HP:
 "
 
 [node name="Level" type="Label" parent="."]
 layout_mode = 2
-offset_left = 16.0
-offset_top = 531.0
-offset_right = 1896.0
-offset_bottom = 557.0
+offset_left = -8.0
+offset_top = -125.0
+offset_right = 1872.0
+offset_bottom = -99.0
 text = "Level:"
-
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -4.0
-offset_top = 4.0
-offset_right = -4.0
-offset_bottom = 4.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="Container" type="HBoxContainer" parent="MarginContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/Container"]
-layout_mode = 2
-
-[node name="HealthBar" type="TextureProgressBar" parent="MarginContainer/Container"]
-layout_mode = 2
-value = 100.0
-texture_under = ExtResource("4_74fs3")
-texture_progress = ExtResource("5_g2x8q")
-
-[node name="ExperienceBar" type="TextureProgressBar" parent="MarginContainer/Container"]
-layout_mode = 2
-texture_under = ExtResource("4_74fs3")
-texture_progress = ExtResource("6_oe234")

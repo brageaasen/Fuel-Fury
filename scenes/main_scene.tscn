@@ -1110,9 +1110,11 @@ layer_1/tile_data = PackedInt32Array(-196620, 65537, 1, -458752, 65537, 1, 32767
 [node name="MainCamera" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)
 
-[node name="HUD" type="CanvasLayer" parent="MainCamera"]
-
-[node name="HUD" parent="MainCamera/HUD" instance=ExtResource("10_54g1t")]
+[node name="HUD" parent="MainCamera" instance=ExtResource("10_54g1t")]
+offset_left = 41.0
+offset_top = -42.0
+offset_right = 41.0
+offset_bottom = -42.0
 metadata/_edit_use_anchors_ = true
 
 [node name="Base" parent="." instance=ExtResource("8_gyq5b")]
@@ -1129,9 +1131,9 @@ max_health = 100
 acceleration = 20.0
 
 [connection signal="ammo_updated" from="Base" to="Player" method="_on_base_ammo_updated"]
-[connection signal="ammo_updated" from="Player" to="MainCamera/HUD/HUD" method="_on_player_ammo_updated"]
-[connection signal="experience_changed" from="Player" to="MainCamera/HUD/HUD" method="update_experiencebar"]
-[connection signal="health_changed" from="Player" to="MainCamera/HUD/HUD" method="update_healthbar"]
+[connection signal="ammo_updated" from="Player" to="MainCamera/HUD" method="_on_player_ammo_updated"]
+[connection signal="experience_changed" from="Player" to="MainCamera/HUD" method="update_experiencebar"]
+[connection signal="health_changed" from="Player" to="MainCamera/HUD" method="update_healthbar"]
 [connection signal="shootSignal" from="Player" to="." method="_on_Tank_shootSignal"]
 [connection signal="died" from="EnemyTank" to="." method="_on_enemy_tank_died"]
 [connection signal="shootSignal" from="EnemyTank" to="." method="_on_Tank_shootSignal"]
