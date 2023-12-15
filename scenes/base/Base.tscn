@@ -16,6 +16,8 @@ size = Vector2(12, 8)
 scale = Vector2(2, 2)
 collision_mask = 2
 script = ExtResource("1_dmws7")
+ammo_refill_time = 1.0
+MG_ammo_refill_time = 0.5
 max_health = 200
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -31,6 +33,9 @@ texture = ExtResource("3_uou7u")
 
 [node name="AmmoFillTimer" type="Timer" parent="."]
 wait_time = 0.5
+
+[node name="MGAmmoFillTimer" type="Timer" parent="."]
+wait_time = 0.2
 
 [node name="FuelContainer" type="StaticBody2D" parent="."]
 z_index = 1
@@ -53,3 +58,4 @@ texture_progress = ExtResource("5_6yoy3")
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="timeout" from="AmmoFillTimer" to="." method="_on_ammo_fill_timer_timeout"]
+[connection signal="timeout" from="MGAmmoFillTimer" to="." method="_on_mg_ammo_fill_timer_timeout"]

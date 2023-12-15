@@ -39,6 +39,4 @@ func take_damage(damage):
 		die() # Destroy object
 
 func die():
-	alive = false
-	queue_free()
-	emit_signal("died", experience_drop, global_position)
+	pass

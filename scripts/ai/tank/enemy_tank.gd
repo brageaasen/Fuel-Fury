@@ -1,6 +1,7 @@
 extends "res://scripts/ai/enemy.gd"
 
 @export var Bullet : PackedScene
+@export var fuel_drop : PackedScene
 @export var rotation_speed : float
 @export var gun_cooldown : float
 @export var machine_gun_cooldown : float
@@ -30,6 +31,13 @@ func _ready():
 	enemy_tank_chase_state.attack_player.connect(fsm.change_state.bind(enemy_tank_attack_state))
 	# On out_of_range, attack -> chase
 	enemy_tank_attack_state.out_of_range.connect(fsm.change_state.bind(enemy_tank_chase_state))
+
+
+func die():
+	alive = false
+	queue_free()
+	emit_signal("died", experience_drop, fuel_drop, global_position)
+
 
 func shoot(bullet):
 	# Find path of bullet scene

@@ -79,6 +79,15 @@ func take_damage(damage):
 func die():
 	queue_free() # Should maybe not queue free the player object?
 
+func gain_fuel(fuel_gain):
+	print("Gained fuel:")
+	if fuel + fuel_gain > max_fuel:
+		fuel = max_fuel
+	else:
+		fuel += fuel_gain
+	emit_signal("fuel_changed", fuel * 100/max_fuel)
+	emit_signal("experience_changed", experience * 100/experience_to_level, level)
+
 func gain_experience(experience_gain):
 	print("Gained experience:")
 	experience += experience_gain

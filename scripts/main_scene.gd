@@ -20,8 +20,15 @@ func _on_explode_particles_signal(explosion_particles, _position):
 	p.global_position = _position
 
 
-func _on_enemy_tank_died(experience_drop, _position):
+func _on_enemy_tank_died(experience_drop, fuel_drop, _position):
+	# TODO: Add slighly random spawn location / animtaion for drop
 	var e = experience_drop.instantiate()
+	var f = fuel_drop.instantiate()
+	# Spawn experience
 	add_child(e)
 	e.global_position = _position
 	e.on_spawn()
+	# Spawn fuel
+	add_child(f)
+	f.global_position = _position
+	f.on_spawn()

@@ -1122,8 +1122,6 @@ metadata/_edit_use_anchors_ = true
 [node name="Player" parent="." instance=ExtResource("9_ixxsp")]
 y_sort_enabled = false
 position = Vector2(129, 50)
-max_fuel = 200
-fuel_usage = 0.2
 
 [node name="EnemyTank" parent="." instance=ExtResource("11_joq8a")]
 position = Vector2(-81, -30)

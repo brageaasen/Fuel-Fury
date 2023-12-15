@@ -50,16 +50,17 @@ func move_and_rotate(delta):
 		velocity = Vector2(-max_speed/2, 0).rotated(rotation)
 		animation_player.play("move")
 
-
 # Remove?
 func apply_friction(delta):
 	velocity -= velocity * friction * delta
 
-func _on_base_ammo_updated():
-	ammo_storage += 1
-	mg_ammo_storage += 1
-	ammo_updated.emit(heavy_bullet, ammo_storage)
-	ammo_updated.emit(machine_gun_bullet, mg_ammo_storage)
+func _on_base_ammo_updated(type):
+	if type == "mg":
+		mg_ammo_storage += 1
+		ammo_updated.emit(machine_gun_bullet, mg_ammo_storage)
+	else:
+		ammo_updated.emit(heavy_bullet, ammo_storage)
+		ammo_storage += 1
 
 
 func _on_shoot_signal(bullet, _position, _direction):
