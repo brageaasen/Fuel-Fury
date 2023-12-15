@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dkt8ngtenq443"]
+[gd_scene load_steps=7 format=3 uid="uid://dkt8ngtenq443"]
 
 [ext_resource type="Script" path="res://scripts/base/base.gd" id="1_dmws7"]
 [ext_resource type="Texture2D" uid="uid://76kthr3a7gbn" path="res://assets/sprites/base-circle.png" id="2_dhk1k"]
 [ext_resource type="Texture2D" uid="uid://dweqhien0fcil" path="res://assets/sprites/base-flag.png" id="3_uou7u"]
+[ext_resource type="Texture2D" uid="uid://cf2ssqdtolqln" path="res://assets/sprites/health_bar.png" id="4_00qvj"]
+[ext_resource type="Texture2D" uid="uid://bcl7j1l7v8ay" path="res://assets/sprites/health_bar_progress.png" id="5_rrpkn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pkfoc"]
 radius = 24.0208
@@ -11,6 +13,7 @@ radius = 24.0208
 scale = Vector2(2, 2)
 collision_mask = 2
 script = ExtResource("1_dmws7")
+max_health = 200
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_pkfoc")
@@ -24,6 +27,22 @@ texture = ExtResource("3_uou7u")
 
 [node name="AmmoFillTimer" type="Timer" parent="."]
 wait_time = 0.5
+
+[node name="Container" type="HBoxContainer" parent="."]
+offset_left = -40.0
+offset_top = -45.5
+offset_right = 59.0
+offset_bottom = -5.5
+
+[node name="Health" type="Label" parent="Container"]
+layout_mode = 2
+text = "HP: "
+
+[node name="HealthBar" type="TextureProgressBar" parent="Container"]
+layout_mode = 2
+value = 100.0
+texture_under = ExtResource("4_00qvj")
+texture_progress = ExtResource("5_rrpkn")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

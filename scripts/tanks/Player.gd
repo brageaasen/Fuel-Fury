@@ -64,7 +64,6 @@ func _on_base_ammo_updated():
 func _on_shoot_signal(bullet, _position, _direction):
 	# Find path of bullet scene
 	var bullet_scene_path = bullet.get_path().get_file()
-	
 	# Check what type of bullet was shot
 	if bullet_scene_path.match("*player_bullet*"):
 		ammo_storage -= 1

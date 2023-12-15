@@ -6,6 +6,7 @@ extends State
 @export var ray_cast_player : RayCast2D
 
 @onready var enemy_tank = $"../.."
+@onready var body = $"../../Body"
 
 const WANDER_CIRCLE_RADIUS : int = 8
 const WANDER_RANDOMNESS : float = 0.2
@@ -51,6 +52,9 @@ func _physics_process(delta):
 	actor.velocity += steering
 	actor.velocity = actor.velocity.limit_length(actor.max_speed)
 	actor.move_and_slide()
+	
+	# Rotate the enemy tank body
+	body.rotation = actor.velocity.angle()
 	
 	if actor.target:
 		# Raycast

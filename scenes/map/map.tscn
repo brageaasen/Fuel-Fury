@@ -1,0 +1,163 @@
+[gd_scene load_steps=25 format=3 uid="uid://crc5y0yl542nf"]
+
+[ext_resource type="Texture2D" uid="uid://ra0gkpeh0elw" path="res://assets/sprites/edges.png" id="1_0s1fb"]
+[ext_resource type="Texture2D" uid="uid://dgn4vsiinnuoj" path="res://assets/sprites/doors_shadow.png" id="1_kud61"]
+[ext_resource type="Texture2D" uid="uid://dfbudiimcfeg4" path="res://assets/sprites/doors.png" id="2_fvimn"]
+[ext_resource type="Texture2D" uid="uid://yg7gjpatt08b" path="res://assets/sprites/fences.png" id="4_nymq2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1drul"]
+size = Vector2(22, 153)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cgoog"]
+size = Vector2(193, 21)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o6qcr"]
+size = Vector2(215, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_icng3"]
+size = Vector2(93, 51)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xg4cc"]
+size = Vector2(93, 51)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sp3wu"]
+size = Vector2(24, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m5ljn"]
+size = Vector2(22, 153)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2t1d1"]
+size = Vector2(271, 21)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gv3dn"]
+size = Vector2(293, 21)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ni8b2"]
+size = Vector2(22, 133)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nssln"]
+size = Vector2(22, 131)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_84na6"]
+size = Vector2(50, 14.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0a34v"]
+size = Vector2(50, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kee0p"]
+size = Vector2(11, 44)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2kyjb"]
+size = Vector2(14, 49)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t2o06"]
+size = Vector2(13, 49)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w6bdc"]
+size = Vector2(35, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_udq8i"]
+size = Vector2(46, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0v8eu"]
+size = Vector2(48, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2w36f"]
+size = Vector2(13, 44)
+
+[node name="Map" type="Node2D"]
+
+[node name="EdgesAndFences" type="StaticBody2D" parent="."]
+collision_mask = 6
+
+[node name="Sprite" type="Sprite2D" parent="EdgesAndFences"]
+texture = ExtResource("1_0s1fb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EdgesAndFences"]
+position = Vector2(-309, -103.5)
+shape = SubResource("RectangleShape2D_1drul")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="EdgesAndFences"]
+position = Vector2(-201.5, -169.5)
+shape = SubResource("RectangleShape2D_cgoog")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="EdgesAndFences"]
+position = Vector2(212.5, -169)
+shape = SubResource("RectangleShape2D_o6qcr")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="EdgesAndFences"]
+position = Vector2(-58.5, -154.5)
+shape = SubResource("RectangleShape2D_icng3")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="EdgesAndFences"]
+position = Vector2(58.5, -154.5)
+shape = SubResource("RectangleShape2D_xg4cc")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="EdgesAndFences"]
+position = Vector2(0, -175.5)
+shape = SubResource("RectangleShape2D_sp3wu")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="EdgesAndFences"]
+position = Vector2(-309, 103.5)
+shape = SubResource("RectangleShape2D_m5ljn")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="EdgesAndFences"]
+position = Vector2(-162.5, 169.5)
+shape = SubResource("RectangleShape2D_2t1d1")
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="EdgesAndFences"]
+position = Vector2(173.5, 169.5)
+shape = SubResource("RectangleShape2D_gv3dn")
+
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="EdgesAndFences"]
+position = Vector2(309, 93.5)
+shape = SubResource("RectangleShape2D_ni8b2")
+
+[node name="CollisionShape2D11" type="CollisionShape2D" parent="EdgesAndFences"]
+position = Vector2(309, -92.5)
+shape = SubResource("RectangleShape2D_nssln")
+
+[node name="CollisionShape2D12" type="CollisionShape2D" parent="EdgesAndFences"]
+position = Vector2(-295, 19.25)
+shape = SubResource("RectangleShape2D_84na6")
+
+[node name="CollisionShape2D13" type="CollisionShape2D" parent="EdgesAndFences"]
+position = Vector2(-295, -19)
+shape = SubResource("RectangleShape2D_0a34v")
+
+[node name="CollisionShape2D14" type="CollisionShape2D" parent="EdgesAndFences"]
+position = Vector2(-313.5, 3)
+shape = SubResource("RectangleShape2D_kee0p")
+
+[node name="CollisionShape2D15" type="CollisionShape2D" parent="EdgesAndFences"]
+position = Vector2(-20, 155.5)
+shape = SubResource("RectangleShape2D_2kyjb")
+
+[node name="CollisionShape2D16" type="CollisionShape2D" parent="EdgesAndFences"]
+position = Vector2(19.5, 155.5)
+shape = SubResource("RectangleShape2D_t2o06")
+
+[node name="CollisionShape2D17" type="CollisionShape2D" parent="EdgesAndFences"]
+position = Vector2(1.5, 174)
+shape = SubResource("RectangleShape2D_w6bdc")
+
+[node name="CollisionShape2D18" type="CollisionShape2D" parent="EdgesAndFences"]
+position = Vector2(295, 19)
+shape = SubResource("RectangleShape2D_udq8i")
+
+[node name="CollisionShape2D19" type="CollisionShape2D" parent="EdgesAndFences"]
+position = Vector2(295, -19.5)
+shape = SubResource("RectangleShape2D_0v8eu")
+
+[node name="CollisionShape2D20" type="CollisionShape2D" parent="EdgesAndFences"]
+position = Vector2(312.5, 6)
+shape = SubResource("RectangleShape2D_2w36f")
+
+[node name="DoorsShadow" type="Sprite2D" parent="."]
+texture = ExtResource("1_kud61")
+
+[node name="Doors" type="Sprite2D" parent="."]
+texture = ExtResource("2_fvimn")
+
+[node name="Fences" type="Sprite2D" parent="."]
+texture = ExtResource("4_nymq2")
