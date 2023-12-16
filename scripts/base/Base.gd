@@ -3,6 +3,7 @@ extends Area2D
 signal health_changed
 signal died
 signal ammo_updated
+signal entered_base
 
 @export var ammo_refill_time : float
 @export var MG_ammo_refill_time : float
@@ -49,6 +50,7 @@ func _on_mg_ammo_fill_timer_timeout():
 
 
 func _on_body_entered(body):
+	emit_signal("entered_base")
 	$AmmoFillTimer.set_paused(false)
 	$MGAmmoFillTimer.set_paused(false)
 

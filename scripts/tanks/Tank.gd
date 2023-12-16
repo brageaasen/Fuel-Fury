@@ -11,11 +11,13 @@ var health
 @export var max_fuel : int
 @export var fuel_usage : float
 var fuel_depletion_rate : float = 0.03
+var fuel_gain = 40
 var fuel
 var level = 1
 var experience = 0
 var experience_to_level = 5
 var alive = true
+var inventory : Dictionary = {}
 # Movement
 @export var max_speed = 60
 #var acceleration = max_speed * 10
@@ -86,7 +88,6 @@ func gain_fuel(fuel_gain):
 	else:
 		fuel += fuel_gain
 	emit_signal("fuel_changed", fuel * 100/max_fuel)
-	emit_signal("experience_changed", experience * 100/experience_to_level, level)
 
 func gain_experience(experience_gain):
 	print("Gained experience:")
@@ -104,7 +105,22 @@ func level_up():
 	emit_signal("experience_changed", experience * 100/experience_to_level, level)
 	# Upgrades?
 
+func add_to_inventory(item):
+	if inventory.has(item): inventory[item] = inventory[item] + 1
+	else: inventory[item] = 1
+
+func remove_from_inventory(item):
+	inventory[item] = inventory[item] - 1
+
+func add_fuel_to_base():
+	# Play add fuel sound if has fuel?
+	if inventory.has(Fuel):
+		while inventory[Fuel] != 0:
+			remove_from_inventory(Fuel)
+			gain_fuel(fuel_gain)
+
 func _physics_process(delta):
+	print(inventory)
 	if not alive:
 		return
 	

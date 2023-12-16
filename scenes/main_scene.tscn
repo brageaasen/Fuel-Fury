@@ -1130,6 +1130,7 @@ max_health = 100
 acceleration = 20.0
 
 [connection signal="ammo_updated" from="Base" to="Player" method="_on_base_ammo_updated"]
+[connection signal="entered_base" from="Base" to="Player" method="add_fuel_to_base"]
 [connection signal="ammo_updated" from="Player" to="MainCamera/HUD" method="_on_player_ammo_updated"]
 [connection signal="experience_changed" from="Player" to="MainCamera/HUD" method="update_experiencebar"]
 [connection signal="fuel_changed" from="Player" to="Base" method="update_fuel_container"]
