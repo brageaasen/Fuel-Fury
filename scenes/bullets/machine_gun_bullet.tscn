@@ -9,4 +9,4 @@ collision_mask = 5
 script = ExtResource("2_k8b37")
 speed = 300
 damage = 1
-lifetime = 2.0
+lifetime = 1.5

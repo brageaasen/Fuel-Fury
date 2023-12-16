@@ -49,8 +49,6 @@ func _on_spawn_timer_timeout():
 	var enemy_instance = enemy_to_spawn.instantiate()
 	enemy_instance.position = $Spawner.position
 	add_child(enemy_instance)
-	print(enemy_instance)
 	# Connect signals
-	#emitter_node.connect("signal_name", self, "method_on_self")
 	enemy_instance.connect("shootSignal", _on_Tank_shootSignal)
 	enemy_instance.connect("died", _on_enemy_tank_died)
