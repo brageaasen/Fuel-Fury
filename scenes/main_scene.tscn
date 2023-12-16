@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://darkjs45idgh1"]
+[gd_scene load_steps=19 format=3 uid="uid://darkjs45idgh1"]
 
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_x0pv1"]
 [ext_resource type="PackedScene" uid="uid://crc5y0yl542nf" path="res://scenes/map/map.tscn" id="2_6msir"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c27lt7vwi1j4f" path="res://scenes/tanks/player.tscn" id="9_ixxsp"]
 [ext_resource type="PackedScene" uid="uid://bjj2uflh2plre" path="res://scenes/hud.tscn" id="10_54g1t"]
 [ext_resource type="PackedScene" uid="uid://bn0crofij5cnc" path="res://scenes/enemy/enemy_tank.tscn" id="11_joq8a"]
+[ext_resource type="PackedScene" uid="uid://cqxyhkbxpjqt0" path="res://scenes/UI/mouse_cursor.tscn" id="12_tg132"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lsplo"]
 texture = ExtResource("2_o7rec")
@@ -1128,6 +1129,8 @@ position = Vector2(-81, -30)
 turret_speed = 1.0
 max_health = 100
 acceleration = 20.0
+
+[node name="MouseCursor" parent="." instance=ExtResource("12_tg132")]
 
 [connection signal="ammo_updated" from="Base" to="Player" method="_on_base_ammo_updated"]
 [connection signal="entered_base" from="Base" to="Player" method="add_fuel_to_base"]

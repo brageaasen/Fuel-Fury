@@ -120,7 +120,6 @@ func add_fuel_to_base():
 			gain_fuel(fuel_gain)
 
 func _physics_process(delta):
-	print(inventory)
 	if not alive:
 		return
 	
