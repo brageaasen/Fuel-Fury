@@ -1,9 +1,30 @@
 extends Area2D
 
 var player # Reference to the player node or position
+@export var should_rotate : bool
+
+@export var lifetime : float = 4
+var speed = 10
+
+var velocity = Vector2()
 
 func _ready():
 	player = get_node("/root/MainScene/Player")
+
+func _process(delta):
+	position += velocity * delta
+	velocity *= 0.99
+
+func spawn(_position, _direction):
+	self.on_spawn()
+	position = _position
+	if should_rotate:
+		rotation = _direction.angle()
+	$Lifetime.wait_time = lifetime
+	velocity = _direction * speed
+
+func _on_lifetime_timeout():
+	queue_free()
 
 func _on_pickup_radius_body_entered(body):
 	if body.name == "Player":
@@ -19,3 +40,4 @@ func play_pickup_sound():
 
 func on_pickup_item():
 	pass
+

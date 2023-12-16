@@ -18,6 +18,7 @@ var experience = 0
 var experience_to_level = 5
 var alive = true
 var inventory : Dictionary = {}
+var main_camera
 # Movement
 @export var max_speed = 60
 #var acceleration = max_speed * 10
@@ -35,6 +36,7 @@ var can_shoot = true
 
 
 func _ready():
+	main_camera = get_tree().current_scene.find_child("MainCamera")
 	health = max_health
 	emit_signal("health_changed", health * 100/max_health)
 	fuel = max_fuel
@@ -54,9 +56,15 @@ func shoot(bullet):
 	if can_shoot:
 		can_shoot = false
 		
+		# Push player in opposite direction (apply force) ?
+		
 		# Check what type of bullet was shot
-		if bullet_scene_path.match("*machine_gun_bullet*"): $MachineGunTimer.start()
-		else: $GunTimer.start()
+		if bullet_scene_path.match("*machine_gun_bullet*"):
+			$MachineGunTimer.start()
+			#main_camera.shake(0.5)
+		else:
+			$GunTimer.start()
+			main_camera.shake(1)
 		var dir = Vector2(1, 0).rotated($Weapon.global_rotation)
 		var recoil_degree_max = current_recoil * 0.5
 		var recoil_radians_actual = deg_to_rad(randf_range(-recoil_degree_max, recoil_degree_max))
@@ -73,6 +81,9 @@ func shoot(bullet):
 func take_damage(damage):
 	health -= damage
 	emit_signal("health_changed", health * 100/max_health)
+	
+	main_camera.shake(2)
+	
 	if (health <= 0):
 		alive = false
 		die() # Destroy object
