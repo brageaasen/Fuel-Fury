@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dji1yd852mete"]
+
+[ext_resource type="Script" path="res://scripts/items/item.gd" id="1_6xvsc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kglsy"]
+radius = 4.0
+
+[node name="Item" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_6xvsc")
+lifetime = 6.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_kglsy")
+
+[node name="Body" type="Sprite2D" parent="."]
+
+[node name="Lifetime" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_pickup_radius_body_entered"]
+[connection signal="timeout" from="Lifetime" to="." method="_on_lifetime_timeout"]

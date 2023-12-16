@@ -1,16 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://dkt8ngtenq443"]
+[gd_scene load_steps=8 format=3 uid="uid://dkt8ngtenq443"]
 
 [ext_resource type="Script" path="res://scripts/base/base.gd" id="1_dmws7"]
 [ext_resource type="Texture2D" uid="uid://76kthr3a7gbn" path="res://assets/sprites/base-circle.png" id="2_dhk1k"]
 [ext_resource type="Texture2D" uid="uid://dweqhien0fcil" path="res://assets/sprites/base-flag.png" id="3_uou7u"]
+[ext_resource type="Texture2D" uid="uid://0w24j3qfardt" path="res://assets/sprites/oil_case.png" id="4_henvn"]
+[ext_resource type="Texture2D" uid="uid://bwc43xm35swqg" path="res://assets/sprites/oil_progress.png" id="5_6yoy3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pkfoc"]
 radius = 24.0208
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rexre"]
+size = Vector2(12, 8)
 
 [node name="Base" type="Area2D"]
 scale = Vector2(2, 2)
 collision_mask = 2
 script = ExtResource("1_dmws7")
+ammo_refill_time = 1.0
+MG_ammo_refill_time = 0.5
+max_health = 200
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_pkfoc")
@@ -20,11 +28,34 @@ metadata/_edit_group_ = true
 texture = ExtResource("2_dhk1k")
 
 [node name="Flag" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("3_uou7u")
 
 [node name="AmmoFillTimer" type="Timer" parent="."]
 wait_time = 0.5
 
+[node name="MGAmmoFillTimer" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="FuelContainer" type="StaticBody2D" parent="."]
+z_index = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FuelContainer"]
+y_sort_enabled = true
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_rexre")
+
+[node name="FuelBar" type="TextureProgressBar" parent="FuelContainer"]
+offset_left = -6.0
+offset_top = -16.5
+offset_right = 34.0
+offset_bottom = 23.5
+value = 100.0
+fill_mode = 3
+texture_over = ExtResource("4_henvn")
+texture_progress = ExtResource("5_6yoy3")
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="timeout" from="AmmoFillTimer" to="." method="_on_ammo_fill_timer_timeout"]
+[connection signal="timeout" from="MGAmmoFillTimer" to="." method="_on_mg_ammo_fill_timer_timeout"]

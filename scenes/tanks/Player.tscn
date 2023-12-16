@@ -50,12 +50,13 @@ radius = 7.07107
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("2_irr7l")
-Bullet = ExtResource("3_dd57m")
-speed = 60
+max_health = 100
+max_fuel = 200
+fuel_usage = 0.2
 rotation_speed = 2.5
+Bullet = ExtResource("3_dd57m")
 gun_cooldown = 0.5
 machine_gun_cooldown = 0.1
-health = 100
 
 [node name="AnimationPlayer" parent="." index="0"]
 libraries = {
@@ -79,3 +80,4 @@ wait_time = 0.1
 [connection signal="shootSignal" from="." to="." method="_on_shoot_signal"]
 [connection signal="timeout" from="GunTimer" to="." method="_on_GunTimer_timeout"]
 [connection signal="timeout" from="MachineGunTimer" to="." method="_on_MachineGunTimer_timeout"]
+[connection signal="timeout" from="FuelUsageTimer" to="." method="_on_fuel_usage_timer_timeout"]

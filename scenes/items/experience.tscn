@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=3 uid="uid://ba1h2yk2m8uj8"]
+
+[ext_resource type="PackedScene" uid="uid://dji1yd852mete" path="res://scenes/items/item.tscn" id="1_ydsen"]
+[ext_resource type="Script" path="res://scripts/items/experience.gd" id="2_4s6u4"]
+[ext_resource type="Texture2D" uid="uid://bn03x8yqfytfh" path="res://assets/sprites/experience.png" id="3_wnlug"]
+
+[sub_resource type="Animation" id="Animation_nc7wu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_i06o2"]
+resource_name = "idle"
+length = 0.6
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r2tha"]
+_data = {
+"RESET": SubResource("Animation_nc7wu"),
+"idle": SubResource("Animation_i06o2")
+}
+
+[node name="Experience" instance=ExtResource("1_ydsen")]
+script = ExtResource("2_4s6u4")
+experience = 1
+should_rotate = true
+speed = 25
+
+[node name="Body" parent="." index="1"]
+texture = ExtResource("3_wnlug")
+hframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
+libraries = {
+"": SubResource("AnimationLibrary_r2tha")
+}

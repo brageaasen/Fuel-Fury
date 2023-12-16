@@ -1,10 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://bn0crofij5cnc"]
+[gd_scene load_steps=16 format=3 uid="uid://bn0crofij5cnc"]
 
 [ext_resource type="PackedScene" uid="uid://cs306kobnhuyg" path="res://scenes/enemy/enemy.tscn" id="1_gkk5u"]
 [ext_resource type="Script" path="res://scripts/ai/tank/enemy_tank.gd" id="2_apri0"]
 [ext_resource type="Texture2D" uid="uid://bdrqpd16jjkdw" path="res://assets/sprites/enemy_tanks_sheet.png" id="3_87gux"]
 [ext_resource type="PackedScene" uid="uid://bcijncf5y34wm" path="res://scenes/bullets/enemy_bullet.tscn" id="3_mmrsm"]
 [ext_resource type="Texture2D" uid="uid://crlo74pakghxn" path="res://assets/sprites/player_weapon.png" id="4_cl8xb"]
+[ext_resource type="PackedScene" uid="uid://ba1h2yk2m8uj8" path="res://scenes/items/experience.tscn" id="4_ipql1"]
+[ext_resource type="PackedScene" uid="uid://wapvqp0arsnf" path="res://scenes/items/fuel.tscn" id="4_w26dq"]
 [ext_resource type="Script" path="res://scripts/ai/finite_state_machine.gd" id="5_4s5xb"]
 [ext_resource type="Script" path="res://scripts/ai/tank/enemy_tank_wander_state.gd" id="5_ihe5d"]
 [ext_resource type="Script" path="res://scripts/ai/tank/enemy_tank_chase_state.gd" id="6_cby33"]
@@ -12,6 +14,21 @@
 
 [sub_resource type="Animation" id="Animation_rg8k7"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_il4o6"]
+resource_name = "idle"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -43,21 +60,6 @@ tracks/0/keys = {
 "values": [Vector2i(0, 0), Vector2i(1, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_il4o6"]
-resource_name = "idle"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Body:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Vector2i(0, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1ywkr"]
 _data = {
 "RESET": SubResource("Animation_rg8k7"),
@@ -68,11 +70,13 @@ _data = {
 [node name="EnemyTank" instance=ExtResource("1_gkk5u")]
 script = ExtResource("2_apri0")
 Bullet = ExtResource("3_mmrsm")
+fuel_drop = ExtResource("4_w26dq")
 rotation_speed = 2.0
 gun_cooldown = 2.0
 machine_gun_cooldown = 1.0
 turret_speed = 2.0
-health = 60
+max_health = 100
+experience_drop = ExtResource("4_ipql1")
 detect_radius = 100
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
@@ -91,25 +95,39 @@ texture = ExtResource("4_cl8xb")
 script = ExtResource("5_4s5xb")
 state = NodePath("EnemyTankWanderState")
 
-[node name="EnemyTankWanderState" type="Node" parent="FiniteStateMachine" index="0" node_paths=PackedStringArray("actor", "animator", "vision_cast")]
+[node name="EnemyTankWanderState" type="Node" parent="FiniteStateMachine" index="0" node_paths=PackedStringArray("actor", "animator", "ray_cast_player")]
 script = ExtResource("5_ihe5d")
 actor = NodePath("../..")
 animator = NodePath("../../AnimationPlayer")
-vision_cast = NodePath("../../RayCast2D")
+ray_cast_player = NodePath("../../PlayerDetection")
 
-[node name="EnemyTankChaseState" type="Node" parent="FiniteStateMachine" index="1" node_paths=PackedStringArray("actor", "animator", "vision_cast")]
+[node name="EnemyTankChaseState" type="Node" parent="FiniteStateMachine" index="1" node_paths=PackedStringArray("actor", "animator", "ray_cast_player")]
 script = ExtResource("6_cby33")
 actor = NodePath("../..")
 animator = NodePath("../../AnimationPlayer")
-vision_cast = NodePath("../../RayCast2D")
+ray_cast_player = NodePath("../../PlayerDetection")
 
-[node name="EnemyTankAttackState" type="Node" parent="FiniteStateMachine" index="2" node_paths=PackedStringArray("actor", "animator", "vision_cast")]
+[node name="EnemyTankAttackState" type="Node" parent="FiniteStateMachine" index="2" node_paths=PackedStringArray("actor", "animator", "ray_cast_player")]
 script = ExtResource("8_i2bsh")
 actor = NodePath("../..")
 animator = NodePath("../../AnimationPlayer")
-vision_cast = NodePath("../../RayCast2D")
+ray_cast_player = NodePath("../../PlayerDetection")
 
-[node name="RayCast2D" type="RayCast2D" parent="." index="8"]
+[node name="ObstacleDetection1" type="RayCast2D" parent="." index="8"]
+target_position = Vector2(38, 0)
+collision_mask = 0
+
+[node name="ObstacleDetection2" type="RayCast2D" parent="." index="9"]
+position = Vector2(0, -7)
+target_position = Vector2(38, 0)
+collision_mask = 0
+
+[node name="ObstacleDetection3" type="RayCast2D" parent="." index="10"]
+position = Vector2(0, 7)
+target_position = Vector2(38, 0)
+collision_mask = 0
+
+[node name="PlayerDetection" type="RayCast2D" parent="." index="11"]
 target_position = Vector2(66, 0)
 
 [connection signal="timeout" from="GunTimer" to="." method="_on_GunTimer_timeout"]

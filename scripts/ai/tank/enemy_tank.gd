@@ -1,12 +1,13 @@
 extends "res://scripts/ai/enemy.gd"
 
 @export var Bullet : PackedScene
+@export var fuel_drop : PackedScene
 @export var rotation_speed : float
 @export var gun_cooldown : float
 @export var machine_gun_cooldown : float
 @export var turret_speed : float
 
-@onready var ray_cast_2d = $RayCast2D
+@onready var ray_cast_player = $PlayerDetection
 @onready var fsm = $FiniteStateMachine as FiniteStateMachine
 @onready var enemy_tank_wander_state = $FiniteStateMachine/EnemyTankWanderState as EnemyTankWanderState
 @onready var enemy_tank_chase_state = $FiniteStateMachine/EnemyTankChaseState as EnemyTankChaseState
@@ -20,7 +21,7 @@ func _ready():
 	player = get_node("/root/MainScene/Player")
 	$GunTimer.wait_time = gun_cooldown
 	$MachineGunTimer.wait_time = machine_gun_cooldown
-	ray_cast_2d.target_position.x = detect_radius
+	ray_cast_player.target_position.x = detect_radius
 	
 	# On found_player, wander -> chase
 	enemy_tank_wander_state.found_player.connect(fsm.change_state.bind(enemy_tank_chase_state))
@@ -30,6 +31,13 @@ func _ready():
 	enemy_tank_chase_state.attack_player.connect(fsm.change_state.bind(enemy_tank_attack_state))
 	# On out_of_range, attack -> chase
 	enemy_tank_attack_state.out_of_range.connect(fsm.change_state.bind(enemy_tank_chase_state))
+
+
+func die():
+	alive = false
+	queue_free()
+	emit_signal("died", experience_drop, fuel_drop, global_position)
+
 
 func shoot(bullet):
 	# Find path of bullet scene

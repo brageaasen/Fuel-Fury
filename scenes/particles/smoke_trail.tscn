@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://nlvvt6hpx8jp"]
+
+[sub_resource type="Gradient" id="Gradient_m880q"]
+offsets = PackedFloat32Array(0.0112994, 0.259887, 0.903955)
+colors = PackedColorArray(0.43, 0.43, 0.43, 1, 0.88, 0.88, 0.88, 1, 0.878431, 0.878431, 0.878431, 0.635294)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_owrly"]
+gradient = SubResource("Gradient_m880q")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hsivv"]
+particle_flag_disable_z = true
+spread = 48.1
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+angular_velocity_max = 20.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+linear_accel_max = 82.46
+angle_max = 360.0
+scale_min = 0.0
+scale_max = 2.0
+color_ramp = SubResource("GradientTexture1D_owrly")
+turbulence_noise_scale = 10.0
+
+[node name="SmokeTrail" type="Node2D"]
+
+[node name="Particles" type="GPUParticles2D" parent="."]
+z_index = 6
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_hsivv")
+lifetime = 0.35

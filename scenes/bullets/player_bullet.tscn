@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://c6l7quk1tdtpf"]
+[gd_scene load_steps=4 format=3 uid="uid://c6l7quk1tdtpf"]
 
-[ext_resource type="PackedScene" uid="uid://bocuou03h0uf3" path="res://scenes/bullets/bullet.tscn" id="1_354ge"]
+[ext_resource type="PackedScene" uid="uid://bocuou03h0uf3" path="res://scenes/bullets/bullet.tscn" id="1_5qvd7"]
 [ext_resource type="Script" path="res://scripts/bullets/player_bullet.gd" id="2_glmyg"]
+[ext_resource type="PackedScene" uid="uid://nlvvt6hpx8jp" path="res://scenes/particles/smoke_trail.tscn" id="3_kmndh"]
 
-[node name="PlayerBullet" instance=ExtResource("1_354ge")]
+[node name="PlayerBullet" instance=ExtResource("1_5qvd7")]
 collision_mask = 5
 script = ExtResource("2_glmyg")
 speed = 250
 damage = 20
-lifetime = 2.0
+lifetime = 3.0
+
+[node name="SmokeTrail" parent="." index="3" instance=ExtResource("3_kmndh")]

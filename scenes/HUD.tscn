@@ -1,33 +1,36 @@
-[gd_scene load_steps=4 format=3 uid="uid://bjj2uflh2plre"]
+[gd_scene load_steps=7 format=3 uid="uid://bjj2uflh2plre"]
 
 [ext_resource type="Script" path="res://scripts/hud/hud.gd" id="1_mtgwt"]
 [ext_resource type="Texture2D" uid="uid://cnb5chdsrk2hw" path="res://assets/sprites/Arrow.png" id="2_0uvut"]
 [ext_resource type="Script" path="res://scripts/hud/arrow_to_base_hud.gd" id="3_2p476"]
+[ext_resource type="Texture2D" uid="uid://cf2ssqdtolqln" path="res://assets/sprites/health_bar.png" id="4_74fs3"]
+[ext_resource type="Texture2D" uid="uid://bcl7j1l7v8ay" path="res://assets/sprites/health_bar_progress.png" id="5_g2x8q"]
+[ext_resource type="Texture2D" uid="uid://6cd7sy7d8epl" path="res://assets/sprites/experience_bar_progress.png" id="6_oe234"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 4.0
-offset_top = -3.0
-offset_right = 4.0
-offset_bottom = -3.0
+offset_left = -1.0
+offset_top = -180.0
+offset_right = -1.0
+offset_bottom = -180.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mtgwt")
 
+[node name="ArrowToBase" type="Sprite2D" parent="."]
+position = Vector2(-4, 3)
+texture = ExtResource("2_0uvut")
+script = ExtResource("3_2p476")
+
 [node name="AmmoStorage" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 24.0
-offset_top = -68.0
-offset_right = 148.0
-offset_bottom = -37.0
+layout_mode = 2
+offset_left = 7.0
+offset_top = 28.0
+offset_right = 93.0
+offset_bottom = 59.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 20
@@ -36,16 +39,11 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MachineGunAmmoStorage" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -176.0
-offset_top = -68.0
-offset_right = -52.0
-offset_bottom = -37.0
+layout_mode = 2
+offset_left = -193.0
+offset_top = 28.0
+offset_right = -69.0
+offset_bottom = 59.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 20
@@ -53,7 +51,38 @@ text = "MG Ammo: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ArrowToBase" type="Sprite2D" parent="."]
-position = Vector2(-4, 3)
-texture = ExtResource("2_0uvut")
-script = ExtResource("3_2p476")
+[node name="ExperienceBar" type="TextureProgressBar" parent="."]
+layout_mode = 2
+offset_left = -11.0
+offset_top = -121.0
+offset_right = 53.0
+offset_bottom = -105.0
+texture_under = ExtResource("4_74fs3")
+texture_progress = ExtResource("6_oe234")
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+layout_mode = 2
+offset_left = -135.0
+offset_top = -121.0
+offset_right = -71.0
+offset_bottom = -105.0
+value = 100.0
+texture_under = ExtResource("4_74fs3")
+texture_progress = ExtResource("5_g2x8q")
+
+[node name="Health" type="Label" parent="."]
+layout_mode = 2
+offset_left = -133.0
+offset_top = -125.0
+offset_right = 1747.0
+offset_bottom = -99.0
+text = "HP:
+"
+
+[node name="Level" type="Label" parent="."]
+layout_mode = 2
+offset_left = -8.0
+offset_top = -125.0
+offset_right = 1872.0
+offset_bottom = -99.0
+text = "Level:"

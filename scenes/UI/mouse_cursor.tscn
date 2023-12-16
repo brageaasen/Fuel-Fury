@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://cqxyhkbxpjqt0"]
+
+[ext_resource type="Texture2D" uid="uid://cro73myambg3" path="res://assets/sprites/mouse_cursor.png" id="1_d2ftu"]
+[ext_resource type="Script" path="res://scripts/mouse_cursor.gd" id="2_8seu0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bha0c"]
+atlas = ExtResource("1_d2ftu")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w2q5p"]
+atlas = ExtResource("1_d2ftu")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1c2gs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bha0c")
+}],
+"loop": false,
+"name": &"click",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w2q5p")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 1.0
+}]
+
+[node name="MouseCursor" type="AnimatedSprite2D"]
+z_index = 10
+sprite_frames = SubResource("SpriteFrames_1c2gs")
+animation = &"idle"
+script = ExtResource("2_8seu0")
