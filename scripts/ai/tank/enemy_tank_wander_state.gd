@@ -27,7 +27,6 @@ func _ready():
 			obstacle_raycasts.append(child)
 
 func _enter_state() -> void:
-	print("Entered wander state")
 	set_physics_process(true)
 	animator.play("move")
 	# If speed is 0 when entering state, start moving

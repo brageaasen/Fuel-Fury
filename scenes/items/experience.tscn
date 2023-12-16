@@ -47,6 +47,7 @@ _data = {
 script = ExtResource("2_4s6u4")
 experience = 1
 should_rotate = true
+speed = 25
 
 [node name="Body" parent="." index="1"]
 texture = ExtResource("3_wnlug")

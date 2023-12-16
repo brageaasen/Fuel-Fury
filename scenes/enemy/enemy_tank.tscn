@@ -75,6 +75,7 @@ rotation_speed = 2.0
 gun_cooldown = 2.0
 machine_gun_cooldown = 1.0
 turret_speed = 2.0
+max_health = 100
 experience_drop = ExtResource("4_ipql1")
 detect_radius = 100
 

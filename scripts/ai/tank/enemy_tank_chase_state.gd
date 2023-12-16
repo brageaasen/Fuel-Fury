@@ -6,6 +6,8 @@ extends State
 @export var animator : AnimationPlayer
 @export var ray_cast_player : RayCast2D
 
+@onready var weapon = $"../../Weapon"
+
 var player # Reference to the player node or position
 
 signal lost_player
@@ -17,7 +19,6 @@ func _ready() -> void:
 	player = get_node("/root/MainScene/Player")
 
 func _enter_state() -> void:
-	print("Entered chase state")
 	set_physics_process(true)
 	animator.play("move")
 
@@ -35,7 +36,6 @@ func _physics_process(delta) -> void:
 		actor.rotation = lerp(current_dir, actor.target_dir, actor.rotation_speed * delta).angle()
 		
 		# Rotate weapon towards the player
-		var weapon = get_node("/root/MainScene/EnemyTank/Weapon")
 		var current_weapon_dir = Vector2(1, 0).rotated(weapon.global_rotation)
 		weapon.global_rotation = lerp(current_weapon_dir, actor.target_dir, actor.turret_speed * delta).angle()
 		

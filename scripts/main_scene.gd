@@ -34,3 +34,23 @@ func _on_enemy_tank_died(experience_drop, fuel_drop, _position):
 	randomAngle = randf_range(0, 360)
 	randomDirection = Vector2.RIGHT.rotated(deg_to_rad(randomAngle))
 	f.spawn(_position, randomDirection)
+
+var enemy_list = [
+	preload("res://scenes/enemy/enemy_tank.tscn")
+]
+
+func _on_spawn_timer_timeout():
+	var nodes = get_parent().get_tree().get_nodes_in_group("spawner")
+	var node = nodes[randi() % nodes.size()]
+	var position = node.position
+	$Spawner.position = position
+
+	var enemy_to_spawn = enemy_list.pick_random()
+	var enemy_instance = enemy_to_spawn.instantiate()
+	enemy_instance.position = $Spawner.position
+	add_child(enemy_instance)
+	print(enemy_instance)
+	# Connect signals
+	#emitter_node.connect("signal_name", self, "method_on_self")
+	enemy_instance.connect("shootSignal", _on_Tank_shootSignal)
+	enemy_instance.connect("died", _on_enemy_tank_died)

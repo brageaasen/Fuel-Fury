@@ -8,6 +8,7 @@ radius = 4.0
 [node name="Item" type="Area2D"]
 collision_mask = 2
 script = ExtResource("1_6xvsc")
+lifetime = 6.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_kglsy")

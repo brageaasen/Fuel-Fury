@@ -4,7 +4,7 @@ var player # Reference to the player node or position
 @export var should_rotate : bool
 
 @export var lifetime : float = 4
-var speed = 10
+@export var speed = 10
 
 var velocity = Vector2()
 
@@ -14,6 +14,10 @@ func _ready():
 func _process(delta):
 	position += velocity * delta
 	velocity *= 0.99
+	
+	# Make sprite more transparent to show lifetime left
+	if $Lifetime.time_left < $Lifetime.wait_time / 2:
+		$Body.modulate.a = 0.8
 
 func spawn(_position, _direction):
 	self.on_spawn()
@@ -21,6 +25,7 @@ func spawn(_position, _direction):
 	if should_rotate:
 		rotation = _direction.angle()
 	$Lifetime.wait_time = lifetime
+	$Lifetime.start()
 	velocity = _direction * speed
 
 func _on_lifetime_timeout():

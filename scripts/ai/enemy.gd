@@ -34,7 +34,7 @@ func shoot(bullet):
 
 func take_damage(damage):
 	health -= damage
-	emit_signal('health_changed', health * 100/max_health)
+	emit_signal("health_changed", health * 100/max_health)
 	if (health <= 0):
 		die() # Destroy object
 

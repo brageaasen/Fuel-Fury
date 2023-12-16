@@ -46,6 +46,7 @@ func shoot(bullet):
 	# Check if allowed to shoot
 	if can_shoot:
 		can_shoot = false
+		print("shot")
 		
 		# Check what type of bullet was shot
 		if bullet_scene_path.match("*machine_gun_bullet*"): $MachineGunTimer.start()
