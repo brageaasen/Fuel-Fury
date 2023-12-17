@@ -130,6 +130,12 @@ func add_fuel_to_base():
 			remove_from_inventory(Fuel)
 			gain_fuel(fuel_gain)
 
+func load_ability(name):
+	var scene = load("res://scenes/abilities/" + name + "/" + name + ".tscn")
+	var scene_instance = scene.instantiate()
+	add_child(scene_instance)
+	return scene_instance
+
 func _physics_process(delta):
 	if not alive:
 		return
