@@ -3,6 +3,7 @@ extends CharacterBody2D
 signal shootSignal
 signal health_changed
 signal experience_changed
+signal leveled_up
 signal fuel_changed
 signal died
 
@@ -115,6 +116,7 @@ func level_up():
 	print(experience)
 	emit_signal("experience_changed", experience * 100/experience_to_level, level)
 	# Upgrades?
+	emit_signal("leveled_up")
 
 func add_to_inventory(item):
 	if inventory.has(item): inventory[item] = inventory[item] + 1

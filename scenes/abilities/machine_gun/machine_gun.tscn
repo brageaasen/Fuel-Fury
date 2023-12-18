@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://cqn6285p1158e"]
+[gd_scene load_steps=3 format=3 uid="uid://cqn6285p1158e"]
 
 [ext_resource type="Script" path="res://scripts/abilities/machine_gun.gd" id="1_gqe2m"]
+[ext_resource type="Texture2D" uid="uid://bn51aeseo0tfn" path="res://assets/sprites/machine_gun_icon.png" id="2_tcmxx"]
 
 [node name="machine_gun" type="Node"]
 script = ExtResource("1_gqe2m")
+title = "Machine Gun"
+info = "Adds a machine gun to your tanks (right click)."
+image = ExtResource("2_tcmxx")

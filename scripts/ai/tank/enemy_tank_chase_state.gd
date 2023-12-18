@@ -8,7 +8,7 @@ extends State
 
 @onready var weapon = $"../../Weapon"
 
-var player # Reference to the player node or position
+var player # Reference to the player node
 
 signal lost_player
 signal attack_player

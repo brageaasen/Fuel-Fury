@@ -1152,5 +1152,6 @@ position = Vector2(305, 0)
 [connection signal="experience_changed" from="Player" to="MainCamera/HUD" method="update_experiencebar"]
 [connection signal="fuel_changed" from="Player" to="Base" method="update_fuel_container"]
 [connection signal="health_changed" from="Player" to="MainCamera/HUD" method="update_healthbar"]
+[connection signal="leveled_up" from="Player" to="MainCamera/HUD" method="_on_player_leveled_up"]
 [connection signal="shootSignal" from="Player" to="." method="_on_Tank_shootSignal"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

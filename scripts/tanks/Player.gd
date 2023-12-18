@@ -5,7 +5,7 @@ var heavy_bullet : PackedScene = load( "res://scenes/bullets/player_bullet.tscn"
 
 
 # Abilities
-var abilities = {"machine_gun" : load_ability("machine_gun")}
+var abilities = { }
 
 #[var machine_gun = load_ability("machine_gun")]
 

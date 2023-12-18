@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bjj2uflh2plre"]
+[gd_scene load_steps=8 format=3 uid="uid://bjj2uflh2plre"]
 
 [ext_resource type="Script" path="res://scripts/hud/hud.gd" id="1_mtgwt"]
 [ext_resource type="Texture2D" uid="uid://cnb5chdsrk2hw" path="res://assets/sprites/Arrow.png" id="2_0uvut"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cf2ssqdtolqln" path="res://assets/sprites/health_bar.png" id="4_74fs3"]
 [ext_resource type="Texture2D" uid="uid://bcl7j1l7v8ay" path="res://assets/sprites/health_bar_progress.png" id="5_g2x8q"]
 [ext_resource type="Texture2D" uid="uid://6cd7sy7d8epl" path="res://assets/sprites/experience_bar_progress.png" id="6_oe234"]
+[ext_resource type="Theme" uid="uid://byhn61b5urgiv" path="res://default.tres" id="7_4uxw6"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -86,3 +87,12 @@ offset_top = -125.0
 offset_right = 1872.0
 offset_bottom = -99.0
 text = "Level:"
+
+[node name="AbilityChoice1" type="Button" parent="."]
+layout_mode = 2
+offset_right = 64.0
+offset_bottom = 48.0
+theme = ExtResource("7_4uxw6")
+text = "Ability"
+
+[connection signal="pressed" from="AbilityChoice1" to="." method="_on_ability_choice_1_pressed"]

@@ -1,4 +1,4 @@
-extends Node
+extends "res://scripts/abilities/ability.gd"
 
 signal ammo_updated # Signal for HUD
 
@@ -7,6 +7,7 @@ var machine_gun_bullet : PackedScene = load( "res://scenes/bullets/machine_gun_b
 @export var mg_ammo_storage : int = 120
 
 func _ready():
+	_name = "machine_gun"
 	emit_ammo_update()
 
 func execute(s):
