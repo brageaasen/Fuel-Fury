@@ -16,7 +16,7 @@ var fuel_gain = 40
 var fuel
 var level = 1
 var experience = 0
-var experience_to_level = 5
+var experience_to_level = 1
 var alive = true
 var inventory : Dictionary = {}
 var main_camera

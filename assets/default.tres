@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=8 format=3 uid="uid://byhn61b5urgiv"]
 
-[ext_resource type="FontFile" uid="uid://blafdgsfffc7o" path="res://assets/fonts/joystix monospace.otf" id="1_8i1ci"]
+[ext_resource type="FontFile" uid="uid://beghlpmphs8no" path="res://assets/fonts/kongtext.regular.ttf" id="1_3rf7a"]
 [ext_resource type="Texture2D" uid="uid://b3tld7im2u0hu" path="res://assets/sprites/button.png" id="1_ocdeq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bxq0h"]
@@ -81,7 +81,7 @@ Button/constants/h_separation = 2
 Button/constants/icon_max_width = 0
 Button/constants/outline_size = 0
 Button/font_sizes/font_size = 16
-Button/fonts/font = ExtResource("1_8i1ci")
+Button/fonts/font = ExtResource("1_3rf7a")
 Button/styles/disabled = SubResource("StyleBoxFlat_bxq0h")
 Button/styles/focus = SubResource("StyleBoxFlat_bdd7r")
 Button/styles/hover = SubResource("StyleBoxFlat_8ilry")
