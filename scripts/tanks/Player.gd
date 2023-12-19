@@ -5,7 +5,7 @@ var heavy_bullet : PackedScene = load( "res://scenes/bullets/player_bullet.tscn"
 
 
 # Abilities
-var abilities = { }
+var abilities = []
 
 @onready var animation_player = $AnimationPlayer
 signal ammo_updated # Signal for HUD
@@ -28,7 +28,7 @@ func control(delta):
 		if ammo_storage > 0:
 			shoot(heavy_bullet)
 	if abilities.has("machine_gun"):
-		abilities.get("machine_gun").execute(self)
+		load_ability("machine_gun").execute(self)
 
 func move_and_rotate(delta):
 	# Rotate the player
@@ -56,8 +56,8 @@ func apply_friction(delta):
 
 func _on_base_ammo_updated(type):
 	if type == "mg" and abilities.has("machine_gun"):
-		abilities.get("machine_gun").mg_ammo_storage += 1
-		abilities.get("machine_gun").emit_ammo_update()
+		load_ability("machine_gun").mg_ammo_storage += 1
+		load_ability("machine_gun").emit_ammo_update()
 	else:
 		ammo_updated.emit(heavy_bullet, ammo_storage)
 		ammo_storage += 1
@@ -71,5 +71,5 @@ func _on_shoot_signal(bullet, _position, _direction):
 		ammo_storage -= 1
 		ammo_updated.emit(bullet, ammo_storage)
 	elif bullet_scene_path.match("*machine_gun_bullet*") and abilities.has("machine_gun"):
-		abilities.get("machine_gun").mg_ammo_storage -= 1
-		abilities.get("machine_gun").emit_ammo_update()
+		load_ability("machine_gun").mg_ammo_storage -= 1
+		load_ability("machine_gun").emit_ammo_update()

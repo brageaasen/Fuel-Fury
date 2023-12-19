@@ -6,11 +6,9 @@ var current_abilities
 
 func _ready():
 	player = get_node("/root/MainScene/Player")
-	possible_abilities = {
-		#TODO! This will load the ability automaticalls
-		"machine_gun" : player.load_ability("machine_gun"),
-		"loot_magnet" : player.load_ability("loot_magnet")
-		}
+	#TODO! This will load the ability automaticalls
+	#possible_abilities = { "machine_gun" : player.load_ability("machine_gun"), "loot_magnet" : player.load_ability("loot_magnet")}
+	possible_abilities = ["machine_gun", "loot_magnet"]
 	current_abilities = player.abilities
 	# Connect button signals
 	$AbilityChoice0/Button.connect("pressed", _on_ability_choice_0_pressed)
@@ -45,13 +43,10 @@ func _on_player_leveled_up():
 	if possible_abilities.size() != 0:
 		while count < 3:
 			# Get random new ability
-			var random_ability = possible_abilities.keys()[randi() % possible_abilities.size()]
+			var random_ability = possible_abilities[randi() % possible_abilities.size()]
 			# Check if player already has the ability
-			var ability = possible_abilities[random_ability]
-			
-			if not current_abilities.has(ability): # and !abilities_to_display.has(ability):
-				print(abilities_to_display.has(ability))
-				abilities_to_display.append(ability)
+			if not current_abilities.has(random_ability): # and not abilities_to_display.has(ability):
+				abilities_to_display.append(random_ability)
 				count += 1
 			
 		# Display abilities
@@ -63,14 +58,14 @@ func _on_player_leveled_up():
 				ability_choice.visible = true
 				
 				# Set properties based on the index of ability
-				ability_choice.get_node("Button/Icon/Name").text = abilities_to_display[i].title
-				ability_choice.get_node("Button/Icon").texture = abilities_to_display[i].image
+				ability_choice.get_node("Button/Icon/Name").text = player.load_ability(abilities_to_display[i]).title
+				ability_choice.get_node("Button/Icon").texture = player.load_ability(abilities_to_display[i]).image
 
 func ability_chosen(ability_number):
 	# Add ability to players ability list
-	player.abilities[abilities_to_display[ability_number]._name] = abilities_to_display[ability_number]
+	player.abilities.append(abilities_to_display[ability_number])
 	# Remove ability from possible abilities
-	possible_abilities.erase(abilities_to_display[ability_number]._name)
+	possible_abilities.erase(abilities_to_display[ability_number])
 	
 	# Make all buttons non visble to the player
 	for i in range(0, 3): # Loop from 0 to 2 inclusive
@@ -80,17 +75,18 @@ func ability_chosen(ability_number):
 			# Set visibility to false for the current AbilityChoice
 			ability_choice.visible = false
 			
-			# Set properties based on the index of ability
+			# Reset properties
 			ability_choice.get_node("Button/Icon/Name").text = ""
 			ability_choice.get_node("Button/Icon").texture = null
 	# Reset new abilities list
 	abilities_to_display = []
+	ability_non_hover()
 
 func ability_hover(ability):
 	# Enable infobox
 	$InfoContainer/InfoBox.visible = true
 	# Set the label's text
-	$InfoContainer/InfoBox/MarginContainer/Info.text = abilities_to_display[ability].info
+	$InfoContainer/InfoBox/MarginContainer/Info.text = player.load_ability(abilities_to_display[ability]).info
 
 func ability_non_hover():
 	# Disable infobox
@@ -127,12 +123,3 @@ func _on_ability_choice_2_mouse_entered():
 
 func _on_ability_choice_2_mouse_exited():
 	ability_non_hover()
-
-
-
-func _on_control_mouse_entered():
-	print("ENTERED")
-
-
-func _on_control_2_mouse_entered():
-	print("ENTERED")
