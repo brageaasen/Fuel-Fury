@@ -7,6 +7,7 @@ var current_abilities
 func _ready():
 	player = get_node("/root/MainScene/Player")
 	possible_abilities = {
+		#TODO! This will load the ability automaticalls
 		"machine_gun" : player.load_ability("machine_gun"),
 		"loot_magnet" : player.load_ability("loot_magnet")
 		}

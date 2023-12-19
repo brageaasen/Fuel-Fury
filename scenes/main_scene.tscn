@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://darkjs45idgh1"]
+[gd_scene load_steps=20 format=3 uid="uid://darkjs45idgh1"]
 
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_x0pv1"]
 [ext_resource type="PackedScene" uid="uid://crc5y0yl542nf" path="res://scenes/map/map.tscn" id="2_6msir"]
@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://c27lt7vwi1j4f" path="res://scenes/tanks/Player.tscn" id="9_ixxsp"]
 [ext_resource type="PackedScene" uid="uid://bjj2uflh2plre" path="res://scenes/hud.tscn" id="10_54g1t"]
 [ext_resource type="PackedScene" uid="uid://cqxyhkbxpjqt0" path="res://scenes/UI/mouse_cursor.tscn" id="12_tg132"]
-[ext_resource type="PackedScene" uid="uid://ba1h2yk2m8uj8" path="res://scenes/items/experience.tscn" id="14_5cjd0"]
 [ext_resource type="PackedScene" uid="uid://c7m44hs4dccln" path="res://scenes/enemy/spawner.tscn" id="14_xe4kn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lsplo"]
@@ -1125,10 +1124,6 @@ layer_1/tile_data = PackedInt32Array(-196620, 65537, 1, -458752, 65537, 1, 32767
 
 [node name="Base" parent="." instance=ExtResource("8_gyq5b")]
 
-[node name="Player" parent="." instance=ExtResource("9_ixxsp")]
-y_sort_enabled = false
-position = Vector2(129, 50)
-
 [node name="Spawner" parent="." instance=ExtResource("14_xe4kn")]
 
 [node name="SpawnTimer" type="Timer" parent="."]
@@ -1147,15 +1142,12 @@ position = Vector2(0, 164)
 [node name="SpawnLocation4" type="Marker2D" parent="." groups=["spawner"]]
 position = Vector2(305, 0)
 
-[node name="Experience" parent="." instance=ExtResource("14_5cjd0")]
-position = Vector2(28, 3)
+[node name="Player" parent="." instance=ExtResource("9_ixxsp")]
+position = Vector2(62, 31)
 
-[connection signal="ammo_updated" from="Base" to="Player" method="_on_base_ammo_updated"]
-[connection signal="entered_base" from="Base" to="Player" method="add_fuel_to_base"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="ammo_updated" from="Player" to="MainCamera/HUD" method="_on_player_ammo_updated"]
 [connection signal="experience_changed" from="Player" to="MainCamera/HUD" method="update_experiencebar"]
 [connection signal="fuel_changed" from="Player" to="Base" method="update_fuel_container"]
 [connection signal="health_changed" from="Player" to="MainCamera/HUD" method="update_healthbar"]
 [connection signal="leveled_up" from="Player" to="MainCamera/HUD" method="_on_player_leveled_up"]
-[connection signal="shootSignal" from="Player" to="." method="_on_Tank_shootSignal"]
-[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

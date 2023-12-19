@@ -5,9 +5,7 @@ var heavy_bullet : PackedScene = load( "res://scenes/bullets/player_bullet.tscn"
 
 
 # Abilities
-var abilities = { "loot_magnet" : load_ability("loot_magnet") }
-
-#[var machine_gun = load_ability("machine_gun")]
+var abilities = { }
 
 @onready var animation_player = $AnimationPlayer
 signal ammo_updated # Signal for HUD

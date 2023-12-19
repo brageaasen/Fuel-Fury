@@ -35,6 +35,7 @@ func _on_enemy_tank_died(experience_drop, fuel_drop, _position):
 	randomDirection = Vector2.RIGHT.rotated(deg_to_rad(randomAngle))
 	f.spawn(_position, randomDirection)
 
+# Enemy types to spawn
 var enemy_list = [
 	preload("res://scenes/enemy/enemy_tank.tscn")
 ]
@@ -52,3 +53,7 @@ func _on_spawn_timer_timeout():
 	# Connect signals
 	enemy_instance.connect("shootSignal", _on_Tank_shootSignal)
 	enemy_instance.connect("died", _on_enemy_tank_died)
+
+
+func update_fuel_container():
+	pass # Replace with function body.

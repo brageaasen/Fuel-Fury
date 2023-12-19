@@ -1,7 +1,8 @@
 extends "res://scripts/abilities/ability.gd"
 
-@export var speed = 4
-@export var radius : float = 30.0
+@export var speed = 40
+@export var radius : float = 60
+@onready var magnet_radius = $MagnetRadius
 var inside_radius = []
 
 
@@ -9,10 +10,12 @@ var inside_radius = []
 func _ready():
 	_name = "loot_magnet"
 	$MagnetRadius/CollisionShape2D.shape.radius = radius
+	print(get_parent().name)
 
 func _physics_process(delta):
+	magnet_radius.position = get_parent().global_position
 	for area in inside_radius:
-		var _direction = (area.global_position - get_parent().global_position).normalized()
+		var _direction = (get_parent().global_position - area.global_position).normalized()
 		area.velocity = _direction * speed
 
 func execute(s):
