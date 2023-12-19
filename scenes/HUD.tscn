@@ -92,17 +92,17 @@ offset_bottom = -99.0
 text = "Level:"
 
 [node name="AbilityChoice0" parent="." instance=ExtResource("7_akf35")]
-visible = true
+visible = false
 
 [node name="AbilityChoice1" parent="." instance=ExtResource("7_akf35")]
-visible = true
+visible = false
 offset_left = -71.0
 offset_right = -7.0
 grow_horizontal = 1
 grow_vertical = 1
 
 [node name="AbilityChoice2" parent="." instance=ExtResource("7_akf35")]
-visible = true
+visible = false
 offset_left = 7.0
 offset_right = 71.0
 grow_horizontal = 1
@@ -110,13 +110,13 @@ grow_vertical = 1
 
 [node name="InfoContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
-offset_left = -60.0
-offset_right = 4.0
+offset_left = -102.0
+offset_right = 26.0
 offset_bottom = 40.0
 
 [node name="InfoBox" type="TextureRect" parent="InfoContainer"]
 visible = false
-custom_minimum_size = Vector2(64, 32)
+custom_minimum_size = Vector2(128, 32)
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("10_0br86")
@@ -128,18 +128,16 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
 
 [node name="Info" type="RichTextLabel" parent="InfoContainer/InfoBox/MarginContainer"]
 clip_contents = false
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("8_5474x")
 theme_override_font_sizes/normal_font_size = 8
-text = "
-"
 scroll_active = false
 
 [connection signal="mouse_entered" from="AbilityChoice0" to="." method="_on_ability_choice_0_mouse_entered"]

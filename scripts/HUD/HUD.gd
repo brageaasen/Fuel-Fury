@@ -6,7 +6,10 @@ var current_abilities
 
 func _ready():
 	player = get_node("/root/MainScene/Player")
-	possible_abilities = {"machine_gun" : player.load_ability("machine_gun")}
+	possible_abilities = {
+		"machine_gun" : player.load_ability("machine_gun"),
+		"loot_magnet" : player.load_ability("loot_magnet")
+		}
 	current_abilities = player.abilities
 	# Connect button signals
 	$AbilityChoice0/Button.connect("pressed", _on_ability_choice_0_pressed)

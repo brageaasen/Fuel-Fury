@@ -5,7 +5,6 @@
 [ext_resource type="FontFile" uid="uid://beghlpmphs8no" path="res://assets/fonts/kongtext.regular.ttf" id="3_d1q8n"]
 
 [node name="AbilityChoice0" type="Control"]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = -150.0

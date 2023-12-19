@@ -1,3 +1,5 @@
+class_name Experience
+
 extends "res://scripts/items/item.gd"
 
 @export var experience = 1

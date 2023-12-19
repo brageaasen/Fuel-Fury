@@ -6,6 +6,7 @@ extends "res://scripts/items/item.gd"
 
 func on_spawn():
 	animation_player.play("idle")
+	print(self)
 
 func play_pickup_sound():
 	pass

@@ -1,3 +1,5 @@
+class_name Item
+
 extends Area2D
 
 var player # Reference to the player node or position
