@@ -36,17 +36,7 @@ expand_margin_top = 2.0
 expand_margin_right = 2.0
 expand_margin_bottom = 2.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ilry"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.225, 0.225, 0.225, 0.6)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lkycw"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j4cw0"]
 texture = ExtResource("1_ocdeq")
@@ -84,6 +74,6 @@ Button/font_sizes/font_size = 16
 Button/fonts/font = ExtResource("1_8i1ci")
 Button/styles/disabled = SubResource("StyleBoxFlat_bxq0h")
 Button/styles/focus = SubResource("StyleBoxFlat_bdd7r")
-Button/styles/hover = SubResource("StyleBoxFlat_8ilry")
+Button/styles/hover = SubResource("StyleBoxEmpty_lkycw")
 Button/styles/normal = SubResource("StyleBoxTexture_j4cw0")
 Button/styles/pressed = SubResource("StyleBoxFlat_2qyti")

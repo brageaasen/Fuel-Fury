@@ -62,6 +62,10 @@ func _on_player_leveled_up():
 				ability_choice.get_node("Button/Icon").texture = player.load_ability(abilities_to_display[i]).image
 
 func ability_chosen(ability_number):
+	# Animation
+	get_node("AbilityChoice" + str(ability_number)).get_node("Animator").play("click")
+	# TODO: Add screen shake when click
+	
 	# Add ability to players ability list
 	player.abilities.append(abilities_to_display[ability_number])
 	# Remove ability from possible abilities
@@ -80,15 +84,19 @@ func ability_chosen(ability_number):
 			ability_choice.get_node("Button/Icon").texture = null
 	# Reset new abilities list
 	abilities_to_display = []
-	ability_non_hover()
+	ability_non_hover(ability_number)
 
-func ability_hover(ability):
+func ability_hover(ability_number):
+	# Animation
+	get_node("AbilityChoice" + str(ability_number)).get_node("Animator").visible = true
+	get_node("AbilityChoice" + str(ability_number)).get_node("Animator").play("hover")
 	# Enable infobox
 	$InfoContainer/InfoBox.visible = true
 	# Set the label's text
-	$InfoContainer/InfoBox/MarginContainer/Info.text = player.load_ability(abilities_to_display[ability]).info
+	$InfoContainer/InfoBox/MarginContainer/Info.text = player.load_ability(abilities_to_display[ability_number]).info
 
-func ability_non_hover():
+func ability_non_hover(ability_number):
+	get_node("AbilityChoice" + str(ability_number)).get_node("Animator").visible = false
 	# Disable infobox
 	$InfoContainer/InfoBox.visible = false
 	# Reset the label's text
@@ -102,7 +110,7 @@ func _on_ability_choice_0_mouse_entered():
 	ability_hover(0)
 
 func _on_ability_choice_0_mouse_exited():
-	ability_non_hover()
+	ability_non_hover(0)
 
 # Signals for ability button 1
 func _on_ability_choice_1_pressed():
@@ -112,7 +120,7 @@ func _on_ability_choice_1_mouse_entered():
 	ability_hover(1)
 
 func _on_ability_choice_1_mouse_exited():
-	ability_non_hover()
+	ability_non_hover(1)
 
 # Signals for ability button 2
 func _on_ability_choice_2_pressed():
@@ -122,4 +130,4 @@ func _on_ability_choice_2_mouse_entered():
 	ability_hover(2)
 
 func _on_ability_choice_2_mouse_exited():
-	ability_non_hover()
+	ability_non_hover(2)

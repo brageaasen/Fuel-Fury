@@ -1,8 +1,42 @@
-[gd_scene load_steps=4 format=3 uid="uid://ymrlsq43cspx"]
+[gd_scene load_steps=8 format=3 uid="uid://ymrlsq43cspx"]
 
 [ext_resource type="Theme" uid="uid://byhn61b5urgiv" path="res://default.tres" id="1_eh6pg"]
-[ext_resource type="Texture2D" uid="uid://b3tld7im2u0hu" path="res://assets/sprites/button.png" id="2_tr675"]
 [ext_resource type="FontFile" uid="uid://beghlpmphs8no" path="res://assets/fonts/kongtext.regular.ttf" id="3_d1q8n"]
+[ext_resource type="Texture2D" uid="uid://cfwn5cwverocm" path="res://assets/sprites/button_hover.png" id="4_tbpfp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_up4st"]
+atlas = ExtResource("4_tbpfp")
+region = Rect2(72, 0, 72, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ywmxg"]
+atlas = ExtResource("4_tbpfp")
+region = Rect2(0, 0, 72, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8c3sr"]
+atlas = ExtResource("4_tbpfp")
+region = Rect2(72, 0, 72, 56)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nys3j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_up4st")
+}],
+"loop": true,
+"name": &"click",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ywmxg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8c3sr")
+}],
+"loop": true,
+"name": &"hover",
+"speed": 2.0
+}]
 
 [node name="AbilityChoice0" type="Control"]
 layout_mode = 3
@@ -11,8 +45,6 @@ offset_left = -150.0
 offset_top = -68.0
 offset_right = -86.0
 offset_bottom = -20.0
-grow_horizontal = 2
-grow_vertical = 2
 size_flags_horizontal = 2
 mouse_filter = 1
 theme = ExtResource("1_eh6pg")
@@ -27,7 +59,6 @@ grow_vertical = 2
 mouse_filter = 1
 text = "
 "
-icon = ExtResource("2_tr675")
 
 [node name="Icon" type="TextureRect" parent="Button"]
 layout_mode = 1
@@ -58,3 +89,11 @@ theme = ExtResource("1_eh6pg")
 theme_override_fonts/font = ExtResource("3_d1q8n")
 theme_override_font_sizes/font_size = 8
 horizontal_alignment = 1
+
+[node name="Animator" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(32, 24)
+scale = Vector2(1.05556, 1.03571)
+sprite_frames = SubResource("SpriteFrames_nys3j")
+animation = &"hover"
+frame_progress = 0.437702
