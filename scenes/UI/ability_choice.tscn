@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=3 uid="uid://dob3fgd84u3et"]
+
+[ext_resource type="Theme" uid="uid://byhn61b5urgiv" path="res://default.tres" id="1_eh6pg"]
+[ext_resource type="Texture2D" uid="uid://b3tld7im2u0hu" path="res://assets/sprites/button.png" id="2_tr675"]
+[ext_resource type="FontFile" uid="uid://beghlpmphs8no" path="res://assets/fonts/kongtext.regular.ttf" id="3_d1q8n"]
+
+[node name="AbilityChoice1" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+theme = ExtResource("1_eh6pg")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_eh6pg")
+text = "
+"
+icon = ExtResource("2_tr675")
+
+[node name="Icon" type="TextureRect" parent="Button"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -16.0
+offset_top = 7.0
+offset_right = 16.0
+offset_bottom = 31.0
+grow_horizontal = 2
+mouse_filter = 2
+
+[node name="Name" type="Label" parent="Button/Icon"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -27.0
+offset_top = 2.0
+offset_right = 27.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_eh6pg")
+theme_override_fonts/font = ExtResource("3_d1q8n")
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 1
