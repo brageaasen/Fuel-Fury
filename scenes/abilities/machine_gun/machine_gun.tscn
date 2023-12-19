@@ -5,6 +5,6 @@
 
 [node name="machine_gun" type="Node"]
 script = ExtResource("1_gqe2m")
-title = "Machine Gun"
+title = "MG"
 info = "Adds a machine gun to your tanks (right click)."
 image = ExtResource("2_tcmxx")

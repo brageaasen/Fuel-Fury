@@ -1,15 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://dob3fgd84u3et"]
+[gd_scene load_steps=4 format=3 uid="uid://ymrlsq43cspx"]
 
 [ext_resource type="Theme" uid="uid://byhn61b5urgiv" path="res://default.tres" id="1_eh6pg"]
 [ext_resource type="Texture2D" uid="uid://b3tld7im2u0hu" path="res://assets/sprites/button.png" id="2_tr675"]
 [ext_resource type="FontFile" uid="uid://beghlpmphs8no" path="res://assets/fonts/kongtext.regular.ttf" id="3_d1q8n"]
 
-[node name="AbilityChoice1" type="Control"]
+[node name="AbilityChoice0" type="Control"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
-offset_right = 64.0
-offset_bottom = 48.0
-size_flags_horizontal = 4
+offset_left = -150.0
+offset_top = -68.0
+offset_right = -86.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 2
+mouse_filter = 1
+theme = ExtResource("1_eh6pg")
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 1
@@ -18,7 +25,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_eh6pg")
+mouse_filter = 1
 text = "
 "
 icon = ExtResource("2_tr675")

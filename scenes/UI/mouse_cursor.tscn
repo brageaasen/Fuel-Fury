@@ -31,7 +31,7 @@ animations = [{
 }]
 
 [node name="MouseCursor" type="AnimatedSprite2D"]
-z_index = 10
+z_index = 100
 sprite_frames = SubResource("SpriteFrames_1c2gs")
 animation = &"idle"
 script = ExtResource("2_8seu0")

@@ -9,7 +9,6 @@ func _ready():
 	possible_abilities = {"machine_gun" : player.load_ability("machine_gun")}
 	current_abilities = player.abilities
 	# Connect button signals
-	#$AbilityChoice0/Button.connect("pressed", _on_ability_choice_0_pressed)
 	$AbilityChoice0/Button.connect("pressed", _on_ability_choice_0_pressed)
 	$AbilityChoice1/Button.connect("pressed", _on_ability_choice_1_pressed)
 	$AbilityChoice2/Button.connect("pressed", _on_ability_choice_2_pressed)
@@ -45,14 +44,16 @@ func _on_player_leveled_up():
 			var random_ability = possible_abilities.keys()[randi() % possible_abilities.size()]
 			# Check if player already has the ability
 			var ability = possible_abilities[random_ability]
+			
 			if not current_abilities.has(ability): # and !abilities_to_display.has(ability):
+				print(abilities_to_display.has(ability))
 				abilities_to_display.append(ability)
 				count += 1
 			
 		# Display abilities
 		for i in range(0, 3): # Loop from 0 to 2 inclusive
 			# Access each AbilityChoice node dynamically
-			var ability_choice = get_node("AbilityContainer").get_node("AbilityChoice" + str(i))
+			var ability_choice = get_node("AbilityChoice" + str(i))
 			if abilities_to_display[i] != null:
 				# Set visibility to true for the current AbilityChoice
 				ability_choice.visible = true
@@ -70,7 +71,7 @@ func ability_chosen(ability_number):
 	# Make all buttons non visble to the player
 	for i in range(0, 3): # Loop from 0 to 2 inclusive
 		# Access each AbilityChoice node dynamically
-		var ability_choice = get_node("AbilityContainer").get_node("AbilityChoice" + str(i))
+		var ability_choice = get_node("AbilityChoice" + str(i))
 		if abilities_to_display[i] != null:
 			# Set visibility to false for the current AbilityChoice
 			ability_choice.visible = false
@@ -82,7 +83,6 @@ func ability_chosen(ability_number):
 	abilities_to_display = []
 
 func ability_hover(ability):
-	print("hover")
 	# Enable infobox
 	$InfoContainer/InfoBox.visible = true
 	# Set the label's text
