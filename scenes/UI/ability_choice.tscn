@@ -7,7 +7,9 @@
 [node name="AbilityChoice1" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-theme = ExtResource("1_eh6pg")
+offset_right = 64.0
+offset_bottom = 48.0
+size_flags_horizontal = 4
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 1

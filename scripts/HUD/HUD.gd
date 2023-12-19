@@ -9,9 +9,10 @@ func _ready():
 	possible_abilities = {"machine_gun" : player.load_ability("machine_gun")}
 	current_abilities = player.abilities
 	# Connect button signals
-	$AbilityContainer/AbilityChoice0/Button.connect("pressed", _on_ability_choice_0_pressed)
-	$AbilityContainer/AbilityChoice1/Button.connect("pressed", _on_ability_choice_1_pressed)
-	$AbilityContainer/AbilityChoice2/Button.connect("pressed", _on_ability_choice_2_pressed)
+	#$AbilityChoice0/Button.connect("pressed", _on_ability_choice_0_pressed)
+	$AbilityChoice0/Button.connect("pressed", _on_ability_choice_0_pressed)
+	$AbilityChoice1/Button.connect("pressed", _on_ability_choice_1_pressed)
+	$AbilityChoice2/Button.connect("pressed", _on_ability_choice_2_pressed)
 
 func update_healthbar(value):
 	var tween = create_tween()
@@ -44,7 +45,7 @@ func _on_player_leveled_up():
 			var random_ability = possible_abilities.keys()[randi() % possible_abilities.size()]
 			# Check if player already has the ability
 			var ability = possible_abilities[random_ability]
-			if not current_abilities.has(ability) and ability not in abilities_to_display:
+			if not current_abilities.has(ability): # and !abilities_to_display.has(ability):
 				abilities_to_display.append(ability)
 				count += 1
 			
@@ -81,6 +82,7 @@ func ability_chosen(ability_number):
 	abilities_to_display = []
 
 func ability_hover(ability):
+	print("hover")
 	# Enable infobox
 	$InfoContainer/InfoBox.visible = true
 	# Set the label's text
@@ -121,3 +123,12 @@ func _on_ability_choice_2_mouse_entered():
 
 func _on_ability_choice_2_mouse_exited():
 	ability_non_hover()
+
+
+
+func _on_control_mouse_entered():
+	print("ENTERED")
+
+
+func _on_control_2_mouse_entered():
+	print("ENTERED")
