@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://b6oorc1y1ox71"]
+
+[ext_resource type="Texture2D" uid="uid://cfwn5cwverocm" path="res://assets/sprites/button_hover.png" id="1_tqgha"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_up4st"]
+atlas = ExtResource("1_tqgha")
+region = Rect2(72, 0, 72, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ywmxg"]
+atlas = ExtResource("1_tqgha")
+region = Rect2(0, 0, 72, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8c3sr"]
+atlas = ExtResource("1_tqgha")
+region = Rect2(72, 0, 72, 56)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nys3j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_up4st")
+}],
+"loop": true,
+"name": &"click",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ywmxg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8c3sr")
+}],
+"loop": true,
+"name": &"hover",
+"speed": 2.0
+}]
+
+[node name="HoverAnimation" type="AnimatedSprite2D"]
+visible = false
+position = Vector2(32, 24)
+scale = Vector2(1.05556, 1.03571)
+sprite_frames = SubResource("SpriteFrames_nys3j")
+animation = &"hover"
+frame_progress = 0.403451

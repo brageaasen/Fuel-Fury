@@ -5,6 +5,7 @@ var possible_abilities
 var current_abilities
 
 func _ready():
+	get_tree().paused = true
 	player = get_node("/root/Game/MainScene/Player")
 	possible_abilities = ["machine_gun", "loot_magnet"]
 	current_abilities = player.abilities
@@ -20,6 +21,26 @@ func _input(event : InputEvent):
 	if event.is_action_pressed("ui_cancel"):
 		var current_value = get_tree().paused
 		#get_tree().paused = !current_value
+
+@onready var animation_player = $CanvasLayer/StartMenu/AnimationPlayer
+@onready var transitions = $CanvasLayer/Transitions
+func _on_start_button_pressed():
+	animation_player.play("fade_out_logo_and_start_button")
+	transitions.set_next_animation("fade_in")
+	get_tree().paused = false
+	$CanvasLayer/StartMenu/Background.visible = false
+	#$CanvasLayer/StartMenu.visible = false
+	get_node("CanvasLayer/StartMenu/HoverAnimation").visible = false
+
+func _on_start_button_mouse_entered():
+	get_node("CanvasLayer/StartMenu/HoverAnimation").visible = true
+	get_node("CanvasLayer/StartMenu/HoverAnimation").play("hover")
+	
+func _on_start_button_mouse_exited():
+	get_node("CanvasLayer/StartMenu/HoverAnimation").visible = false
+
+
+
 
 
 ## Abilities
@@ -54,7 +75,7 @@ func _on_player_leveled_up():
 func ability_chosen(ability_number):
 	get_tree().paused = false
 	# Animation
-	get_node("CanvasLayer/AbilityMenu/AbilityChoice" + str(ability_number)).get_node("Animator").play("click")
+	get_node("CanvasLayer/AbilityMenu/AbilityChoice" + str(ability_number)).get_node("HoverAnimation").play("click")
 	# TODO: Add screen shake when click
 	
 	# Add ability to players ability list
@@ -79,15 +100,15 @@ func ability_chosen(ability_number):
 
 func ability_hover(ability_number):
 	# Animation
-	get_node("CanvasLayer/AbilityMenu/AbilityChoice" + str(ability_number)).get_node("Animator").visible = true
-	get_node("CanvasLayer/AbilityMenu/AbilityChoice" + str(ability_number)).get_node("Animator").play("hover")
+	get_node("CanvasLayer/AbilityMenu/AbilityChoice" + str(ability_number)).get_node("HoverAnimation").visible = true
+	get_node("CanvasLayer/AbilityMenu/AbilityChoice" + str(ability_number)).get_node("HoverAnimation").play("hover")
 	# Enable infobox
 	$CanvasLayer/AbilityMenu/InfoContainer/InfoBox.visible = true
 	# Set the label's text
 	$CanvasLayer/AbilityMenu/InfoContainer/InfoBox/MarginContainer/Info.text = player.load_ability(abilities_to_display[ability_number]).info
 
 func ability_non_hover(ability_number):
-	get_node("CanvasLayer/AbilityMenu/AbilityChoice" + str(ability_number)).get_node("Animator").visible = false
+	get_node("CanvasLayer/AbilityMenu/AbilityChoice" + str(ability_number)).get_node("HoverAnimation").visible = false
 	# Disable infobox
 	$CanvasLayer/AbilityMenu/InfoContainer/InfoBox.visible = false
 	# Reset the label's text
@@ -122,3 +143,5 @@ func _on_ability_choice_2_mouse_entered():
 
 func _on_ability_choice_2_mouse_exited():
 	ability_non_hover(2)
+
+
