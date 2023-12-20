@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4j4j1yssrtq"]
+
+[ext_resource type="Texture2D" uid="uid://cdhk3p3acqiaj" path="res://assets/sprites/info_box.png" id="1_3sqgk"]
+[ext_resource type="FontFile" uid="uid://beghlpmphs8no" path="res://assets/fonts/kongtext.regular.ttf" id="2_e4ry7"]
+
+[node name="InfoContainer" type="VBoxContainer"]
+offset_left = -102.0
+offset_right = 26.0
+offset_bottom = 40.0
+
+[node name="InfoBox" type="TextureRect" parent="."]
+visible = false
+custom_minimum_size = Vector2(128, 32)
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("1_3sqgk")
+
+[node name="MarginContainer" type="MarginContainer" parent="InfoBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="Info" type="RichTextLabel" parent="InfoBox/MarginContainer"]
+clip_contents = false
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_e4ry7")
+theme_override_font_sizes/normal_font_size = 8
+scroll_active = false

@@ -15,7 +15,7 @@ signal out_of_range
 func _ready() -> void:
 	set_physics_process(false)
 	# Get the player node or position in _ready
-	player = get_node("/root/MainScene/Player")
+	player = get_node("/root/Game/MainScene/Player")
 
 func _enter_state() -> void:
 	set_physics_process(true)

@@ -96,4 +96,4 @@ position = Vector2(32, 24)
 scale = Vector2(1.05556, 1.03571)
 sprite_frames = SubResource("SpriteFrames_nys3j")
 animation = &"hover"
-frame_progress = 0.437702
+frame_progress = 0.403451

@@ -1,0 +1,76 @@
+[gd_scene load_steps=6 format=3 uid="uid://doq10a0d0wcng"]
+
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_g57bp"]
+[ext_resource type="PackedScene" uid="uid://darkjs45idgh1" path="res://scenes/main_scene.tscn" id="1_si0i5"]
+[ext_resource type="PackedScene" uid="uid://cqxyhkbxpjqt0" path="res://scenes/UI/mouse_cursor.tscn" id="2_lbg1j"]
+[ext_resource type="PackedScene" uid="uid://ymrlsq43cspx" path="res://scenes/UI/ability_choice.tscn" id="2_uuc0c"]
+[ext_resource type="PackedScene" uid="uid://b4j4j1yssrtq" path="res://scenes/UI/info_container.tscn" id="3_qvjt5"]
+
+[node name="Game" type="Node"]
+process_mode = 3
+script = ExtResource("1_g57bp")
+
+[node name="MouseCursor" parent="." instance=ExtResource("2_lbg1j")]
+
+[node name="MainScene" parent="." instance=ExtResource("1_si0i5")]
+process_mode = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="StartMenu" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StartButton" type="Button" parent="CanvasLayer/StartMenu"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="Logo" type="TextureRect" parent="CanvasLayer/StartMenu"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BestScore" type="Label" parent="CanvasLayer/StartMenu"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="AbilityMenu" type="Control" parent="CanvasLayer"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+offset_left = -12.0
+offset_top = 14.0
+offset_right = 28.0
+offset_bottom = 54.0
+mouse_filter = 1
+
+[node name="AbilityChoice0" parent="CanvasLayer/AbilityMenu" instance=ExtResource("2_uuc0c")]
+visible = false
+offset_left = -112.0
+offset_right = -48.0
+
+[node name="AbilityChoice1" parent="CanvasLayer/AbilityMenu" instance=ExtResource("2_uuc0c")]
+visible = false
+offset_left = -31.0
+offset_right = 33.0
+
+[node name="AbilityChoice2" parent="CanvasLayer/AbilityMenu" instance=ExtResource("2_uuc0c")]
+visible = false
+offset_left = 49.0
+offset_right = 113.0
+
+[node name="InfoContainer" parent="CanvasLayer/AbilityMenu" instance=ExtResource("3_qvjt5")]
+offset_left = -60.0
+offset_right = 68.0
+
+[connection signal="mouse_entered" from="CanvasLayer/AbilityMenu/AbilityChoice0" to="." method="_on_ability_choice_0_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/AbilityMenu/AbilityChoice0" to="." method="_on_ability_choice_0_mouse_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/AbilityMenu/AbilityChoice1" to="." method="_on_ability_choice_1_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/AbilityMenu/AbilityChoice1" to="." method="_on_ability_choice_1_mouse_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/AbilityMenu/AbilityChoice2" to="." method="_on_ability_choice_2_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/AbilityMenu/AbilityChoice2" to="." method="_on_ability_choice_2_mouse_exited"]

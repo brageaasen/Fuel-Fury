@@ -11,7 +11,7 @@ var player # Reference to the player node or position
 var velocity = Vector2()
 
 func _ready():
-	player = get_node("/root/MainScene/Player")
+	player = get_node("/root/Game/MainScene/Player")
 
 func _process(delta):
 	position += velocity * delta

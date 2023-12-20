@@ -7,7 +7,7 @@ var player
 var target_alpha = 0
 
 func _ready():
-	player = get_node("/root/MainScene/Player")
+	player = get_node("/root/Game/MainScene/Player")
 
 func _process(_delta):
 	if player.position.distance_to(target_position) < distance_to_activate:

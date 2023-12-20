@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bjj2uflh2plre"]
+[gd_scene load_steps=9 format=3 uid="uid://bjj2uflh2plre"]
 
 [ext_resource type="Script" path="res://scripts/hud/hud.gd" id="1_mtgwt"]
 [ext_resource type="Texture2D" uid="uid://cnb5chdsrk2hw" path="res://assets/sprites/Arrow.png" id="2_0uvut"]
@@ -7,8 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bcl7j1l7v8ay" path="res://assets/sprites/health_bar_progress.png" id="5_g2x8q"]
 [ext_resource type="Texture2D" uid="uid://6cd7sy7d8epl" path="res://assets/sprites/experience_bar_progress.png" id="6_oe234"]
 [ext_resource type="PackedScene" uid="uid://ymrlsq43cspx" path="res://scenes/UI/ability_choice.tscn" id="7_akf35"]
-[ext_resource type="FontFile" uid="uid://beghlpmphs8no" path="res://assets/fonts/kongtext.regular.ttf" id="8_5474x"]
-[ext_resource type="Texture2D" uid="uid://cdhk3p3acqiaj" path="res://assets/sprites/info_box.png" id="10_0br86"]
+[ext_resource type="PackedScene" uid="uid://b4j4j1yssrtq" path="res://scenes/UI/info_container.tscn" id="8_1jam8"]
 
 [node name="Control" type="Control"]
 z_index = 99
@@ -98,47 +97,16 @@ visible = false
 visible = false
 offset_left = -71.0
 offset_right = -7.0
-grow_horizontal = 1
-grow_vertical = 1
 
 [node name="AbilityChoice2" parent="." instance=ExtResource("7_akf35")]
 visible = false
 offset_left = 7.0
 offset_right = 71.0
-grow_horizontal = 1
-grow_vertical = 1
 
-[node name="InfoContainer" type="VBoxContainer" parent="."]
-layout_mode = 2
-offset_left = -102.0
-offset_right = 26.0
-offset_bottom = 40.0
-
-[node name="InfoBox" type="TextureRect" parent="InfoContainer"]
-visible = false
-custom_minimum_size = Vector2(128, 32)
-layout_mode = 2
-size_flags_vertical = 3
-texture = ExtResource("10_0br86")
-
-[node name="MarginContainer" type="MarginContainer" parent="InfoContainer/InfoBox"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 6
-theme_override_constants/margin_top = 6
-theme_override_constants/margin_right = 6
-theme_override_constants/margin_bottom = 6
-
-[node name="Info" type="RichTextLabel" parent="InfoContainer/InfoBox/MarginContainer"]
-clip_contents = false
-layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("8_5474x")
-theme_override_font_sizes/normal_font_size = 8
-scroll_active = false
+[node name="InfoContainer" parent="." instance=ExtResource("8_1jam8")]
+layout_mode = 0
+offset_left = 0.0
+offset_right = 128.0
 
 [connection signal="mouse_entered" from="AbilityChoice0" to="." method="_on_ability_choice_0_mouse_entered"]
 [connection signal="mouse_exited" from="AbilityChoice0" to="." method="_on_ability_choice_0_mouse_exited"]

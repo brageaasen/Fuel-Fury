@@ -20,7 +20,7 @@ signal found_player
 
 func _ready():
 	set_physics_process(false)
-	player = get_node("/root/MainScene/Player")
+	player = get_node("/root/Game/MainScene/Player")
 	# Iterate through the children of the RaycastContainer node
 	for child in enemy_tank.get_children():
 		if child is RayCast2D and child.name.find("ObstacleDetection") != -1:
