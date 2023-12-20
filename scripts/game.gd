@@ -48,6 +48,7 @@ func _on_start_button_mouse_exited():
 var abilities_to_display = []
 
 func _on_player_leveled_up():
+	get_node("CanvasLayer/AbilityMenu").visible = true
 	get_tree().paused = true
 	var count = 0
 	if possible_abilities.size() != 0:
@@ -73,6 +74,7 @@ func _on_player_leveled_up():
 				ability_choice.get_node("Button/Icon").texture = player.load_ability(abilities_to_display[i]).image
 
 func ability_chosen(ability_number):
+	get_node("CanvasLayer/AbilityMenu").visible = false
 	get_tree().paused = false
 	# Animation
 	get_node("CanvasLayer/AbilityMenu/AbilityChoice" + str(ability_number)).get_node("HoverAnimation").play("click")
