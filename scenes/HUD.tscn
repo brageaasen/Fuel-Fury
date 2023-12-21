@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bjj2uflh2plre"]
+[gd_scene load_steps=10 format=3 uid="uid://bjj2uflh2plre"]
 
 [ext_resource type="Script" path="res://scripts/hud/hud.gd" id="1_mtgwt"]
 [ext_resource type="Texture2D" uid="uid://cnb5chdsrk2hw" path="res://assets/sprites/Arrow.png" id="2_0uvut"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://6cd7sy7d8epl" path="res://assets/sprites/experience_bar_progress.png" id="6_oe234"]
 [ext_resource type="PackedScene" uid="uid://ymrlsq43cspx" path="res://scenes/UI/ability_choice.tscn" id="7_akf35"]
 [ext_resource type="PackedScene" uid="uid://b4j4j1yssrtq" path="res://scenes/UI/info_container.tscn" id="8_1jam8"]
+[ext_resource type="FontFile" uid="uid://beghlpmphs8no" path="res://assets/fonts/kongtext.regular.ttf" id="9_c5ge1"]
 
 [node name="Control" type="Control"]
 z_index = 99
@@ -75,20 +76,24 @@ texture_progress = ExtResource("5_g2x8q")
 
 [node name="Health" type="Label" parent="."]
 layout_mode = 2
-offset_left = -133.0
-offset_top = -125.0
-offset_right = 1747.0
-offset_bottom = -99.0
+offset_left = -132.0
+offset_top = -119.0
+offset_right = 1748.0
+offset_bottom = -93.0
+theme_override_fonts/font = ExtResource("9_c5ge1")
+theme_override_font_sizes/font_size = 8
 text = "HP:
 "
 
 [node name="Level" type="Label" parent="."]
 layout_mode = 2
 offset_left = -8.0
-offset_top = -125.0
+offset_top = -119.0
 offset_right = 1872.0
-offset_bottom = -99.0
-text = "Level:"
+offset_bottom = -93.0
+theme_override_fonts/font = ExtResource("9_c5ge1")
+theme_override_font_sizes/font_size = 8
+text = "LvL:"
 
 [node name="AbilityChoice0" parent="." instance=ExtResource("7_akf35")]
 visible = false
@@ -105,8 +110,18 @@ offset_right = 71.0
 
 [node name="InfoContainer" parent="." instance=ExtResource("8_1jam8")]
 layout_mode = 0
-offset_left = 0.0
 offset_right = 128.0
+
+[node name="Score" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = -81.0
+offset_top = -82.0
+offset_right = 2.0
+offset_bottom = -42.0
+theme_override_fonts/normal_font = ExtResource("9_c5ge1")
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "[center]Score: 0"
 
 [connection signal="mouse_entered" from="AbilityChoice0" to="." method="_on_ability_choice_0_mouse_entered"]
 [connection signal="mouse_exited" from="AbilityChoice0" to="." method="_on_ability_choice_0_mouse_exited"]

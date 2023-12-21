@@ -5,12 +5,13 @@ extends Node
 var player
 var possible_abilities
 var current_abilities
+var score = 0
 
 @onready var audio_manager = $AudioManager
 @onready var animation_player = $CanvasLayer/StartMenu/AnimationPlayer
 @onready var transitions = $CanvasLayer/Transitions
 @onready var restart_timer = $RestartTimer
-
+@onready var best_score = $CanvasLayer/BestScore
 func _ready():
 	get_tree().paused = true
 	restart_timer.wait_time = time_before_restart
@@ -24,12 +25,8 @@ func _ready():
 	$CanvasLayer/AbilityMenu/AbilityChoice0/Button.connect("pressed", _on_ability_choice_0_pressed)
 	$CanvasLayer/AbilityMenu/AbilityChoice1/Button.connect("pressed", _on_ability_choice_1_pressed)
 	$CanvasLayer/AbilityMenu/AbilityChoice2/Button.connect("pressed", _on_ability_choice_2_pressed)
+	best_score.text = "Best Score: " + str(ScoreManager.get_score())
 
-# For pause menu ?
-func _input(event : InputEvent):
-	if event.is_action_pressed("ui_cancel"):
-		var current_value = get_tree().paused
-		#get_tree().paused = !current_value
 
 func _on_player_death(type):
 	# Fade out
@@ -45,8 +42,10 @@ func _on_player_death(type):
 
 func _on_restart_timer_timeout():
 	get_tree().reload_current_scene()
+	best_score.visible = true
 
 func _on_start_button_pressed():
+	best_score.visible = false
 	# Play audio
 	audio_manager.play_sound("SelectSfx")
 	# Screen shake
@@ -60,14 +59,22 @@ func _on_start_button_pressed():
 	get_node("CanvasLayer/StartMenu/HoverAnimation").visible = false
 
 func _on_start_button_mouse_entered():
-	get_node("CanvasLayer/StartMenu/HoverAnimation").visible = true
+	get_node("CanvasLayer/StartMenu/HoverAnimation").visible = false
 	get_node("CanvasLayer/StartMenu/HoverAnimation").play("hover")
 	
 func _on_start_button_mouse_exited():
-	get_node("CanvasLayer/StartMenu/HoverAnimation").visible = false
+	get_node("CanvasLayer/StartMenu/HoverAnimation").visible = true
 
 
+# Function to increase score
+func increase_score(value):
+	score += value
+	save_score()
 
+# Function to save the score
+func save_score():
+	ScoreManager.set_score(score)
+	print(ScoreManager.get_score())
 
 
 ## Abilities
@@ -91,13 +98,13 @@ func _on_player_leveled_up():
 		for i in range(0, 3): # Loop from 0 to 2 inclusive
 			# Access each AbilityChoice node dynamically
 			var ability_choice = get_node("CanvasLayer/AbilityMenu/AbilityChoice" + str(i))
-			print(ability_choice)
+			ability_choice.get_node("AnimationPlayer").play("fade_in")
 			if abilities_to_display[i] != null:
 				# Set visibility to true for the current AbilityChoice
 				ability_choice.visible = true
 				
 				# Set properties based on the index of ability
-				ability_choice.get_node("Button/Icon/Name").text = player.load_ability(abilities_to_display[i]).title
+				ability_choice.get_node("Button/Icon/Name").text = "[center]" +  player.load_ability(abilities_to_display[i]).title
 				ability_choice.get_node("Button/Icon").texture = player.load_ability(abilities_to_display[i]).image
 
 func ability_chosen(ability_number):
@@ -139,7 +146,7 @@ func ability_hover(ability_number):
 	# Enable infobox
 	$CanvasLayer/AbilityMenu/InfoContainer/InfoBox.visible = true
 	# Set the label's text
-	$CanvasLayer/AbilityMenu/InfoContainer/InfoBox/MarginContainer/Info.text = player.load_ability(abilities_to_display[ability_number]).info
+	$CanvasLayer/AbilityMenu/InfoContainer/InfoBox/MarginContainer/Info.text = "[center]" + player.load_ability(abilities_to_display[ability_number]).info
 
 func ability_non_hover(ability_number):
 	get_node("CanvasLayer/AbilityMenu/AbilityChoice" + str(ability_number)).get_node("HoverAnimation").visible = false

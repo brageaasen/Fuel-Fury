@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://doq10a0d0wcng"]
+[gd_scene load_steps=26 format=3 uid="uid://doq10a0d0wcng"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_g57bp"]
 [ext_resource type="PackedScene" uid="uid://darkjs45idgh1" path="res://scenes/main_scene.tscn" id="1_si0i5"]
@@ -60,6 +60,8 @@ tracks/0/keys = {
 _data = {
 "fade_in": SubResource("Animation_1jpx4")
 }
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vrylp"]
 
 [sub_resource type="Animation" id="Animation_t28g4"]
 resource_name = "fade_out_logo_and_start_button"
@@ -180,50 +182,61 @@ libraries = {
 z_index = 1
 layout_mode = 3
 anchors_preset = 0
-offset_left = -60.0
-offset_top = -11.0
-offset_right = 60.0
-offset_bottom = 13.0
+offset_left = -400.0
+offset_top = -225.0
+offset_right = 400.0
+offset_bottom = 225.0
+pivot_offset = Vector2(400, 225)
 mouse_filter = 1
 theme = ExtResource("4_onb5j")
 
 [node name="Background" type="TextureRect" parent="CanvasLayer/StartMenu"]
-layout_mode = 0
-offset_left = -321.0
-offset_top = -193.0
-offset_right = 440.0
-offset_bottom = 210.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("5_jaulq")
 
-[node name="StartButton" type="Button" parent="CanvasLayer/StartMenu"]
-layout_mode = 0
-offset_top = 28.0
-offset_right = 120.0
-offset_bottom = 52.0
-pivot_offset = Vector2(60, 0)
-mouse_filter = 1
-theme_override_fonts/font = ExtResource("5_7vuh6")
-theme_override_font_sizes/font_size = 24
-text = "START"
-
 [node name="Logo" type="TextureRect" parent="CanvasLayer/StartMenu"]
 layout_mode = 0
-offset_left = -10.0
-offset_top = -31.0
-offset_right = 134.0
-offset_bottom = -5.0
+offset_left = 330.0
+offset_top = 186.0
+offset_right = 474.0
+offset_bottom = 212.0
 scale = Vector2(2.6, 2.6)
 pivot_offset = Vector2(70, 26)
 mouse_filter = 2
 texture = ExtResource("7_70ohi")
 
-[node name="BestScore" type="Label" parent="CanvasLayer/StartMenu"]
+[node name="StartButton" type="Button" parent="CanvasLayer/StartMenu"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 336.0
+offset_top = 243.0
+offset_right = 464.0
+offset_bottom = 281.0
+pivot_offset = Vector2(64, 0)
+theme_override_fonts/font = ExtResource("5_7vuh6")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vrylp")
+text = "START"
+
+[node name="BestScore" type="RichTextLabel" parent="CanvasLayer/StartMenu"]
+layout_mode = 0
+offset_left = 382.0
+offset_top = 305.0
+offset_right = 422.0
+offset_bottom = 345.0
+mouse_filter = 2
 
 [node name="HoverAnimation" parent="CanvasLayer/StartMenu" instance=ExtResource("4_fut7u")]
+visible = false
+position = Vector2(400, 262)
+scale = Vector2(1.91667, 0.839286)
+animation = &"click"
+frame_progress = 0.216946
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/StartMenu"]
 root_node = NodePath("../..")
@@ -240,29 +253,54 @@ offset_left = -12.0
 offset_top = 14.0
 offset_right = 28.0
 offset_bottom = 54.0
-mouse_filter = 1
+mouse_filter = 2
 
 [node name="AbilityChoice0" parent="CanvasLayer/AbilityMenu" instance=ExtResource("2_uuc0c")]
 visible = false
-offset_left = -112.0
-offset_right = -48.0
+offset_left = -200.0
+offset_top = -85.0
+offset_right = -72.0
+offset_bottom = 9.00001
+scale = Vector2(0.75, 0.75)
 
 [node name="AbilityChoice1" parent="CanvasLayer/AbilityMenu" instance=ExtResource("2_uuc0c")]
 visible = false
-offset_left = -31.0
-offset_right = 33.0
+offset_left = -36.0
+offset_top = -85.0
+offset_right = 92.0
+offset_bottom = 9.00001
+scale = Vector2(0.75, 0.75)
 
 [node name="AbilityChoice2" parent="CanvasLayer/AbilityMenu" instance=ExtResource("2_uuc0c")]
 visible = false
-offset_left = 49.0
-offset_right = 113.0
+offset_left = 128.0
+offset_top = -85.0
+offset_right = 256.0
+offset_bottom = 9.00001
+scale = Vector2(0.75, 0.75)
 
 [node name="InfoContainer" parent="CanvasLayer/AbilityMenu" instance=ExtResource("3_qvjt5")]
 layout_mode = 0
-offset_left = -60.0
-offset_right = 68.0
+offset_left = -52.0
+offset_top = 39.0
+offset_right = 76.0
+offset_bottom = 79.0
 
 [node name="Transitions" parent="CanvasLayer" instance=ExtResource("11_x6ik1")]
+mouse_filter = 2
+
+[node name="BestScore" type="RichTextLabel" parent="CanvasLayer"]
+z_index = 10
+offset_left = -53.0
+offset_top = 78.0
+offset_right = 102.0
+offset_bottom = 118.0
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("5_7vuh6")
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "Best Score: 0"
+scroll_active = false
 
 [node name="RestartTimer" type="Timer" parent="."]
 one_shot = true

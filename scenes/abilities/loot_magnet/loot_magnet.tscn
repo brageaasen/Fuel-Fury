@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cre41jv3oemer"]
+[gd_scene load_steps=4 format=3 uid="uid://cre41jv3oemer"]
 
 [ext_resource type="Script" path="res://scripts/abilities/loot_magnet.gd" id="1_f5c12"]
+[ext_resource type="Texture2D" uid="uid://37suoeeptivo" path="res://assets/sprites/loot_magnet_icon.png" id="2_ssxa2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sryji"]
 radius = 30.0
@@ -9,6 +10,7 @@ radius = 30.0
 script = ExtResource("1_f5c12")
 title = "Magnet"
 info = "Loot comes to you!"
+image = ExtResource("2_ssxa2")
 
 [node name="MagnetRadius" type="Area2D" parent="."]
 collision_layer = 2

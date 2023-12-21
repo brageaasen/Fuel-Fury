@@ -8,5 +8,4 @@ func _ready():
 func execute(s):
 	# Increase health pool size
 	s.max_health += max_health_increase
-	# To emit health changed
-	s.gain_health(0)
+	s.gain_health(s.max_health)

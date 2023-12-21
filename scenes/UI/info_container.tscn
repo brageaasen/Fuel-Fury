@@ -4,9 +4,8 @@
 [ext_resource type="FontFile" uid="uid://beghlpmphs8no" path="res://assets/fonts/kongtext.regular.ttf" id="2_e4ry7"]
 
 [node name="InfoContainer" type="VBoxContainer"]
-offset_left = -102.0
-offset_right = 26.0
-offset_bottom = 40.0
+offset_right = 240.0
+offset_bottom = 80.0
 
 [node name="InfoBox" type="TextureRect" parent="."]
 visible = false
@@ -32,4 +31,5 @@ clip_contents = false
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("2_e4ry7")
 theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
 scroll_active = false

@@ -37,8 +37,7 @@ animations = [{
 }]
 
 [node name="HoverAnimation" type="AnimatedSprite2D"]
-visible = false
-position = Vector2(32, 24)
+position = Vector2(-1.78814e-07, 1.19209e-07)
 scale = Vector2(1.05556, 1.03571)
 sprite_frames = SubResource("SpriteFrames_nys3j")
 animation = &"hover"
