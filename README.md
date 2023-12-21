@@ -1,12 +1,6 @@
 # Godot4 2D Top-Down game
 
-Rougelike, should be similar to this game:
-https://www.youtube.com/watch?v=e-RP-GHxxQA&ab_channel=Phibian
-Color palette : https://lospec.com/palette-list/nyx8
-
-# Work in progress
-- Participants:
-	- Sebastian Matthews, Brage Aasen, Casper Karlsen and Eivind Sulen
+Rougelike
 
 # MVP:
 
@@ -17,18 +11,3 @@ Tank(player) has to go out of base to get ammunition off dead enemies. And can s
 Tank(Player) weapons:
 	Machine gun is effective against infantry
 	Tank turret is effective against tanks
-
-**Godot scene structures:**
-
-- Main Scene
-	- Game Manager Node
-	- Player Scene
-		- Tank Node (with associated scripts, sprites, etc.)
-	- Enemy Scene
-		- Infantry Node (with associated scripts, sprites, etc.)
-		- Tank Node (with associated scripts, sprites, etc.)
-	- Ammo Pickup Scene
-		- Ammo Pickup Node (with associated scripts, sprites, etc.)
-	- Base Scene
-		- Base Node (with associated scripts, sprites, etc.)
-		- Ammo Storage Node (with associated scripts, sprites, etc.)
