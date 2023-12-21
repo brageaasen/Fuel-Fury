@@ -44,7 +44,7 @@ func _ready():
 	audio_manager = get_parent().get_parent().get_node("AudioManager")
 	main_camera = get_tree().current_scene.find_child("MainCamera")
 	health = max_health
-	emit_signal("health_changed", health * 100/max_health)
+	emit_signal("health_changed", health)
 	fuel = max_fuel
 	emit_signal("fuel_changed", fuel * 100/max_fuel)
 	emit_signal("experience_changed", experience * 100/experience_to_level, level)
@@ -92,7 +92,7 @@ func take_damage(damage):
 	audio_manager.play_sound("HurtSfx")
 	
 	health -= damage
-	emit_signal("health_changed", health * 100/max_health)
+	emit_signal("health_changed", health)
 	
 	main_camera.shake(2)
 	
@@ -124,7 +124,7 @@ func gain_health(health_gain):
 		health = max_health
 	else:
 		health += health_gain
-	emit_signal("health_changed", health * 100/max_health)
+	emit_signal("health_changed", health)
 
 func level_up():
 	level += 1

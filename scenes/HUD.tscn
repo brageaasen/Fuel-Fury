@@ -31,26 +31,28 @@ script = ExtResource("3_2p476")
 
 [node name="AmmoStorage" type="Label" parent="."]
 layout_mode = 2
-offset_left = 7.0
-offset_top = 28.0
-offset_right = 93.0
-offset_bottom = 59.0
+offset_left = 96.0
+offset_top = -120.0
+offset_right = 208.0
+offset_bottom = -89.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_font_sizes/font_size = 20
+theme_override_fonts/font = ExtResource("9_c5ge1")
+theme_override_font_sizes/font_size = 16
 text = "Ammo: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MachineGunAmmoStorage" type="Label" parent="."]
 layout_mode = 2
-offset_left = -193.0
-offset_top = 28.0
-offset_right = -69.0
-offset_bottom = 59.0
+offset_left = -326.0
+offset_top = -120.0
+offset_right = -166.0
+offset_bottom = -89.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_font_sizes/font_size = 20
+theme_override_fonts/font = ExtResource("9_c5ge1")
+theme_override_font_sizes/font_size = 16
 text = "MG Ammo: 0"
 horizontal_alignment = 1
 vertical_alignment = 1

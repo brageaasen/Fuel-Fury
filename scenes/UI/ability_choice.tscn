@@ -81,7 +81,7 @@ visible = false
 position = Vector2(64, 47.5)
 scale = Vector2(2.05556, 2.01786)
 animation = &"click"
-frame_progress = 0.0
+frame_progress = 0.426507
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
