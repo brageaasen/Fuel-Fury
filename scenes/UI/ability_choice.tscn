@@ -56,4 +56,4 @@ theme_override_fonts/font = ExtResource("3_d1q8n")
 theme_override_font_sizes/font_size = 8
 horizontal_alignment = 1
 
-[node name="Animator" parent="." instance=ExtResource("3_0enml")]
+[node name="HoverAnimation" parent="." instance=ExtResource("3_0enml")]

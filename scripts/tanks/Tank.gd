@@ -7,6 +7,8 @@ signal leveled_up
 signal fuel_changed
 signal died
 
+var death_signal_emitted = false
+
 @export var max_health : int
 var health
 @export var max_fuel : int
@@ -85,13 +87,15 @@ func take_damage(damage):
 	
 	main_camera.shake(2)
 	
-	if (health <= 0):
+	if (health <= 0 and !death_signal_emitted):
 		alive = false
 		die() # Destroy object
-		emit_signal("died") # No one catches this signal yet
+		emit_signal("died", "death")
+		death_signal_emitted = true
 
 func die():
-	queue_free() # Should maybe not queue free the player object?
+	pass
+	#queue_free() # Should maybe not queue free the player object?
 
 func gain_fuel(fuel_gain):
 	print("Gained fuel:")
@@ -142,6 +146,10 @@ func _physics_process(delta):
 	if not alive:
 		return
 	
+	if fuel <= 0 and !death_signal_emitted:
+		emit_signal("died", "fuel")
+		death_signal_emitted = true
+	
 	if fuel > 0:
 		control(delta)
 		move_and_slide()
@@ -164,4 +172,5 @@ func _on_MachineGunTimer_timeout():
 
 func _on_fuel_usage_timer_timeout():
 	fuel -= fuel_usage
+	
 	emit_signal("fuel_changed", fuel * 100/max_fuel)

@@ -1,15 +1,23 @@
 extends Node
 
+@export var time_before_restart = 5
+
 var player
 var possible_abilities
 var current_abilities
 
+@onready var animation_player = $CanvasLayer/StartMenu/AnimationPlayer
+@onready var transitions = $CanvasLayer/Transitions
+@onready var restart_timer = $RestartTimer
+
 func _ready():
 	get_tree().paused = true
+	restart_timer.wait_time = time_before_restart
 	player = get_node("/root/Game/MainScene/Player")
 	possible_abilities = ["machine_gun", "loot_magnet"]
 	current_abilities = player.abilities
-	# Connect level up signal
+	# Connect player signals to self
+	player.connect("died", _on_player_death)
 	player.connect("leveled_up", _on_player_leveled_up)
 	# Connect button signals
 	$CanvasLayer/AbilityMenu/AbilityChoice0/Button.connect("pressed", _on_ability_choice_0_pressed)
@@ -22,9 +30,25 @@ func _input(event : InputEvent):
 		var current_value = get_tree().paused
 		#get_tree().paused = !current_value
 
-@onready var animation_player = $CanvasLayer/StartMenu/AnimationPlayer
-@onready var transitions = $CanvasLayer/Transitions
+func _on_player_death(type):
+	# Fade out
+	transitions.set_next_animation("fade_out")
+	if type == "death":
+		$CanvasLayer/GameEndDeathText/AnimationPlayer.play("fade_in")
+		$CanvasLayer/GameEndDeathText.visible = true
+	else:
+		$CanvasLayer/GameEndFuelText/AnimationPlayer.play("fade_in")
+		$CanvasLayer/GameEndFuelText.visible = true
+	print(get_tree())
+	restart_timer.start()
+
+func _on_restart_timer_timeout():
+	get_tree().reload_current_scene()
+
 func _on_start_button_pressed():
+	# Screen shake
+	get_node("MainScene/MainCamera").shake(6)
+	# Animations
 	animation_player.play("fade_out_logo_and_start_button")
 	transitions.set_next_animation("fade_in")
 	get_tree().paused = false
@@ -145,5 +169,7 @@ func _on_ability_choice_2_mouse_entered():
 
 func _on_ability_choice_2_mouse_exited():
 	ability_non_hover(2)
+
+
 
 

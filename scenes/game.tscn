@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://doq10a0d0wcng"]
+[gd_scene load_steps=18 format=3 uid="uid://doq10a0d0wcng"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_g57bp"]
 [ext_resource type="PackedScene" uid="uid://darkjs45idgh1" path="res://scenes/main_scene.tscn" id="1_si0i5"]
@@ -11,6 +11,48 @@
 [ext_resource type="Texture2D" uid="uid://bhm4yxh4vg7h2" path="res://assets/sprites/background.png" id="5_jaulq"]
 [ext_resource type="Texture2D" uid="uid://bepuw4iifh4my" path="res://assets/sprites/logo.png" id="7_70ohi"]
 [ext_resource type="PackedScene" uid="uid://dow6yoe12gyje" path="res://scenes/UI/animation/transitions.tscn" id="11_x6ik1"]
+
+[sub_resource type="Animation" id="Animation_am5qk"]
+resource_name = "fade_in"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5h2dh"]
+_data = {
+"fade_in": SubResource("Animation_am5qk")
+}
+
+[sub_resource type="Animation" id="Animation_1jpx4"]
+resource_name = "fade_in"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rap4p"]
+_data = {
+"fade_in": SubResource("Animation_1jpx4")
+}
 
 [sub_resource type="Animation" id="Animation_t28g4"]
 resource_name = "fade_out_logo_and_start_button"
@@ -60,7 +102,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(2.6, 2.6), Vector2(1.3, 1.3)]
+"values": [Vector2(2.6, 2.6), Vector2(0.65, 0.65)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -72,7 +114,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(0.5, 0.5)]
+"values": [Vector2(1, 1), Vector2(0.25, 0.25)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_45dqx"]
@@ -92,6 +134,40 @@ layer = 0
 follow_viewport_enabled = true
 
 [node name="MouseCursor" parent="CanvasLayer" instance=ExtResource("2_lbg1j")]
+
+[node name="GameEndDeathText" type="RichTextLabel" parent="CanvasLayer"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+z_index = 2
+offset_left = -73.0
+offset_top = -8.0
+offset_right = 87.0
+offset_bottom = 12.0
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("5_7vuh6")
+text = "You Died.."
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/GameEndDeathText"]
+libraries = {
+"": SubResource("AnimationLibrary_5h2dh")
+}
+
+[node name="GameEndFuelText" type="RichTextLabel" parent="CanvasLayer"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+z_index = 2
+offset_left = -97.0
+offset_top = -8.0
+offset_right = 113.0
+offset_bottom = 14.0
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("5_7vuh6")
+text = "Out of Fuel.."
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/GameEndFuelText"]
+libraries = {
+"": SubResource("AnimationLibrary_rap4p")
+}
 
 [node name="StartMenu" type="Control" parent="CanvasLayer"]
 z_index = 1
@@ -180,7 +256,9 @@ offset_left = -60.0
 offset_right = 68.0
 
 [node name="Transitions" parent="CanvasLayer" instance=ExtResource("11_x6ik1")]
-anchors_preset = 15
+
+[node name="RestartTimer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="mouse_entered" from="CanvasLayer/StartMenu" to="." method="_on_start_button_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/StartMenu" to="." method="_on_start_button_mouse_exited"]
@@ -191,3 +269,4 @@ anchors_preset = 15
 [connection signal="mouse_exited" from="CanvasLayer/AbilityMenu/AbilityChoice1" to="." method="_on_ability_choice_1_mouse_exited"]
 [connection signal="mouse_entered" from="CanvasLayer/AbilityMenu/AbilityChoice2" to="." method="_on_ability_choice_2_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/AbilityMenu/AbilityChoice2" to="." method="_on_ability_choice_2_mouse_exited"]
+[connection signal="timeout" from="RestartTimer" to="." method="_on_restart_timer_timeout"]
