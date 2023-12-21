@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://doq10a0d0wcng"]
+[gd_scene load_steps=25 format=3 uid="uid://doq10a0d0wcng"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_g57bp"]
 [ext_resource type="PackedScene" uid="uid://darkjs45idgh1" path="res://scenes/main_scene.tscn" id="1_si0i5"]
@@ -11,6 +11,13 @@
 [ext_resource type="Texture2D" uid="uid://bhm4yxh4vg7h2" path="res://assets/sprites/background.png" id="5_jaulq"]
 [ext_resource type="Texture2D" uid="uid://bepuw4iifh4my" path="res://assets/sprites/logo.png" id="7_70ohi"]
 [ext_resource type="PackedScene" uid="uid://dow6yoe12gyje" path="res://scenes/UI/animation/transitions.tscn" id="11_x6ik1"]
+[ext_resource type="Script" path="res://scripts/AudioManager.gd" id="12_e6fbh"]
+[ext_resource type="AudioStream" uid="uid://bua0yfyprermq" path="res://assets/sound/select.wav" id="13_su47h"]
+[ext_resource type="AudioStream" uid="uid://mac7phdvrpfc" path="res://assets/sound/explosion.wav" id="14_ixd4a"]
+[ext_resource type="AudioStream" uid="uid://buionl1ov6rwr" path="res://assets/sound/gain_ability.wav" id="15_u4mf2"]
+[ext_resource type="AudioStream" uid="uid://f6a7s0jqy8ve" path="res://assets/sound/hurt.wav" id="16_q8u50"]
+[ext_resource type="AudioStream" uid="uid://b4c2ol6iq7r10" path="res://assets/sound/pick_up.wav" id="17_p8p2x"]
+[ext_resource type="AudioStream" uid="uid://dkcndg2xkyifx" path="res://assets/sound/shoot.wav" id="18_hrbxo"]
 
 [sub_resource type="Animation" id="Animation_am5qk"]
 resource_name = "fade_in"
@@ -259,6 +266,29 @@ offset_right = 68.0
 
 [node name="RestartTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="AudioManager" type="Node" parent="."]
+script = ExtResource("12_e6fbh")
+
+[node name="SelectSfx" type="AudioStreamPlayer2D" parent="AudioManager"]
+stream = ExtResource("13_su47h")
+
+[node name="ExplosionSfx" type="AudioStreamPlayer2D" parent="AudioManager"]
+stream = ExtResource("14_ixd4a")
+volume_db = -20.0
+
+[node name="GainAbilitySfx" type="AudioStreamPlayer2D" parent="AudioManager"]
+stream = ExtResource("15_u4mf2")
+
+[node name="HurtSfx" type="AudioStreamPlayer2D" parent="AudioManager"]
+stream = ExtResource("16_q8u50")
+
+[node name="PickUpSfx" type="AudioStreamPlayer2D" parent="AudioManager"]
+stream = ExtResource("17_p8p2x")
+
+[node name="ShootSfx" type="AudioStreamPlayer2D" parent="AudioManager"]
+stream = ExtResource("18_hrbxo")
+volume_db = -10.0
 
 [connection signal="mouse_entered" from="CanvasLayer/StartMenu" to="." method="_on_start_button_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/StartMenu" to="." method="_on_start_button_mouse_exited"]

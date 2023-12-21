@@ -6,6 +6,7 @@ var player
 var possible_abilities
 var current_abilities
 
+@onready var audio_manager = $AudioManager
 @onready var animation_player = $CanvasLayer/StartMenu/AnimationPlayer
 @onready var transitions = $CanvasLayer/Transitions
 @onready var restart_timer = $RestartTimer
@@ -46,6 +47,8 @@ func _on_restart_timer_timeout():
 	get_tree().reload_current_scene()
 
 func _on_start_button_pressed():
+	# Play audio
+	audio_manager.play_sound("SelectSfx")
 	# Screen shake
 	get_node("MainScene/MainCamera").shake(6)
 	# Animations
@@ -98,6 +101,9 @@ func _on_player_leveled_up():
 				ability_choice.get_node("Button/Icon").texture = player.load_ability(abilities_to_display[i]).image
 
 func ability_chosen(ability_number):
+	# Play audio
+	audio_manager.play_sound("SelectSfx")
+	
 	get_node("CanvasLayer/AbilityMenu").visible = false
 	get_tree().paused = false
 	# Animation

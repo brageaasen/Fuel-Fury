@@ -9,7 +9,7 @@ func on_spawn():
 	animation_player.play("idle")
 
 func play_pickup_sound():
-	pass
+	audio_manager.play_sound("PickUpSfx")
 
 func on_pickup_item():
 	player.gain_experience(experience)

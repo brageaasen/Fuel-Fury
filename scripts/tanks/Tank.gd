@@ -9,6 +9,8 @@ signal died
 
 var death_signal_emitted = false
 
+var audio_manager
+
 @export var max_health : int
 var health
 @export var max_fuel : int
@@ -39,6 +41,7 @@ var can_shoot = true
 
 
 func _ready():
+	audio_manager = get_parent().get_parent().get_node("AudioManager")
 	main_camera = get_tree().current_scene.find_child("MainCamera")
 	health = max_health
 	emit_signal("health_changed", health * 100/max_health)
@@ -58,6 +61,9 @@ func shoot(bullet):
 	
 	if can_shoot:
 		can_shoot = false
+		
+		# Play sound effect
+		audio_manager.play_sound("ShootSfx")
 		
 		# Push player in opposite direction (apply force) ?
 		
@@ -82,6 +88,9 @@ func shoot(bullet):
 		emit_signal("shootSignal", bullet, $Weapon/Muzzle.global_position, actual_bullet_direction)
 
 func take_damage(damage):
+	# Play sound effect
+	audio_manager.play_sound("HurtSfx")
+	
 	health -= damage
 	emit_signal("health_changed", health * 100/max_health)
 	
@@ -118,7 +127,6 @@ func gain_health(health_gain):
 	emit_signal("health_changed", health * 100/max_health)
 
 func level_up():
-	print("Leveled up!")
 	level += 1
 	experience -= experience_to_level
 	print(experience)

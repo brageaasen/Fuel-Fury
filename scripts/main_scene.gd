@@ -1,9 +1,13 @@
 extends Node2D
 
 #const PARTICLES_PATH = "res://particles/"
+var audio_manager
 
 func _init():
 	randomize()
+
+func _ready():
+	audio_manager = get_parent().get_node("AudioManager")
 
 func _on_Tank_shootSignal(bullet, _position, _direction):
 	var b = bullet.instantiate()
@@ -15,6 +19,10 @@ func _on_explode_particles_signal(explosion_particles, _position):
 	# TODO: Make us of generic ( explosion_particles ) instead of just using
 	#		singular explosion particles.
 	#var name = particles.get_filename()
+	
+	# Play sound effect
+	audio_manager.play_sound("ExplosionSfx")
+	
 	var p = preload("res://scenes/particles/explosion.tscn").instantiate()
 	add_child(p)
 	p.global_position = _position
