@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://nvn4s7x1et18"]
+
+[ext_resource type="Script" path="res://scripts/abilities/repair_kit.gd" id="1_6dhfs"]
+[ext_resource type="Texture2D" uid="uid://onpcsyn74lww" path="res://assets/sprites/repair_kit_icon.png" id="2_y5y8u"]
+
+[node name="RepairKit" type="Node"]
+script = ExtResource("1_6dhfs")
+title = "Repair Kit"
+info = "Repairs your tank over time!"
+image = ExtResource("2_y5y8u")
+
+[node name="HealthTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="HealthTimer" to="." method="_on_health_timer_timeout"]

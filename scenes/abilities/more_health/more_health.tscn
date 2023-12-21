@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bilvnmwbad7an"]
+
+[ext_resource type="Script" path="res://scripts/abilities/more_health.gd" id="1_wyqbo"]
+[ext_resource type="Texture2D" uid="uid://clv3i2wawdkgq" path="res://assets/sprites/more_health_icon.png" id="2_2rt8s"]
+
+[node name="MoreHealth" type="Node"]
+script = ExtResource("1_wyqbo")
+title = "More Health"
+info = "Makes your health pool larger!"
+image = ExtResource("2_2rt8s")

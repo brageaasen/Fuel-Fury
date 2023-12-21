@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://u5wq4wy3hb6s"]
+
+[ext_resource type="Script" path="res://scripts/abilities/gain_fuel.gd" id="1_fjaij"]
+[ext_resource type="Texture2D" uid="uid://bjee8guc07oak" path="res://assets/sprites/gain_fuel_icon.png" id="2_c4wu7"]
+
+[node name="GainFuel" type="Node"]
+script = ExtResource("1_fjaij")
+title = "Fuel Supply"
+info = "Gain a boost of fuel!"
+image = ExtResource("2_c4wu7")

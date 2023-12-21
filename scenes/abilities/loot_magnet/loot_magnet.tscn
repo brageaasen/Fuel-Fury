@@ -8,7 +8,7 @@ radius = 30.0
 [node name="LootMagnet" type="Node"]
 script = ExtResource("1_f5c12")
 title = "Magnet"
-info = "Grab loot easier!"
+info = "Loot comes to you!"
 
 [node name="MagnetRadius" type="Area2D" parent="."]
 collision_layer = 2

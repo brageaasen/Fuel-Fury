@@ -14,7 +14,7 @@ func _ready():
 	get_tree().paused = true
 	restart_timer.wait_time = time_before_restart
 	player = get_node("/root/Game/MainScene/Player")
-	possible_abilities = ["machine_gun", "loot_magnet"]
+	possible_abilities = ["machine_gun", "loot_magnet", "gain_fuel", "larger_fuel_storage", "repair_kit", "more_health"]
 	current_abilities = player.abilities
 	# Connect player signals to self
 	player.connect("died", _on_player_death)
@@ -104,6 +104,8 @@ func ability_chosen(ability_number):
 	get_node("CanvasLayer/AbilityMenu/AbilityChoice" + str(ability_number)).get_node("HoverAnimation").play("click")
 	# TODO: Add screen shake when click
 	
+	# Execute ability
+	player.load_ability(abilities_to_display[ability_number]).execute(player)
 	# Add ability to players ability list
 	player.abilities.append(abilities_to_display[ability_number])
 	# Remove ability from possible abilities

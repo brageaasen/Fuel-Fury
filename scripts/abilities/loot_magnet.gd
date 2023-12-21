@@ -9,8 +9,6 @@ var inside_radius = []
 
 func _ready():
 	_name = "loot_magnet"
-	$MagnetRadius/CollisionShape2D.shape.radius = radius
-	print(get_parent().name)
 
 func _physics_process(delta):
 	magnet_radius.position = get_parent().global_position
@@ -19,7 +17,7 @@ func _physics_process(delta):
 		area.velocity = _direction * speed
 
 func execute(s):
-	pass
+	$MagnetRadius/CollisionShape2D.shape.radius = radius
 
 func _on_magnet_radius_area_entered(area):
 	if area is Experience or area is Fuel:

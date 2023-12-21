@@ -98,7 +98,6 @@ func die():
 	#queue_free() # Should maybe not queue free the player object?
 
 func gain_fuel(fuel_gain):
-	print("Gained fuel:")
 	if fuel + fuel_gain > max_fuel:
 		fuel = max_fuel
 	else:
@@ -106,12 +105,17 @@ func gain_fuel(fuel_gain):
 	emit_signal("fuel_changed", fuel * 100/max_fuel)
 
 func gain_experience(experience_gain):
-	print("Gained experience:")
 	experience += experience_gain
-	print(experience)
 	emit_signal("experience_changed", experience * 100/experience_to_level, level)
 	if experience >= experience_to_level:
 		level_up()
+
+func gain_health(health_gain):
+	if health + health_gain > max_health:
+		health = max_health
+	else:
+		health += health_gain
+	emit_signal("health_changed", health * 100/max_health)
 
 func level_up():
 	print("Leveled up!")
