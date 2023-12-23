@@ -16,7 +16,6 @@ func _ready():
 	get_tree().paused = true
 	restart_timer.wait_time = time_before_restart
 	player = get_node("/root/Game/MainScene/Player")
-	get_node("MainScene/BlackFade").visible = false
 	possible_abilities = ["machine_gun", "loot_magnet", "gain_fuel", "larger_fuel_storage", "repair_kit", "more_health"]
 	current_abilities = player.abilities
 	# Connect player signals to self
@@ -83,11 +82,10 @@ func save_score():
 var abilities_to_display = []
 
 func _on_player_leveled_up():
-	get_node("MainScene/BlackFade").visible = true
+	get_node("MainScene/AnimationPlayer").play("fade_to_black")
 	get_node("CanvasLayer/AbilityMenu").visible = true
 	get_node("CanvasLayer/AbilityMenu/LevelUp").visible = true
 	get_node("CanvasLayer/AbilityMenu/LevelUp").get_node("AnimationPlayer").play("fade_in")
-	get_node("MainScene/AnimationPlayer").play("fade_to_black")
 
 	get_tree().paused = true
 	var count = 0
@@ -123,6 +121,7 @@ func ability_chosen(ability_number):
 	# Animation
 	get_node("CanvasLayer/AbilityMenu/AbilityChoice" + str(ability_number)).get_node("HoverAnimation").play("click")
 	get_node("MainScene/AnimationPlayer").play("fade_from_black")
+	
 	# TODO: Add screen shake when click
 	
 	# Execute ability
