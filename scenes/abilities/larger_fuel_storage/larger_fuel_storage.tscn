@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkc4ajkrjplt2"]
+
+[ext_resource type="Script" path="res://scripts/abilities/larger_fuel_storage.gd" id="1_uvsdm"]
+[ext_resource type="Texture2D" uid="uid://dn6bnp3cmfmk0" path="res://assets/sprites/larger_fue_storagel_icon.png" id="2_v8qc8"]
+
+[node name="LargerFuelStorage" type="Node"]
+script = ExtResource("1_uvsdm")
+title = "Larger Storage"
+info = "Increase the size of your fuel storage."
+image = ExtResource("2_v8qc8")

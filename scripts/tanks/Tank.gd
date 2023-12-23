@@ -3,8 +3,13 @@ extends CharacterBody2D
 signal shootSignal
 signal health_changed
 signal experience_changed
+signal leveled_up
 signal fuel_changed
 signal died
+
+var death_signal_emitted = false
+
+var audio_manager
 
 @export var max_health : int
 var health
@@ -15,7 +20,7 @@ var fuel_gain = 40
 var fuel
 var level = 1
 var experience = 0
-var experience_to_level = 5
+var experience_to_level = 1
 var alive = true
 var inventory : Dictionary = {}
 var main_camera
@@ -36,9 +41,10 @@ var can_shoot = true
 
 
 func _ready():
+	audio_manager = get_parent().get_parent().get_node("AudioManager")
 	main_camera = get_tree().current_scene.find_child("MainCamera")
 	health = max_health
-	emit_signal("health_changed", health * 100/max_health)
+	emit_signal("health_changed", health)
 	fuel = max_fuel
 	emit_signal("fuel_changed", fuel * 100/max_fuel)
 	emit_signal("experience_changed", experience * 100/experience_to_level, level)
@@ -55,6 +61,9 @@ func shoot(bullet):
 	
 	if can_shoot:
 		can_shoot = false
+		
+		# Play sound effect
+		audio_manager.play_sound("ShootSfx")
 		
 		# Push player in opposite direction (apply force) ?
 		
@@ -79,21 +88,25 @@ func shoot(bullet):
 		emit_signal("shootSignal", bullet, $Weapon/Muzzle.global_position, actual_bullet_direction)
 
 func take_damage(damage):
+	# Play sound effect
+	audio_manager.play_sound("HurtSfx")
+	
 	health -= damage
-	emit_signal("health_changed", health * 100/max_health)
+	emit_signal("health_changed", health)
 	
 	main_camera.shake(2)
 	
-	if (health <= 0):
+	if (health <= 0 and !death_signal_emitted):
 		alive = false
 		die() # Destroy object
-		emit_signal("died") # No one catches this signal yet
+		emit_signal("died", "death")
+		death_signal_emitted = true
 
 func die():
-	queue_free() # Should maybe not queue free the player object?
+	pass
+	#queue_free() # Should maybe not queue free the player object?
 
 func gain_fuel(fuel_gain):
-	print("Gained fuel:")
 	if fuel + fuel_gain > max_fuel:
 		fuel = max_fuel
 	else:
@@ -101,20 +114,25 @@ func gain_fuel(fuel_gain):
 	emit_signal("fuel_changed", fuel * 100/max_fuel)
 
 func gain_experience(experience_gain):
-	print("Gained experience:")
 	experience += experience_gain
-	print(experience)
 	emit_signal("experience_changed", experience * 100/experience_to_level, level)
 	if experience >= experience_to_level:
 		level_up()
 
+func gain_health(health_gain):
+	if health + health_gain > max_health:
+		health = max_health
+	else:
+		health += health_gain
+	emit_signal("health_changed", health)
+
 func level_up():
-	print("Leveled up!")
 	level += 1
 	experience -= experience_to_level
 	print(experience)
 	emit_signal("experience_changed", experience * 100/experience_to_level, level)
 	# Upgrades?
+	emit_signal("leveled_up")
 
 func add_to_inventory(item):
 	if inventory.has(item): inventory[item] = inventory[item] + 1
@@ -130,9 +148,19 @@ func add_fuel_to_base():
 			remove_from_inventory(Fuel)
 			gain_fuel(fuel_gain)
 
+func load_ability(name):
+	var scene = load("res://scenes/abilities/" + name + "/" + name + ".tscn")
+	var scene_instance = scene.instantiate()
+	add_child(scene_instance)
+	return scene_instance
+
 func _physics_process(delta):
 	if not alive:
 		return
+	
+	if fuel <= 0 and !death_signal_emitted:
+		emit_signal("died", "fuel")
+		death_signal_emitted = true
 	
 	if fuel > 0:
 		control(delta)
@@ -156,4 +184,5 @@ func _on_MachineGunTimer_timeout():
 
 func _on_fuel_usage_timer_timeout():
 	fuel -= fuel_usage
+	
 	emit_signal("fuel_changed", fuel * 100/max_fuel)

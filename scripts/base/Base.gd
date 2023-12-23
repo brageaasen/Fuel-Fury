@@ -36,7 +36,7 @@ func take_damage(damage):
 
 # Keep / Remove health for base?
 func die():
-	queue_free() # Should maybe not queue free the player object?w
+	queue_free()
 
 func update_fuel_container(value):
 	var tween = create_tween()

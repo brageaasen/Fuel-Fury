@@ -18,7 +18,7 @@ var target_dir
 
 func _ready():
 	super._ready() # Make parent also run its ready function
-	player = get_node("/root/MainScene/Player")
+	player = get_node("/root/Game/MainScene/Player")
 	$GunTimer.wait_time = gun_cooldown
 	$MachineGunTimer.wait_time = machine_gun_cooldown
 	ray_cast_player.target_position.x = detect_radius
@@ -36,7 +36,7 @@ func _ready():
 func die():
 	alive = false
 	queue_free()
-	emit_signal("died", experience_drop, fuel_drop, global_position)
+	emit_signal("died", score_value, experience_drop, fuel_drop, global_position)
 
 
 func shoot(bullet):

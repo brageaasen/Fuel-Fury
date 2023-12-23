@@ -5,6 +5,7 @@ signal shootSignal
 signal health_changed
 signal died
 
+@export var score_value : int
 @export var max_health : int
 @export var experience_drop : PackedScene
 # Movement

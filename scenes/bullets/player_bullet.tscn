@@ -12,3 +12,5 @@ damage = 20
 lifetime = 3.0
 
 [node name="SmokeTrail" parent="." index="3" instance=ExtResource("3_kmndh")]
+position = Vector2(-2, 0)
+rotation = 3.14159

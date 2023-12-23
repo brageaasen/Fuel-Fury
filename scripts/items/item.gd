@@ -1,6 +1,9 @@
+class_name Item
+
 extends Area2D
 
-var player # Reference to the player node or position
+var audio_manager
+var player # Reference to the player node
 @export var should_rotate : bool
 
 @export var lifetime : float = 4
@@ -9,7 +12,8 @@ var player # Reference to the player node or position
 var velocity = Vector2()
 
 func _ready():
-	player = get_node("/root/MainScene/Player")
+	audio_manager = get_node("/root/Game/AudioManager")
+	player = get_node("/root/Game/MainScene/Player")
 
 func _process(delta):
 	position += velocity * delta

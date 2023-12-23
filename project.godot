@@ -11,10 +11,14 @@ config_version=5
 [application]
 
 config/name="firstProject"
-run/main_scene="res://scenes/main_scene.tscn"
+run/main_scene="res://scenes/game.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://assets/sprites/icon.svg"
 run/canvas_textures/default_texture_filter=0
+
+[autoload]
+
+ScoreManager="*res://scripts/score_manager.gd"
 
 [display]
 

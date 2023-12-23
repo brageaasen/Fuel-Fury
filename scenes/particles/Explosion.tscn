@@ -1,4 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://dydi1sfsju10l"]
+[gd_scene load_steps=9 format=3 uid="uid://dydi1sfsju10l"]
+
+[ext_resource type="Script" path="res://scripts/particles/explosion.gd" id="1_beoul"]
 
 [sub_resource type="Curve" id="Curve_fy8og"]
 min_value = -360.0
@@ -44,6 +46,8 @@ scale_curve = SubResource("CurveTexture_ucxlb")
 color_ramp = SubResource("GradientTexture1D_vyr7p")
 
 [node name="Explosion" type="Node2D"]
+z_index = 10
+script = ExtResource("1_beoul")
 
 [node name="Particles" type="GPUParticles2D" parent="."]
 emitting = false

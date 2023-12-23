@@ -45,10 +45,7 @@ _data = {
 
 [node name="Fuel" instance=ExtResource("1_1m5bb")]
 script = ExtResource("2_dcale")
-lifetime = null
-
-[node name="CollisionShape2D" parent="." index="0"]
-position = Vector2(0, 2)
+lifetime = 4.0
 
 [node name="Body" parent="." index="1"]
 texture = ExtResource("3_ulr2m")
