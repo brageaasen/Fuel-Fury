@@ -4,19 +4,20 @@ extends State
 @export var actor : Enemy
 @export var animator : AnimationPlayer
 @export var ray_cast_player : RayCast2D
+var obstacle_raycasts = []
 
 @onready var enemy_tank = $"../.."
 @onready var body = $"../../Body"
+@onready var weapon = $"../../Weapon"
 
 const WANDER_CIRCLE_RADIUS : int = 8
 const WANDER_RANDOMNESS : float = 0.2
 var wander_angle : float = 0
 
-var obstacle_raycasts = []
-
-var player # Reference to the player node or position
+var player # Reference to the player node
 
 signal found_player
+
 
 func _ready():
 	set_physics_process(false)
@@ -29,20 +30,19 @@ func _ready():
 func _enter_state() -> void:
 	set_physics_process(true)
 	animator.play("move")
-	# If speed is 0 when entering state, start moving
-	#if actor.velocity == Vector2.ZERO:
-	#	actor.velocity = Vector2.RIGHT.rotated(randf_range(0, TAU)) * actor.max_speed
+	print("Entered: WANDER")
 
 func _exit_state() -> void:
 	set_physics_process(false)
 
 
 func _physics_process(delta):
-	#actor.velocity = actor.velocity.move_toward(actor.velocity.normalized() * actor.max_speed, actor.acceleration * delta)
-	#var collision = actor.move_and_collide(actor.velocity * delta)
-	#if collision:
-	#	var bounce_velocity = actor.velocity.bounce(collision.get_normal())
-	#	actor.velocity = bounce_velocity
+	# Rotate weapon forward
+	var current_weapon_dir = Vector2(1, 0).rotated(weapon.global_rotation)
+	var current_dir = Vector2(1, 0).rotated(actor.global_rotation)
+	weapon.global_rotation = lerp(current_weapon_dir, current_dir, actor.turret_speed * delta).angle()
+	
+	# Add steering to the velocity of the enemy
 	var steering = Vector2.ZERO
 	steering += wander_steering()
 	steering += avoid_obstacles_steering()
@@ -53,31 +53,34 @@ func _physics_process(delta):
 	actor.move_and_slide()
 	
 	# Rotate the enemy tank body
-	body.rotation = actor.velocity.angle()
+	actor.rotation = actor.velocity.angle()
 	
-	if actor.target:
-		# Raycast
-		var dir = player.global_position - actor.global_position
-		ray_cast_player.look_at(actor.global_position + dir)
-	
+	# Emit found player and change states if player is found
 	if actor.target and not ray_cast_player.is_colliding():
 		found_player.emit()
 
+# Calculate a random wander steering
 func wander_steering() -> Vector2:
 	wander_angle = randf_range(wander_angle - WANDER_RANDOMNESS, wander_angle + WANDER_RANDOMNESS)
 	var vector_to_circle : Vector2 = actor.velocity.normalized() * actor.max_speed
 	var desired_velocity : Vector2 = vector_to_circle + Vector2(WANDER_CIRCLE_RADIUS, 0).rotated(wander_angle)
 	return desired_velocity - actor.velocity
 
+# Calculate a seek steering
 func seek_steering() -> Vector2:
 	var desired_velocity : Vector2 = (actor.target.position - actor.position).normalized() * actor.max_speed
 	return desired_velocity - actor.velocity
 
+# Calculate steering to avoid obstacles
 func avoid_obstacles_steering() -> Vector2:
+	var total_avoidance_force = Vector2.ZERO
 	for raycast in obstacle_raycasts:
-		raycast.rotation = actor.velocity.angle()
-		raycast.target_position.x = actor.velocity.length()
+		raycast.global_rotation = actor.velocity.angle()
 		if raycast.is_colliding():
-			var obstacle = raycast.get_collider()
-			return (actor.position + actor.velocity - obstacle.position).normalized() * actor.avoid_force
-	return Vector2.ZERO
+			var collision_point = raycast.get_collision_point()
+			var collision_normal = raycast.get_collision_normal()
+			var distance_to_collision = collision_point.distance_to(actor.global_position)
+			var dynamic_avoid_force = actor.avoid_force * (1.0 - distance_to_collision / raycast.target_position.length())
+			total_avoidance_force += collision_normal * dynamic_avoid_force
+			
+	return total_avoidance_force # Removed .normalized()

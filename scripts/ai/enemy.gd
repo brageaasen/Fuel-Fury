@@ -12,7 +12,7 @@ signal died
 @export var max_speed = 40.0
 @export var acceleration = 50.0
 var max_steering : float = 2.5
-var avoid_force : int = 1000
+var avoid_force : int = 50
 # Combat
 @export var attack_range : float = 60
 @export var detect_radius : int

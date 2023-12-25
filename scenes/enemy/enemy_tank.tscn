@@ -115,20 +115,25 @@ animator = NodePath("../../AnimationPlayer")
 ray_cast_player = NodePath("../../PlayerDetection")
 
 [node name="ObstacleDetection1" type="RayCast2D" parent="." index="8"]
-target_position = Vector2(38, 0)
-collision_mask = 0
+target_position = Vector2(40, 0)
 
 [node name="ObstacleDetection2" type="RayCast2D" parent="." index="9"]
 position = Vector2(0, -7)
-target_position = Vector2(38, 0)
-collision_mask = 0
+target_position = Vector2(28, 0)
 
 [node name="ObstacleDetection3" type="RayCast2D" parent="." index="10"]
 position = Vector2(0, 7)
-target_position = Vector2(38, 0)
-collision_mask = 0
+target_position = Vector2(30, 0)
 
-[node name="PlayerDetection" type="RayCast2D" parent="." index="11"]
+[node name="ObstacleDetectionSide1" type="RayCast2D" parent="." index="11"]
+position = Vector2(0, 7)
+target_position = Vector2(14, 8)
+
+[node name="ObstacleDetectionSide2" type="RayCast2D" parent="." index="12"]
+position = Vector2(0, -7)
+target_position = Vector2(14, -8)
+
+[node name="PlayerDetection" type="RayCast2D" parent="." index="13"]
 target_position = Vector2(66, 0)
 
 [connection signal="timeout" from="GunTimer" to="." method="_on_GunTimer_timeout"]
