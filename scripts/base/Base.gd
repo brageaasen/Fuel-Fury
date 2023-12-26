@@ -25,6 +25,15 @@ func _ready():
 	$AmmoFillTimer.set_paused(true)
 	$MGAmmoFillTimer.set_paused(true)
 
+func _process(delta):
+	# Play danger icon animation of value is less than or equal 30% of max value
+	if $FuelContainer/FuelBar.value / $FuelContainer/FuelBar.max_value * 100 <= 30:
+		$DangerIcon/AnimationPlayer.play("pulsate")
+		$DangerIcon.visible = true
+	else:
+		$DangerIcon/AnimationPlayer.stop()
+		$DangerIcon.visible = false
+
 # Keep / Remove health for base?
 func take_damage(damage):
 	health -= damage

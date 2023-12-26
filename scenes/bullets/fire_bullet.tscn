@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://4tar4f8o6yrl"]
+
+[ext_resource type="Script" path="res://scripts/bullets/fire_bullet.gd" id="1_trvag"]
+[ext_resource type="PackedScene" uid="uid://bkmsd5ft7ix2f" path="res://scenes/particles/fire_explosion.tscn" id="2_a6nnq"]
+
+[node name="fire_bullet" type="Node2D"]
+script = ExtResource("1_trvag")
+explosion_particles = ExtResource("2_a6nnq")
+speed = 250
+damage = 40
+lifetime = 3.0

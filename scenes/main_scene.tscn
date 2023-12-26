@@ -1093,7 +1093,7 @@ y_sort_enabled = true
 script = ExtResource("1_x0pv1")
 
 [node name="MainCamera" type="Camera2D" parent="."]
-zoom = Vector2(1.5, 1.5)
+zoom = Vector2(3, 3)
 script = ExtResource("3_cvfwc")
 
 [node name="HUD" parent="MainCamera" instance=ExtResource("10_54g1t")]

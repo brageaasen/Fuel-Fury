@@ -17,14 +17,10 @@ func _on_Tank_shootSignal(bullet, _position, _direction):
 	b.connect("explode_particles", _on_explode_particles_signal) # Connect
 
 func _on_explode_particles_signal(explosion_particles, _position):
-	# TODO: Make us of generic ( explosion_particles ) instead of just using
-	#		singular explosion particles.
-	#var name = particles.get_filename()
-	
 	# Play sound effect
 	audio_manager.play_sound("ExplosionSfx")
 	
-	var p = preload("res://scenes/particles/explosion.tscn").instantiate()
+	var p = explosion_particles.instantiate()
 	add_child(p)
 	p.global_position = _position
 
@@ -65,6 +61,3 @@ func _on_spawn_timer_timeout():
 	enemy_instance.connect("shootSignal", _on_Tank_shootSignal)
 	enemy_instance.connect("died", _on_enemy_tank_died)
 
-
-func update_fuel_container():
-	pass # Replace with function body.

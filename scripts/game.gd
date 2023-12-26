@@ -134,7 +134,7 @@ func ability_chosen(ability_number):
 	get_node("CanvasLayer/AbilityMenu/AbilityChoice" + str(ability_number)).get_node("HoverAnimation").play("click")
 	get_node("MainScene/AnimationPlayer").play("fade_from_black")
 	
-	# TODO: Add screen shake when click
+	get_node("MainScene/MainCamera").shake(1)
 	
 	# Execute ability
 	player.load_ability(abilities_to_display[ability_number]).execute(player)
