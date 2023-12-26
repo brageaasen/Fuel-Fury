@@ -7,6 +7,7 @@ extends "res://scripts/ai/enemy.gd"
 @export var machine_gun_cooldown : float
 @export var turret_speed : float
 
+@onready var animation_player = $AnimationPlayer
 @onready var ray_cast_player = $PlayerDetection
 @onready var fsm = $FiniteStateMachine as FiniteStateMachine
 @onready var enemy_tank_wander_state = $FiniteStateMachine/EnemyTankWanderState as EnemyTankWanderState
@@ -61,6 +62,13 @@ func shoot(bullet):
 		current_recoil = clamp(current_recoil + recoil_increment, 0.0, max_recoil)
 		
 		emit_signal("shootSignal", bullet, $Weapon/Muzzle.global_position, actual_bullet_direction)
+
+func take_damage(damage):
+	animation_player.play("take_damage")
+	health -= damage
+	emit_signal("health_changed", health * 100/max_health)
+	if (health <= 0):
+		die() # Destroy object
 
 func _physics_process(delta):
 	if not alive:

@@ -16,7 +16,7 @@ func _ready():
 	get_tree().paused = true
 	restart_timer.wait_time = time_before_restart
 	player = get_node("/root/Game/MainScene/Player")
-	possible_abilities = ["machine_gun", "loot_magnet", "gain_fuel", "larger_fuel_storage", "repair_kit", "more_health"]
+	possible_abilities = ["machine_gun", "loot_magnet", "gain_fuel", "larger_fuel_storage", "repair_kit", "more_health", "fire_projectile"]
 	current_abilities = player.abilities
 	# Connect player signals to self
 	player.connect("died", _on_player_death)
@@ -37,7 +37,6 @@ func _on_player_death(type):
 	else:
 		$CanvasLayer/GameEndFuelText/AnimationPlayer.play("fade_in")
 		$CanvasLayer/GameEndFuelText.visible = true
-	print(get_tree())
 	restart_timer.start()
 
 func _on_restart_timer_timeout():
@@ -74,7 +73,6 @@ func increase_score(value):
 # Function to save the score
 func save_score():
 	ScoreManager.set_score(score)
-	print(ScoreManager.get_score())
 
 
 
@@ -84,7 +82,6 @@ var abilities_to_display = []
 var iterations
 
 func _on_player_leveled_up():
-	print(current_abilities)
 	if possible_abilities.size() == 0:
 		return
 	get_node("MainScene/AnimationPlayer").play("fade_to_black")

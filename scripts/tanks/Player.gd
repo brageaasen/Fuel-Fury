@@ -29,7 +29,7 @@ func control(delta):
 	# Attack input
 	if Input.is_action_pressed("left_click"):
 		if ammo_storage > 0:
-			shoot(heavy_bullet)
+			shoot(Bullet)
 	if abilities.has("machine_gun"):
 		load_ability("machine_gun").execute(self)
 

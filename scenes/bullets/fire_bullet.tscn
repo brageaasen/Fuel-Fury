@@ -1,11 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://4tar4f8o6yrl"]
+[gd_scene load_steps=5 format=3 uid="uid://cmvdseulqllqe"]
 
-[ext_resource type="Script" path="res://scripts/bullets/fire_bullet.gd" id="1_trvag"]
+[ext_resource type="PackedScene" uid="uid://bocuou03h0uf3" path="res://scenes/bullets/Bullet.tscn" id="1_cdyr7"]
 [ext_resource type="PackedScene" uid="uid://bkmsd5ft7ix2f" path="res://scenes/particles/fire_explosion.tscn" id="2_a6nnq"]
+[ext_resource type="Script" path="res://scripts/bullets/player_bullet.gd" id="2_rfe7b"]
+[ext_resource type="PackedScene" uid="uid://nlvvt6hpx8jp" path="res://scenes/particles/smoke_trail.tscn" id="4_xkjjk"]
 
-[node name="fire_bullet" type="Node2D"]
-script = ExtResource("1_trvag")
+[node name="FireBullet" instance=ExtResource("1_cdyr7")]
+collision_mask = 5
+script = ExtResource("2_rfe7b")
 explosion_particles = ExtResource("2_a6nnq")
 speed = 250
-damage = 40
+damage = 20
 lifetime = 3.0
+
+[node name="SmokeTrail" parent="." index="3" instance=ExtResource("4_xkjjk")]
+position = Vector2(-2, 0)
+rotation = 3.14159

@@ -5,4 +5,4 @@ func _ready():
 
 func execute(s):
 	# Change the bullet of the player
-	pass
+	s.Bullet = load("res://scenes/bullets/fire_bullet.tscn")
