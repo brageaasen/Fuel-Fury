@@ -4,6 +4,9 @@ func update_healthbar(value):
 	var tween = create_tween()
 	tween.tween_property($HealthBar, "value", value, 0.2).set_trans(Tween.TRANS_LINEAR)
 	$Health.text = "HP:" + str(value)
+	
+func update_healthbar_max_value(value):
+	$HealthBar.max_value = value
 
 func update_experiencebar(value, level):
 	var tween = create_tween()

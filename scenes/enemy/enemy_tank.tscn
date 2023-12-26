@@ -135,6 +135,7 @@ target_position = Vector2(14, -8)
 
 [node name="PlayerDetection" type="RayCast2D" parent="." index="13"]
 target_position = Vector2(66, 0)
+collision_mask = 3
 
 [connection signal="timeout" from="GunTimer" to="." method="_on_GunTimer_timeout"]
 [connection signal="timeout" from="MachineGunTimer" to="." method="_on_MachineGunTimer_timeout"]

@@ -30,7 +30,6 @@ func _ready():
 func _enter_state() -> void:
 	set_physics_process(true)
 	animator.play("move")
-	print("Entered: WANDER")
 
 func _exit_state() -> void:
 	set_physics_process(false)
@@ -56,8 +55,16 @@ func _physics_process(delta):
 	actor.rotation = actor.velocity.angle()
 	
 	# Emit found player and change states if player is found
-	if actor.target and not ray_cast_player.is_colliding():
-		found_player.emit()
+	if actor.target:
+		# Raycast
+		var dir = player.global_position - actor.global_position
+		ray_cast_player.look_at(actor.global_position + dir)
+		var collider
+		if ray_cast_player.is_colliding():
+			collider = ray_cast_player.get_collider()
+		if collider == player:
+			found_player.emit()
+			collider = null
 
 # Calculate a random wander steering
 func wander_steering() -> Vector2:

@@ -20,7 +20,6 @@ func _ready() -> void:
 func _enter_state() -> void:
 	set_physics_process(true)
 	animator.play("move")
-	print("Entered: CHASE")
 
 func _exit_state() -> void:
 	set_physics_process(false)
@@ -55,5 +54,9 @@ func _physics_process(delta) -> void:
 			attack_player.emit()
 	
 	# Check if enemy tank should change current state to wander
-	if not actor.target or ray_cast_player.is_colliding():
+	var collider
+	if ray_cast_player.is_colliding():
+		collider = ray_cast_player.get_collider()
+	if not actor.target or collider != player:
 		lost_player.emit()
+		collider = null

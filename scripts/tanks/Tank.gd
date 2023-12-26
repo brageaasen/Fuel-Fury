@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 signal shootSignal
 signal health_changed
+signal max_health_changed
 signal experience_changed
 signal leveled_up
 signal fuel_changed
@@ -125,6 +126,10 @@ func gain_health(health_gain):
 	else:
 		health += health_gain
 	emit_signal("health_changed", health)
+
+func increase_max_health(new_max_health):
+	max_health = new_max_health
+	emit_signal("max_health_changed", new_max_health)
 
 func level_up():
 	level += 1

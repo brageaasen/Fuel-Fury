@@ -18,6 +18,8 @@ func _physics_process(delta):
 
 func execute(s):
 	$MagnetRadius/CollisionShape2D.shape.radius = radius
+	$MagnetRadius.area_entered.connect(_on_magnet_radius_area_entered)
+	$MagnetRadius.area_exited.connect(_on_magnet_radius_area_exited)
 
 func _on_magnet_radius_area_entered(area):
 	if area is Experience or area is Fuel:

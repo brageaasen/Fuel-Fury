@@ -19,7 +19,6 @@ func _ready() -> void:
 func _enter_state() -> void:
 	set_physics_process(true)
 	animator.play("idle")
-	print("Entered: ATTACK")
 
 func _exit_state() -> void:
 	set_physics_process(false)
@@ -35,8 +34,12 @@ func _physics_process(delta) -> void:
 		weapon.global_rotation = lerp(current_weapon_dir, actor.target_dir, actor.turret_speed * delta).angle()
 		
 		# Fire when weapon direction is somewhat aligned with the player position, and not colliding
-		if actor.target_dir.dot(current_weapon_dir) > 0.9 and not ray_cast_player.is_colliding():
+		var collider
+		if ray_cast_player.is_colliding():
+			collider = ray_cast_player.get_collider()
+		if actor.target_dir.dot(current_weapon_dir) > 0.9 and collider == player:
 			actor.shoot(actor.Bullet)
+			collider = null
 	
 	# Check if enemy tank should change current state to wander
 	if not actor.target or ray_cast_player.is_colliding():

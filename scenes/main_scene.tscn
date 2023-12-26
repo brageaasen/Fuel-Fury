@@ -1126,7 +1126,7 @@ layer_1/tile_data = PackedInt32Array(-196620, 65537, 1, -458752, 65537, 1, 32767
 [node name="Spawner" parent="." instance=ExtResource("14_xe4kn")]
 
 [node name="SpawnTimer" type="Timer" parent="."]
-wait_time = 150.118
+wait_time = 4.0
 autostart = true
 
 [node name="SpawnLocation" type="Marker2D" parent="." groups=["spawner"]]
@@ -1146,6 +1146,19 @@ position = Vector2(62, 31)
 
 [node name="Experience" parent="." instance=ExtResource("13_5wmd7")]
 position = Vector2(66, -3)
+collision_mask = 2
+
+[node name="Experience2" parent="." instance=ExtResource("13_5wmd7")]
+position = Vector2(75, -17)
+collision_mask = 2
+
+[node name="Experience3" parent="." instance=ExtResource("13_5wmd7")]
+position = Vector2(65, -37)
+collision_mask = 2
+
+[node name="Experience4" parent="." instance=ExtResource("13_5wmd7")]
+position = Vector2(88, -40)
+collision_mask = 2
 
 [node name="EnemyTank" parent="." instance=ExtResource("14_cd3tj")]
 position = Vector2(-17, 32)
@@ -1157,4 +1170,5 @@ position = Vector2(-17, 32)
 [connection signal="experience_changed" from="Player" to="MainCamera/HUD" method="update_experiencebar"]
 [connection signal="fuel_changed" from="Player" to="Base" method="update_fuel_container"]
 [connection signal="health_changed" from="Player" to="MainCamera/HUD" method="update_healthbar"]
+[connection signal="max_health_changed" from="Player" to="MainCamera/HUD" method="update_healthbar_max_value"]
 [connection signal="shootSignal" from="Player" to="." method="_on_Tank_shootSignal"]

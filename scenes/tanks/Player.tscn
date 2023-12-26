@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://c27lt7vwi1j4f"]
 
-[ext_resource type="PackedScene" uid="uid://dy2ak8axbab1p" path="res://scenes/tanks/tank.tscn" id="1_mvslc"]
+[ext_resource type="PackedScene" uid="uid://dy2ak8axbab1p" path="res://scenes/tanks/Tank.tscn" id="1_mvslc"]
 [ext_resource type="Script" path="res://scripts/tanks/player.gd" id="2_irr7l"]
 [ext_resource type="PackedScene" uid="uid://c6l7quk1tdtpf" path="res://scenes/bullets/player_bullet.tscn" id="3_dd57m"]
 [ext_resource type="Texture2D" uid="uid://clc3i6mhj7qx3" path="res://assets/sprites/player_sheet.png" id="4_sp5a3"]
