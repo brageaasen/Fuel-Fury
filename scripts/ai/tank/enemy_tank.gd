@@ -7,6 +7,7 @@ extends "res://scripts/ai/enemy.gd"
 @export var machine_gun_cooldown : float
 @export var turret_speed : float
 
+@onready var burn_timer = $BurnTimer
 @onready var animation_player = $AnimationPlayer
 @onready var ray_cast_player = $PlayerDetection
 @onready var fsm = $FiniteStateMachine as FiniteStateMachine
@@ -22,6 +23,7 @@ func _ready():
 	player = get_node("/root/Game/MainScene/Player")
 	$GunTimer.wait_time = gun_cooldown
 	$MachineGunTimer.wait_time = machine_gun_cooldown
+	burn_timer.wait_time = 2
 	ray_cast_player.target_position.x = detect_radius
 	
 	# On found_player, wander -> chase
@@ -70,6 +72,16 @@ func take_damage(damage):
 	if (health <= 0):
 		die() # Destroy object
 
+var burn_count = 0
+var burn_damage
+func burn(damage):
+	# Play burn particles
+	$Burn.emitting = true
+	# Apply damage
+	burn_damage = damage
+	take_damage(damage)
+	burn_timer.start()
+
 func _physics_process(delta):
 	if not alive:
 		return
@@ -87,6 +99,13 @@ func _on_GunTimer_timeout():
 func _on_MachineGunTimer_timeout():
 	can_shoot = true
 
+func _on_burn_timer_timeout():
+	burn_count += 1
+	if burn_count < 4:
+		burn(burn_damage)
+	else:
+		burn_count = 0
+
 func _on_detect_radius_body_entered(body):
 	if body.name == "Player":
 		target = body
@@ -94,3 +113,5 @@ func _on_detect_radius_body_entered(body):
 func _on_detect_radius_body_exited(body):
 	if body == target:
 		target = null
+
+
