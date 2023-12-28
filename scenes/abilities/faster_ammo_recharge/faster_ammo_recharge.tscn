@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnineoegc5sh8"]
+
+[ext_resource type="Script" path="res://scripts/abilities/faster_ammo_recharge.gd" id="1_rlqr3"]
+[ext_resource type="Texture2D" uid="uid://dadrd60outykw" path="res://assets/sprites/faster_ammo_recharge_icon.png" id="2_dg5qr"]
+
+[node name="FasterAmmoRecharge" type="Node"]
+script = ExtResource("1_rlqr3")
+title = "Rapid Reload"
+info = "Faster ammo recharge in base!"
+image = ExtResource("2_dg5qr")

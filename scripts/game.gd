@@ -16,7 +16,9 @@ func _ready():
 	get_tree().paused = true
 	restart_timer.wait_time = time_before_restart
 	player = get_node("/root/Game/MainScene/Player")
-	possible_abilities = ["machine_gun", "loot_magnet", "gain_fuel", "larger_fuel_storage", "repair_kit", "more_health", "fire_projectile"]
+	possible_abilities = ["machine_gun", "loot_magnet", "gain_fuel", "larger_fuel_storage",
+	"repair_kit", "more_health", "fire_projectile", "more_speed", "faster_ammo_recharge",
+	"larger_bullets"]
 	current_abilities = player.abilities
 	# Connect player signals to self
 	player.connect("died", _on_player_death)

@@ -25,6 +25,7 @@ var experience_to_level = 1
 var alive = true
 var inventory : Dictionary = {}
 var main_camera
+
 # Movement
 @export var max_speed = 60
 #var acceleration = max_speed * 10
@@ -38,6 +39,8 @@ var friction = 0
 @export var max_recoil : float = 10.0
 var current_recoil = 0.0
 var can_shoot = true
+var bullet_scale_multiplier = 1
+var bullet_damage_multiplier = 1
 
 
 
@@ -80,8 +83,6 @@ func shoot(bullet):
 		var recoil_radians_actual = deg_to_rad(randf_range(-recoil_degree_max, recoil_degree_max))
 		var actual_bullet_direction = dir.rotated(recoil_radians_actual)	
 		
-		
-		# TODO: Add recoil
 		var recoil_increment = max_recoil * 0.1
 		current_recoil = clamp(current_recoil + recoil_increment, 0.0, max_recoil)
 		
@@ -134,9 +135,7 @@ func increase_max_health(new_max_health):
 func level_up():
 	level += 1
 	experience -= experience_to_level
-	print(experience)
 	emit_signal("experience_changed", experience * 100/experience_to_level, level)
-	# Upgrades?
 	emit_signal("leveled_up")
 
 func add_to_inventory(item):
@@ -147,17 +146,24 @@ func remove_from_inventory(item):
 	inventory[item] = inventory[item] - 1
 
 func add_fuel_to_base():
-	# Play add fuel sound if has fuel?
+	# TODO: Play add fuel sound if has fuel?
 	if inventory.has(Fuel):
 		while inventory[Fuel] != 0:
 			remove_from_inventory(Fuel)
 			gain_fuel(fuel_gain)
 
+var loadedAbilities = {}
+
 func load_ability(name):
-	var scene = load("res://scenes/abilities/" + name + "/" + name + ".tscn")
-	var scene_instance = scene.instantiate()
-	add_child(scene_instance)
-	return scene_instance
+	if loadedAbilities.has(name):
+		var scene_instance = loadedAbilities[name]
+		return scene_instance
+	else:
+		var scene = load("res://scenes/abilities/" + name + "/" + name + ".tscn")
+		var scene_instance = scene.instantiate()
+		add_child(scene_instance)
+		loadedAbilities[name] = scene_instance
+		return scene_instance
 
 func _physics_process(delta):
 	if not alive:

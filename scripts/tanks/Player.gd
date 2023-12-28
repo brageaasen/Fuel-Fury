@@ -2,9 +2,12 @@ extends "res://scripts/tanks/tank.gd"
 
 @export var ammo_storage : int = 30
 var heavy_bullet : PackedScene = load( "res://scenes/bullets/player_bullet.tscn" )
+var machine_gun_bullet : PackedScene = preload("res://scenes/bullets/machine_gun_bullet.tscn")
 
 @onready var tank_trail = $TankTrail/Particles
 @onready var tank_trail_2 = $TankTrail2/Particles
+
+@onready var gun_timer = $GunTimer
 
 
 # Abilities
@@ -65,10 +68,10 @@ func apply_friction(delta):
 func _on_base_ammo_updated(type):
 	if type == "mg" and abilities.has("machine_gun"):
 		load_ability("machine_gun").mg_ammo_storage += 1
-		load_ability("machine_gun").emit_ammo_update()
+		ammo_updated.emit(machine_gun_bullet, load_ability("machine_gun").mg_ammo_storage)
 	else:
-		ammo_updated.emit(heavy_bullet, ammo_storage)
 		ammo_storage += 1
+		ammo_updated.emit(heavy_bullet, ammo_storage)
 
 
 func _on_shoot_signal(bullet, _position, _direction):
@@ -78,6 +81,6 @@ func _on_shoot_signal(bullet, _position, _direction):
 	if bullet_scene_path.match("*player_bullet*"):
 		ammo_storage -= 1
 		ammo_updated.emit(bullet, ammo_storage)
-	elif bullet_scene_path.match("*machine_gun_bullet*") and abilities.has("machine_gun"):
+	if bullet_scene_path.match("*machine_gun_bullet*") and abilities.has("machine_gun"):
 		load_ability("machine_gun").mg_ammo_storage -= 1
-		load_ability("machine_gun").emit_ammo_update()
+		ammo_updated.emit(machine_gun_bullet, load_ability("machine_gun").mg_ammo_storage)

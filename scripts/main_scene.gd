@@ -4,14 +4,17 @@ extends Node2D
 var audio_manager
 var current_score = 0
 
+@onready var player = $Player
+
 func _init():
 	randomize()
-
 func _ready():
 	audio_manager = get_parent().get_node("AudioManager")
 
 func _on_Tank_shootSignal(bullet, _position, _direction):
 	var b = bullet.instantiate()
+	b.scale *= player.bullet_scale_multiplier
+	b.damage *= player.bullet_damage_multiplier
 	add_child(b)
 	b.start(_position, _direction)
 	b.connect("explode_particles", _on_explode_particles_signal) # Connect
@@ -26,8 +29,17 @@ func _on_explode_particles_signal(explosion_particles, _position):
 
 
 func _on_enemy_tank_died(score_value, experience_drop, fuel_drop, _position):
+	# Increase score of game
 	get_parent().increase_score(score_value)
 	get_node("MainCamera/HUD/Score").text = "[center]Score: " + str(get_parent().score)
+	
+	# Death particles
+	var explosion_particles = preload("res://scenes/particles/death_explosion.tscn")
+	var p = explosion_particles.instantiate()
+	add_child(p)
+	p.global_position = _position
+	
+	# Loot
 	var e = experience_drop.instantiate()
 	var f = fuel_drop.instantiate()
 	# Spawn experience

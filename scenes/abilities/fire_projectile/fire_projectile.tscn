@@ -6,5 +6,5 @@
 [node name="fire_projectile" type="Node2D"]
 script = ExtResource("1_pe2wr")
 title = "Let There Be Light"
-info = "Adds a new explosion to your bullets, with a new effect!"
+info = "New bullet, with blasting fire explosion! (Longer cooldown..)"
 image = ExtResource("2_j0dim")
