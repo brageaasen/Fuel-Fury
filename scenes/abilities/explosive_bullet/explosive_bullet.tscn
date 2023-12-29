@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bawii2air0tij"]
+
+[ext_resource type="Script" path="res://scripts/abilities/explosive_bullet.gd" id="1_h3uni"]
+[ext_resource type="Texture2D" uid="uid://cw03fqjdrhyp6" path="res://assets/sprites/explosive_bullet_icon.png" id="2_xjmoh"]
+
+[node name="ExplosiveBullet" type="Node2D"]
+script = ExtResource("1_h3uni")
+title = "The Big Bang"
+info = "Explosive bullets!"
+image = ExtResource("2_xjmoh")

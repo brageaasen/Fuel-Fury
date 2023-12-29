@@ -1,0 +1,71 @@
+[gd_scene load_steps=10 format=3 uid="uid://5tblp864a8cb"]
+
+[ext_resource type="Script" path="res://scripts/particles/fire_explosion.gd" id="1_h43nr"]
+[ext_resource type="Texture2D" uid="uid://cd4vde4tk7v4b" path="res://assets/sprites/grey_explosion.png" id="2_fu0ie"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_pgbpn"]
+particles_animation = true
+particles_anim_h_frames = 8
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_fy8og"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0.0114943, 147.789), 0.0, 0.0, 0, 0, Vector2(1, -140.211), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_8o20n"]
+width = 200
+curve = SubResource("Curve_fy8og")
+
+[sub_resource type="Curve" id="Curve_1x5bt"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_oubt6"]
+width = 2048
+curve = SubResource("Curve_1x5bt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6y3yw"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 40.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_curve = SubResource("CurveTexture_8o20n")
+scale_curve = SubResource("CurveTexture_oubt6")
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4qhek"]
+
+[node name="ImpactExplosion" type="Node2D"]
+z_index = 10
+script = ExtResource("1_h43nr")
+
+[node name="Particles" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_pgbpn")
+emitting = false
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_6y3yw")
+texture = ExtResource("2_fu0ie")
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+
+[node name="SplashRadius" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SplashRadius"]
+scale = Vector2(5, 5)
+shape = SubResource("CircleShape2D_4qhek")
+
+[connection signal="body_entered" from="SplashRadius" to="." method="_on_splash_radius_body_entered"]

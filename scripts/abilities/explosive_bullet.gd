@@ -3,10 +3,10 @@ extends "res://scripts/abilities/ability.gd"
 @export var new_gun_cooldown = 1
 
 func _ready():
-	_name = "fire_projectile"
+	_name = "explosive_bullet"
 
 func execute(s):
 	# Change the bullet of the player
-	s.Bullet = load("res://scenes/bullets/fire_bullet.tscn")
+	s.Bullet = load("res://scenes/bullets/explosive_bullet.tscn")
 	s.gun_cooldown = new_gun_cooldown
 	s.gun_timer.wait_time = new_gun_cooldown
