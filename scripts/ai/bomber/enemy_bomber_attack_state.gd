@@ -1,4 +1,4 @@
-class_name EnemyTankAttackState
+class_name EnemyBomberAttackState
 
 extends State
 

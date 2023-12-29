@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://5tblp864a8cb"]
+[gd_scene load_steps=12 format=3 uid="uid://5tblp864a8cb"]
 
 [ext_resource type="Script" path="res://scripts/particles/fire_explosion.gd" id="1_h43nr"]
 [ext_resource type="Texture2D" uid="uid://cd4vde4tk7v4b" path="res://assets/sprites/grey_explosion.png" id="2_fu0ie"]
@@ -19,6 +19,13 @@ point_count = 2
 width = 200
 curve = SubResource("Curve_fy8og")
 
+[sub_resource type="Gradient" id="Gradient_sjjtk"]
+offsets = PackedFloat32Array(0, 0.585366, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.355103, 1, 1, 1, 0.32549)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1ylmj"]
+gradient = SubResource("Gradient_sjjtk")
+
 [sub_resource type="Curve" id="Curve_1x5bt"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
@@ -35,12 +42,13 @@ particle_flag_disable_z = true
 direction = Vector3(0, 0, 0)
 spread = 180.0
 gravity = Vector3(0, 0, 0)
-initial_velocity_min = 20.0
-initial_velocity_max = 40.0
+initial_velocity_min = 40.0
+initial_velocity_max = 60.0
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
 angle_curve = SubResource("CurveTexture_8o20n")
 scale_curve = SubResource("CurveTexture_oubt6")
+color_ramp = SubResource("GradientTexture1D_1ylmj")
 anim_speed_min = 1.0
 anim_speed_max = 1.0
 
@@ -53,10 +61,10 @@ script = ExtResource("1_h43nr")
 [node name="Particles" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_pgbpn")
 emitting = false
-amount = 32
+amount = 64
 process_material = SubResource("ParticleProcessMaterial_6y3yw")
 texture = ExtResource("2_fu0ie")
-lifetime = 3.0
+lifetime = 1.5
 one_shot = true
 explosiveness = 1.0
 randomness = 1.0
@@ -65,7 +73,7 @@ randomness = 1.0
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SplashRadius"]
-scale = Vector2(5, 5)
+scale = Vector2(4, 4)
 shape = SubResource("CircleShape2D_4qhek")
 
 [connection signal="body_entered" from="SplashRadius" to="." method="_on_splash_radius_body_entered"]

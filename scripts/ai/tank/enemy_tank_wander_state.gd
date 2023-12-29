@@ -9,6 +9,8 @@ var obstacle_raycasts = []
 @onready var enemy_tank = $"../.."
 @onready var body = $"../../Body"
 @onready var weapon = $"../../Weapon"
+@onready var tank_trail = $"../../TankTrail/Particles"
+@onready var tank_trail_2 = $"../../TankTrail2/Particles"
 
 const WANDER_CIRCLE_RADIUS : int = 8
 const WANDER_RANDOMNESS : float = 0.2
@@ -30,6 +32,8 @@ func _ready():
 func _enter_state() -> void:
 	set_physics_process(true)
 	animator.play("move")
+	tank_trail.emitting = false
+	tank_trail_2.emitting = false
 
 func _exit_state() -> void:
 	set_physics_process(false)
@@ -65,6 +69,9 @@ func _physics_process(delta):
 		if collider == player:
 			found_player.emit()
 			collider = null
+
+
+# Steering Calculation
 
 # Calculate a random wander steering
 func wander_steering() -> Vector2:

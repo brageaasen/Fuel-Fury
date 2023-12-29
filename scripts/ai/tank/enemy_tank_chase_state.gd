@@ -7,6 +7,8 @@ extends State
 @export var ray_cast_player : RayCast2D
 
 @onready var weapon = $"../../Weapon"
+@onready var tank_trail = $"../../TankTrail/Particles"
+@onready var tank_trail_2 = $"../../TankTrail2/Particles"
 
 var player # Reference to the player node
 
@@ -20,6 +22,8 @@ func _ready() -> void:
 func _enter_state() -> void:
 	set_physics_process(true)
 	animator.play("move")
+	tank_trail.emitting = true
+	tank_trail_2.emitting = true
 
 func _exit_state() -> void:
 	set_physics_process(false)

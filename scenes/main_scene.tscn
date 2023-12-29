@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://darkjs45idgh1"]
+[gd_scene load_steps=22 format=3 uid="uid://darkjs45idgh1"]
 
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_x0pv1"]
 [ext_resource type="PackedScene" uid="uid://crc5y0yl542nf" path="res://scenes/map/map.tscn" id="2_6msir"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://ba1h2yk2m8uj8" path="res://scenes/items/experience.tscn" id="13_5wmd7"]
 [ext_resource type="PackedScene" uid="uid://bn0crofij5cnc" path="res://scenes/enemy/enemy_tank.tscn" id="14_cd3tj"]
 [ext_resource type="PackedScene" uid="uid://c7m44hs4dccln" path="res://scenes/enemy/spawner.tscn" id="14_xe4kn"]
+[ext_resource type="PackedScene" uid="uid://c8hace4v5se8t" path="res://scenes/enemy/enemy_bomber.tscn" id="15_0fe8i"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lsplo"]
 texture = ExtResource("2_o7rec")
@@ -1160,8 +1161,31 @@ collision_mask = 2
 position = Vector2(88, -40)
 collision_mask = 2
 
+[node name="Experience5" parent="." instance=ExtResource("13_5wmd7")]
+position = Vector2(105, -22)
+collision_mask = 2
+
+[node name="Experience6" parent="." instance=ExtResource("13_5wmd7")]
+position = Vector2(105, 3)
+collision_mask = 2
+
+[node name="Experience7" parent="." instance=ExtResource("13_5wmd7")]
+position = Vector2(81, -60)
+collision_mask = 2
+
+[node name="Experience8" parent="." instance=ExtResource("13_5wmd7")]
+position = Vector2(44, -56)
+collision_mask = 2
+
+[node name="Experience9" parent="." instance=ExtResource("13_5wmd7")]
+position = Vector2(55, -23)
+collision_mask = 2
+
 [node name="EnemyTank" parent="." instance=ExtResource("14_cd3tj")]
 position = Vector2(-17, 32)
+
+[node name="EnemyBomber" parent="." instance=ExtResource("15_0fe8i")]
+position = Vector2(110, -68)
 
 [connection signal="ammo_updated" from="Base" to="Player" method="_on_base_ammo_updated"]
 [connection signal="entered_base" from="Base" to="Player" method="add_fuel_to_base"]
