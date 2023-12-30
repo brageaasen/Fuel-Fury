@@ -1,6 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://bkmsd5ft7ix2f"]
+[gd_scene load_steps=13 format=3 uid="uid://cbjhhtisk4p0r"]
 
-[ext_resource type="Script" path="res://scripts/particles/fire_explosion.gd" id="1_mnrfi"]
+[ext_resource type="Script" path="res://scripts/particles/fire_explosion.gd" id="1_4y31d"]
 
 [sub_resource type="Curve" id="Curve_fy8og"]
 min_value = -360.0
@@ -72,9 +72,9 @@ color_ramp = SubResource("GradientTexture1D_gjuh2")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4qhek"]
 
-[node name="FireExplosion" type="Node2D"]
+[node name="PlayerFireExplosion" type="Node2D"]
 z_index = 11
-script = ExtResource("1_mnrfi")
+script = ExtResource("1_4y31d")
 
 [node name="ParticlesFire" type="GPUParticles2D" parent="."]
 emitting = false
@@ -93,7 +93,7 @@ explosiveness = 1.0
 randomness = 1.0
 
 [node name="SplashRadius" type="Area2D" parent="."]
-collision_mask = 2
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SplashRadius"]
 scale = Vector2(5, 5)

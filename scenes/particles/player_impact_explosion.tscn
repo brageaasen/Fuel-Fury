@@ -1,7 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://5tblp864a8cb"]
+[gd_scene load_steps=12 format=3 uid="uid://d0gov2i3m35v2"]
 
-[ext_resource type="Script" path="res://scripts/particles/impact_explosion.gd" id="1_8l2qk"]
-[ext_resource type="Texture2D" uid="uid://cd4vde4tk7v4b" path="res://assets/sprites/grey_explosion.png" id="2_fu0ie"]
+[ext_resource type="Script" path="res://scripts/particles/impact_explosion.gd" id="1_s7ibd"]
+[ext_resource type="Texture2D" uid="uid://cd4vde4tk7v4b" path="res://assets/sprites/grey_explosion.png" id="2_sqm8n"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_pgbpn"]
 particles_animation = true
@@ -56,21 +56,21 @@ anim_speed_max = 1.0
 
 [node name="ImpactExplosion" type="Node2D"]
 z_index = 10
-script = ExtResource("1_8l2qk")
+script = ExtResource("1_s7ibd")
 
 [node name="Particles" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_pgbpn")
 emitting = false
 amount = 64
 process_material = SubResource("ParticleProcessMaterial_6y3yw")
-texture = ExtResource("2_fu0ie")
+texture = ExtResource("2_sqm8n")
 lifetime = 1.5
 one_shot = true
 explosiveness = 1.0
 randomness = 1.0
 
 [node name="SplashRadius" type="Area2D" parent="."]
-collision_mask = 2
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SplashRadius"]
 scale = Vector2(4, 4)

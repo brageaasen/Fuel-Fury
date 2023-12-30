@@ -57,7 +57,7 @@ func _on_enemy_tank_died(score_value, experience_drop, fuel_drop, explosion_part
 
 # Enemy types to spawn
 var enemy_list = [
-	preload("res://scenes/enemy/enemy_tank.tscn"),
+	#preload("res://scenes/enemy/enemy_tank.tscn"),
 	preload("res://scenes/enemy/enemy_bomber.tscn")
 ]
 

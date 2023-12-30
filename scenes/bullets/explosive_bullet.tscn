@@ -2,13 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://bocuou03h0uf3" path="res://scenes/bullets/bullet.tscn" id="1_0b5qm"]
 [ext_resource type="Script" path="res://scripts/bullets/explosive_bullet.gd" id="2_74oih"]
-[ext_resource type="PackedScene" uid="uid://5tblp864a8cb" path="res://scenes/particles/impact_explosion.tscn" id="3_i2eup"]
+[ext_resource type="PackedScene" uid="uid://d0gov2i3m35v2" path="res://scenes/particles/player_impact_explosion.tscn" id="3_1rvi4"]
 [ext_resource type="PackedScene" uid="uid://nlvvt6hpx8jp" path="res://scenes/particles/smoke_trail.tscn" id="4_a7fbg"]
 
 [node name="ExplosiveBullet" instance=ExtResource("1_0b5qm")]
 collision_mask = 5
 script = ExtResource("2_74oih")
-explosion_particles = ExtResource("3_i2eup")
+explosion_particles = ExtResource("3_1rvi4")
 speed = 250
 damage = 20
 lifetime = 3.0

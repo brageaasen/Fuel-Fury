@@ -4,6 +4,7 @@ extends Node2D
 
 @onready var particles_fire = $ParticlesFire
 @onready var particles_fire_2 = $ParticlesFire2
+@onready var splash_radius = $SplashRadius
 
 func _ready():
 	particles_fire.emitting = true
@@ -15,3 +16,7 @@ func _process(delta):
 func _on_splash_radius_body_entered(body):
 	if body.has_method("burn"):
 		body.burn(burn_damage)
+
+func _on_impact_duration_timeout():
+	splash_radius.process_mode = PROCESS_MODE_DISABLED
+	splash_radius.visible = false
