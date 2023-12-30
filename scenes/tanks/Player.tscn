@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://c27lt7vwi1j4f"]
+[gd_scene load_steps=11 format=3 uid="uid://c27lt7vwi1j4f"]
 
 [ext_resource type="PackedScene" uid="uid://dy2ak8axbab1p" path="res://scenes/tanks/tank.tscn" id="1_mvslc"]
 [ext_resource type="Script" path="res://scripts/tanks/player.gd" id="2_irr7l"]
 [ext_resource type="PackedScene" uid="uid://c6l7quk1tdtpf" path="res://scenes/bullets/player_bullet.tscn" id="3_dd57m"]
 [ext_resource type="Texture2D" uid="uid://clc3i6mhj7qx3" path="res://assets/sprites/player_sheet.png" id="4_sp5a3"]
 [ext_resource type="PackedScene" uid="uid://2oy0fk14a5sc" path="res://scenes/particles/tank_trail.tscn" id="5_ggb4l"]
+[ext_resource type="PackedScene" uid="uid://bo1dpf7iwmhyj" path="res://scenes/particles/burn.tscn" id="6_xvjiv"]
 
 [sub_resource type="Animation" id="Animation_4jnfs"]
 length = 0.001
@@ -83,6 +84,11 @@ position = Vector2(-8, -5)
 
 [node name="TankTrail2" parent="." index="8" instance=ExtResource("5_ggb4l")]
 position = Vector2(-8, 5)
+
+[node name="BurnTimer" type="Timer" parent="." index="9"]
+one_shot = true
+
+[node name="Burn" parent="." index="10" instance=ExtResource("6_xvjiv")]
 
 [connection signal="shootSignal" from="." to="." method="_on_shoot_signal"]
 [connection signal="timeout" from="GunTimer" to="." method="_on_GunTimer_timeout"]

@@ -6,7 +6,6 @@ extends State
 @export var ray_cast_player : RayCast2D
 
 @onready var enemy_bomber = $"../.."
-@onready var trail = $"../../Trail/Particles"
 
 var player # Reference to the player node
 
@@ -29,25 +28,23 @@ func _ready() -> void:
 func _enter_state() -> void:
 	set_physics_process(true)
 	animator.play("move")
-	trail.emitting = true
 
 func _exit_state() -> void:
 	set_physics_process(false)
 
 func _physics_process(delta) -> void:
+	if not actor.alive:
+		return
 	if actor.target:
 		# Raycast
 		var dir = player.global_position - actor.global_position
 		ray_cast_player.look_at(actor.global_position + dir)
 		
+		# Flip Bomber towards player x position
+		actor.get_node("Body").flip_h = actor.to_local(player.global_position).x < 0
 		
 		# Rotate the enemy bomber towards the player's x direction
 		var direction = player.global_position - actor.global_position  # Calculate the direction along the X-axis
-		var angle = atan2(direction.x, 1)  # Calculate the angle in radians
-
-		# Convert the angle to degrees and set the rotation of the actor
-		actor.rotation_degrees = rad_to_deg(angle)
-		
 		# Add steering to the velocity of the enemy
 		var steering = Vector2.ZERO
 		steering += avoid_obstacles_steering()

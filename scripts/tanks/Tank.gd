@@ -8,6 +8,8 @@ signal leveled_up
 signal fuel_changed
 signal died
 
+@onready var burn_timer = $BurnTimer
+
 var death_signal_emitted = false
 
 var audio_manager
@@ -86,8 +88,17 @@ func shoot(bullet):
 		var recoil_increment = max_recoil * 0.1
 		current_recoil = clamp(current_recoil + recoil_increment, 0.0, max_recoil)
 		
-		
 		emit_signal("shootSignal", bullet, $Weapon/Muzzle.global_position, actual_bullet_direction)
+
+var burn_count = 0
+var burn_damage
+func burn(damage):
+	# Play burn particles
+	$Burn.emitting = true
+	# Apply damage
+	burn_damage = damage
+	take_damage(damage)
+	burn_timer.start()
 
 func take_damage(damage):
 	# Play sound effect
@@ -195,5 +206,4 @@ func _on_MachineGunTimer_timeout():
 
 func _on_fuel_usage_timer_timeout():
 	fuel -= fuel_usage
-	
 	emit_signal("fuel_changed", fuel * 100/max_fuel)

@@ -1,6 +1,5 @@
 extends "res://scripts/ai/enemy.gd"
 
-
 @onready var burn_timer = $BurnTimer
 @onready var animation_player = $AnimationPlayer
 @onready var ray_cast_player = $PlayerDetection
@@ -12,7 +11,7 @@ var player # Reference to the player node or position
 var target_dir
 
 func _ready():
-	super._ready() # Make parent also run its ready function
+	super._ready() # Make parent also run its ready functiona
 	player = get_node("/root/Game/MainScene/Player")
 	burn_timer.wait_time = 2
 	ray_cast_player.target_position.x = detect_radius
@@ -24,26 +23,19 @@ func _ready():
 
 
 func die():
-	alive = false
 	queue_free()
-	emit_signal("died", score_value, experience_drop, null, global_position)
+	emit_signal("died", score_value, experience_drop, null, preload("res://scenes/particles/fire_explosion.tscn"), global_position)
 
-
-func shoot(bullet):
-	# Find path of bullet scene
-	var bullet_scene_path = bullet.get_path().get_file()
-	
-	# Check if allowed to shoot
-	if can_shoot:
-		can_shoot = false
-		#emit_signal("shootSignal", bullet, $Weapon/Muzzle.global_position, actual_bullet_direction)
 
 func take_damage(damage):
+	if not alive:
+		return
 	animation_player.play("take_damage")
 	health -= damage
 	emit_signal("health_changed", health * 100/max_health)
 	if (health <= 0):
-		die() # Destroy object
+		alive = false
+		animation_player.play("explode") # Destroy object
 
 var burn_count = 0
 var burn_damage

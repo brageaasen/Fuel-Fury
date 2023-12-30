@@ -7,8 +7,8 @@
 [ext_resource type="Script" path="res://scripts/ai/bomber/enemy_bomber_chase_state.gd" id="7_qf1gq"]
 [ext_resource type="Script" path="res://scripts/ai/bomber/enemy_bomber_attack_state.gd" id="8_82gv3"]
 [ext_resource type="Script" path="res://scripts/ai/finite_state_machine.gd" id="8_ajm7g"]
-[ext_resource type="PackedScene" uid="uid://di6kx544mafbb" path="res://scenes/particles/fire_trail.tscn" id="10_whpok"]
 [ext_resource type="PackedScene" uid="uid://bo1dpf7iwmhyj" path="res://scenes/particles/burn.tscn" id="12_p2pjn"]
+[ext_resource type="PackedScene" uid="uid://2oy0fk14a5sc" path="res://scenes/particles/tank_trail.tscn" id="13_pdeif"]
 
 [sub_resource type="Animation" id="Animation_rg8k7"]
 length = 0.001
@@ -62,7 +62,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(1, 1.5, 2, 2.5, 3, 3.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 0.470588, 0.470588, 1), Color(1, 1, 1, 1), Color(1, 0.470588, 0.470588, 1), Color(1, 1, 1, 1), Color(1, 0.470588, 0.470588, 1)]
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1)]
 }
 tracks/2/type = "method"
 tracks/2/imported = false
@@ -217,8 +217,8 @@ collision_mask = 3
 [node name="Burn" parent="." index="15" instance=ExtResource("12_p2pjn")]
 position = Vector2(-3, 8)
 
-[node name="FireTrail" parent="." index="16" instance=ExtResource("10_whpok")]
-position = Vector2(-0.5, -6)
+[node name="Trail" parent="." index="16" instance=ExtResource("13_pdeif")]
+position = Vector2(-1, 4)
 
 [connection signal="timeout" from="GunTimer" to="." method="_on_GunTimer_timeout"]
 [connection signal="timeout" from="MachineGunTimer" to="." method="_on_MachineGunTimer_timeout"]

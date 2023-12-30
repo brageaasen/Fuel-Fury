@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://5tblp864a8cb"]
 
-[ext_resource type="Script" path="res://scripts/particles/fire_explosion.gd" id="1_h43nr"]
+[ext_resource type="Script" path="res://scripts/particles/impact_explosion.gd" id="1_8l2qk"]
 [ext_resource type="Texture2D" uid="uid://cd4vde4tk7v4b" path="res://assets/sprites/grey_explosion.png" id="2_fu0ie"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_pgbpn"]
@@ -56,7 +56,7 @@ anim_speed_max = 1.0
 
 [node name="ImpactExplosion" type="Node2D"]
 z_index = 10
-script = ExtResource("1_h43nr")
+script = ExtResource("1_8l2qk")
 
 [node name="Particles" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_pgbpn")

@@ -1185,7 +1185,7 @@ collision_mask = 2
 position = Vector2(-17, 32)
 
 [node name="EnemyBomber" parent="." instance=ExtResource("15_0fe8i")]
-position = Vector2(110, -68)
+position = Vector2(168, 60)
 
 [connection signal="ammo_updated" from="Base" to="Player" method="_on_base_ammo_updated"]
 [connection signal="entered_base" from="Base" to="Player" method="add_fuel_to_base"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c8hace4v5se8t"]
+[gd_scene load_steps=15 format=3 uid="uid://c8hace4v5se8t"]
 
 [ext_resource type="PackedScene" uid="uid://cs306kobnhuyg" path="res://scenes/enemy/enemy.tscn" id="1_dpo1a"]
 [ext_resource type="Script" path="res://scripts/ai/bomber/enemy_bomber.gd" id="2_tu5iu"]
@@ -7,8 +7,8 @@
 [ext_resource type="Script" path="res://scripts/ai/bomber/enemy_bomber_chase_state.gd" id="7_qf1gq"]
 [ext_resource type="Script" path="res://scripts/ai/bomber/enemy_bomber_attack_state.gd" id="8_82gv3"]
 [ext_resource type="Script" path="res://scripts/ai/finite_state_machine.gd" id="8_ajm7g"]
-[ext_resource type="PackedScene" uid="uid://di6kx544mafbb" path="res://scenes/particles/fire_trail.tscn" id="10_whpok"]
 [ext_resource type="PackedScene" uid="uid://bo1dpf7iwmhyj" path="res://scenes/particles/burn.tscn" id="12_p2pjn"]
+[ext_resource type="PackedScene" uid="uid://2oy0fk14a5sc" path="res://scenes/particles/tank_trail.tscn" id="13_pdeif"]
 
 [sub_resource type="Animation" id="Animation_rg8k7"]
 length = 0.001
@@ -23,60 +23,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [Vector2i(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Body:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [4]
-}
-
-[sub_resource type="Animation" id="Animation_tdfqm"]
-resource_name = "explode"
-length = 4.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Body:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [4, 5, 6, 7, 8, 9, 10]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Body:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(1, 1.5, 2, 2.5, 3, 3.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 0.470588, 0.470588, 1), Color(1, 1, 1, 1), Color(1, 0.470588, 0.470588, 1), Color(1, 1, 1, 1), Color(1, 0.470588, 0.470588, 1)]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(4),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"die"
-}]
 }
 
 [sub_resource type="Animation" id="Animation_il4o6"]
@@ -144,7 +90,6 @@ tracks/1/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1ywkr"]
 _data = {
 "RESET": SubResource("Animation_rg8k7"),
-"explode": SubResource("Animation_tdfqm"),
 "idle": SubResource("Animation_il4o6"),
 "move": SubResource("Animation_dap7q"),
 "take_damage": SubResource("Animation_y6aga")
@@ -156,7 +101,7 @@ score_value = 1
 max_health = 20
 experience_drop = ExtResource("5_eoh41")
 attack_range = 20.0
-detect_radius = 10000
+detect_radius = 2
 
 [node name="CollisionShape2D" parent="." index="0"]
 position = Vector2(-0.5, -0.5)
@@ -169,8 +114,7 @@ libraries = {
 
 [node name="Body" parent="." index="2"]
 texture = ExtResource("4_8pn7h")
-hframes = 11
-frame = 4
+hframes = 4
 
 [node name="BurnTimer" type="Timer" parent="." index="6"]
 one_shot = true
@@ -217,8 +161,8 @@ collision_mask = 3
 [node name="Burn" parent="." index="15" instance=ExtResource("12_p2pjn")]
 position = Vector2(-3, 8)
 
-[node name="FireTrail" parent="." index="16" instance=ExtResource("10_whpok")]
-position = Vector2(-0.5, -6)
+[node name="Trail" parent="." index="16" instance=ExtResource("13_pdeif")]
+position = Vector2(-1, 4)
 
 [connection signal="timeout" from="GunTimer" to="." method="_on_GunTimer_timeout"]
 [connection signal="timeout" from="MachineGunTimer" to="." method="_on_MachineGunTimer_timeout"]

@@ -28,20 +28,18 @@ func _on_explode_particles_signal(explosion_particles, _position):
 	p.global_position = _position
 
 
-func _on_enemy_tank_died(score_value, experience_drop, fuel_drop, _position):
+func _on_enemy_tank_died(score_value, experience_drop, fuel_drop, explosion_particles, _position):
 	# Increase score of game
 	get_parent().increase_score(score_value)
 	get_node("MainCamera/HUD/Score").text = "[center]Score: " + str(get_parent().score)
 	
 	# Death particles
-	var explosion_particles = preload("res://scenes/particles/death_explosion.tscn")
 	var p = explosion_particles.instantiate()
 	add_child(p)
 	p.global_position = _position
 	
-	# Loot
+	## Loot
 	var e = experience_drop.instantiate()
-	var f = fuel_drop.instantiate()
 	# Spawn experience
 	add_child(e)
 	var randomAngle = randf_range(0, 360)
@@ -49,14 +47,18 @@ func _on_enemy_tank_died(score_value, experience_drop, fuel_drop, _position):
 	e.spawn(_position, randomDirection)
 	
 	# Spawn fuel
-	add_child(f)
-	randomAngle = randf_range(0, 360)
-	randomDirection = Vector2.RIGHT.rotated(deg_to_rad(randomAngle))
-	f.spawn(_position, randomDirection)
+	var f
+	if fuel_drop != null:
+		f = fuel_drop.instantiate()
+		add_child(f)
+		randomAngle = randf_range(0, 360)
+		randomDirection = Vector2.RIGHT.rotated(deg_to_rad(randomAngle))
+		f.spawn(_position, randomDirection)
 
 # Enemy types to spawn
 var enemy_list = [
-	preload("res://scenes/enemy/enemy_tank.tscn")
+	preload("res://scenes/enemy/enemy_tank.tscn"),
+	preload("res://scenes/enemy/enemy_bomber.tscn")
 ]
 
 func _on_spawn_timer_timeout():

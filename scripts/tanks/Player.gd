@@ -6,7 +6,6 @@ var machine_gun_bullet : PackedScene = preload("res://scenes/bullets/machine_gun
 
 @onready var tank_trail = $TankTrail/Particles
 @onready var tank_trail_2 = $TankTrail2/Particles
-
 @onready var gun_timer = $GunTimer
 
 
