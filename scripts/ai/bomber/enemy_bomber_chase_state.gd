@@ -21,6 +21,7 @@ signal attack_player
 func _ready() -> void:
 	set_physics_process(false)
 	player = get_node("/root/Game/MainScene/Player")
+	actor.avoid_force = 150
 	for child in enemy_bomber.get_children():
 		if child is RayCast2D and child.name.find("ObstacleDetection") != -1:
 			obstacle_raycasts.append(child)
@@ -45,16 +46,16 @@ func _physics_process(delta) -> void:
 		
 		# Rotate the enemy bomber towards the player's x direction
 		var direction = player.global_position - actor.global_position  # Calculate the direction along the X-axis
+		
 		# Add steering to the velocity of the enemy
 		var steering = Vector2.ZERO
 		steering += avoid_obstacles_steering()
 		steering = steering.limit_length(actor.max_steering)
 		
+		# Move the bomber forward in the direction towards the player
 		actor.velocity += steering
 		actor.velocity += direction.normalized() * actor.max_speed
 		actor.velocity = actor.velocity.limit_length(actor.max_speed)
-		
-		# Move the bomber forward in the direction towards the player
 		actor.move_and_slide()
 		
 		# Check if enemy tank should change current state to attack

@@ -59,6 +59,14 @@ func move_and_rotate(delta):
 	if velocity == Vector2.ZERO:
 		tank_trail.emitting = false
 		tank_trail_2.emitting = false
+	print(bullet_inventory)
+	# Change bullet type
+	if Input.is_action_pressed("use_bullet_1"):
+		change_bullet(1)
+	if Input.is_action_pressed("use_bullet_2"):
+		change_bullet(2)
+	if Input.is_action_pressed("use_bullet_3"):
+		change_bullet(3)
 
 # Remove?
 func apply_friction(delta):

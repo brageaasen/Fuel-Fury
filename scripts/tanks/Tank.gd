@@ -26,6 +26,7 @@ var experience = 0
 var experience_to_level = 1
 var alive = true
 var inventory : Dictionary = {}
+var bullet_inventory = ["player_bullet"]
 var main_camera
 
 # Movement
@@ -89,6 +90,24 @@ func shoot(bullet):
 		current_recoil = clamp(current_recoil + recoil_increment, 0.0, max_recoil)
 		
 		emit_signal("shootSignal", bullet, $Weapon/Muzzle.global_position, actual_bullet_direction)
+
+func change_bullet(bullet_number):
+	# Check if player has bullet
+	if bullet_number - 1 > bullet_inventory.size():
+		return
+	var bullet = bullet_inventory[bullet_number - 1]
+	
+	# Change the bullet of the player
+	# Normal bullet
+	if bullet == "player_bullet":
+		Bullet = load("res://scenes/bullets/player_bullet.tscn")
+		gun_cooldown = 0.5
+		$GunTimer.wait_time = 0.5
+	# Ability bullet
+	else:
+		Bullet = loaded_abilities[bullet]
+		gun_cooldown = load_ability(bullet).new_gun_cooldown
+		$GunTimer.wait_time = load_ability(bullet).new_gun_cooldown
 
 var burn_count = 0
 var burn_damage
@@ -163,17 +182,17 @@ func add_fuel_to_base():
 			remove_from_inventory(Fuel)
 			gain_fuel(fuel_gain)
 
-var loadedAbilities = {}
+var loaded_abilities = {}
 
 func load_ability(name):
-	if loadedAbilities.has(name):
-		var scene_instance = loadedAbilities[name]
+	if loaded_abilities.has(name):
+		var scene_instance = loaded_abilities[name]
 		return scene_instance
 	else:
 		var scene = load("res://scenes/abilities/" + name + "/" + name + ".tscn")
 		var scene_instance = scene.instantiate()
 		add_child(scene_instance)
-		loadedAbilities[name] = scene_instance
+		loaded_abilities[name] = scene_instance
 		return scene_instance
 
 func _physics_process(delta):

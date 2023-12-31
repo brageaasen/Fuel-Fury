@@ -10,3 +10,5 @@ func execute(s):
 	s.Bullet = load("res://scenes/bullets/fire_bullet.tscn")
 	s.gun_cooldown = new_gun_cooldown
 	s.gun_timer.wait_time = new_gun_cooldown
+	# Add bullety type to inventory of player
+	s.bullet_inventory.append(_name)

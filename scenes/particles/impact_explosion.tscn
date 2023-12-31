@@ -73,7 +73,7 @@ randomness = 1.0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SplashRadius"]
-scale = Vector2(4, 4)
+scale = Vector2(3.5, 3.5)
 shape = SubResource("CircleShape2D_4qhek")
 
 [node name="ImpactDuration" type="Timer" parent="."]
