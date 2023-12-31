@@ -105,9 +105,19 @@ func change_bullet(bullet_number):
 		$GunTimer.wait_time = 0.5
 	# Ability bullet
 	else:
-		Bullet = load(load_ability(bullet).path)
+		Bullet = load(load_ability(bullet).bullet_path)
 		gun_cooldown = load_ability(bullet).new_gun_cooldown
 		$GunTimer.wait_time = load_ability(bullet).new_gun_cooldown
+	
+	# Visual changing of HUD
+	var hud = get_parent().get_node("MainCamera/HUD")
+	var bullet_choice = hud.get_node("BulletChoice" + str(bullet_number))
+	
+	# TODO: Make previous current bullet hoveranimation visible = false
+	
+	bullet_choice.get_node("Icon").texture = load_ability(bullet).image
+	bullet_choice.get_node("Info").text = "[center]" + str(bullet_number)
+	bullet_choice.get_node("HoverAnimation").visible = true
 
 var burn_count = 0
 var burn_damage
