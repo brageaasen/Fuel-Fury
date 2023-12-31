@@ -93,7 +93,7 @@ func shoot(bullet):
 
 func change_bullet(bullet_number):
 	# Check if player has bullet
-	if bullet_number - 1 > bullet_inventory.size():
+	if bullet_number > bullet_inventory.size():
 		return
 	var bullet = bullet_inventory[bullet_number - 1]
 	
@@ -105,7 +105,7 @@ func change_bullet(bullet_number):
 		$GunTimer.wait_time = 0.5
 	# Ability bullet
 	else:
-		Bullet = loaded_abilities[bullet]
+		Bullet = load(load_ability(bullet).path)
 		gun_cooldown = load_ability(bullet).new_gun_cooldown
 		$GunTimer.wait_time = load_ability(bullet).new_gun_cooldown
 
