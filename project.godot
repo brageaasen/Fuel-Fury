@@ -22,6 +22,7 @@ ScoreManager="*res://scripts/score_manager.gd"
 
 [display]
 
+window/size/mode=3
 window/size/resizable=false
 window/main_scene="res://Main_Scene.tscn"
 

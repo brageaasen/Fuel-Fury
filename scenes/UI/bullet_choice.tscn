@@ -33,6 +33,7 @@ text = "
 scroll_active = false
 
 [node name="HoverAnimation" parent="." instance=ExtResource("3_fy2qx")]
+visible = false
 position = Vector2(22, 18)
 scale = Vector2(0.6, 0.589)
 animation = &"click"

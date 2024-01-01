@@ -10,6 +10,8 @@ extends "res://scripts/ai/enemy.gd"
 var player # Reference to the player node or position
 var target_dir
 
+@export var heart_drop : PackedScene
+
 func _ready():
 	super._ready() # Make parent also run its ready functiona
 	player = get_node("/root/Game/MainScene/Player")
@@ -24,7 +26,7 @@ func _ready():
 
 func die():
 	queue_free()
-	emit_signal("died", score_value, experience_drop, null, preload("res://scenes/particles/impact_explosion.tscn"), global_position)
+	emit_signal("died", score_value, experience_drop, null, heart_drop, preload("res://scenes/particles/impact_explosion.tscn"), global_position)
 
 
 func take_damage(damage):

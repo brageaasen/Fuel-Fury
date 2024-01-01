@@ -83,7 +83,7 @@ func save_score():
 var abilities_to_display = []
 var iterations
 
-func _on_player_leveled_up():
+func _on_player_leveled_up(level):
 	if possible_abilities.size() == 0:
 		return
 	get_node("MainScene/AnimationPlayer").play("fade_to_black")

@@ -13,3 +13,4 @@ func execute(s):
 	s.gun_timer.wait_time = new_gun_cooldown
 	# Add bullety type to inventory of player
 	s.bullet_inventory.append(_name)
+	s.update_bullet_choice(_name)

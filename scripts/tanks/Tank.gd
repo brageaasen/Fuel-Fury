@@ -45,6 +45,8 @@ var can_shoot = true
 var bullet_scale_multiplier = 1
 var bullet_damage_multiplier = 1
 
+var current_bullet
+
 
 
 func _ready():
@@ -58,6 +60,7 @@ func _ready():
 	$GunTimer.wait_time = gun_cooldown
 	$MachineGunTimer.wait_time = machine_gun_cooldown
 	$FuelUsageTimer.wait_time = fuel_depletion_rate
+	current_bullet = "player_bullet"
 	
 func control(_delta):
 	pass
@@ -95,29 +98,50 @@ func change_bullet(bullet_number):
 	# Check if player has bullet
 	if bullet_number > bullet_inventory.size():
 		return
+	var hud = get_parent().get_node("MainCamera/HUD")
+	var bullet_choice = hud.get_node("BulletChoice" + str(bullet_number))
+	# Make previous current bullet hoveranimation visible = false
+	if current_bullet != null:
+		for i in range(1, 4):
+			if current_bullet in hud.get_node("BulletChoice" + str(i)).get_node("Icon").texture.get_path():
+				hud.get_node("BulletChoice" + str(i)).get_node("HoverAnimation").visible = false
+				break
 	var bullet = bullet_inventory[bullet_number - 1]
+	current_bullet = bullet
 	
-	# Change the bullet of the player
+	## Change the bullet of the player
 	# Normal bullet
 	if bullet == "player_bullet":
 		Bullet = load("res://scenes/bullets/player_bullet.tscn")
 		gun_cooldown = 0.5
 		$GunTimer.wait_time = 0.5
+		bullet_choice.get_node("Icon").texture = preload("res://assets/sprites/player_bullet_icon.png")
+		bullet_choice.get_node("Info").text = "[center]" + "1"
+	
 	# Ability bullet
 	else:
 		Bullet = load(load_ability(bullet).bullet_path)
 		gun_cooldown = load_ability(bullet).new_gun_cooldown
 		$GunTimer.wait_time = load_ability(bullet).new_gun_cooldown
+		
 	
 	# Visual changing of HUD
-	var hud = get_parent().get_node("MainCamera/HUD")
-	var bullet_choice = hud.get_node("BulletChoice" + str(bullet_number))
 	
-	# TODO: Make previous current bullet hoveranimation visible = false
-	
-	bullet_choice.get_node("Icon").texture = load_ability(bullet).image
-	bullet_choice.get_node("Info").text = "[center]" + str(bullet_number)
 	bullet_choice.get_node("HoverAnimation").visible = true
+
+func update_bullet_choice(bullet):
+	var hud = get_parent().get_node("MainCamera/HUD")
+	for i in range(0, bullet_inventory.size()):
+		var texture = hud.get_node("BulletChoice" + str(i + 1)).get_node("Icon").texture
+		if texture != null and current_bullet in texture.get_path():
+			hud.get_node("BulletChoice" + str(i + 1)).get_node("HoverAnimation").visible = false
+		if bullet == bullet_inventory[i]:
+			var bullet_choice = hud.get_node("BulletChoice" + str(i + 1))
+			bullet_choice.get_node("Icon").texture = load_ability(bullet).image
+			bullet_choice.get_node("Info").text = "[center]" + str(i + 1)
+			bullet_choice.get_node("HoverAnimation").visible = true
+			current_bullet = bullet
+			break
 
 var burn_count = 0
 var burn_damage
@@ -176,7 +200,7 @@ func level_up():
 	level += 1
 	experience -= experience_to_level
 	emit_signal("experience_changed", experience * 100/experience_to_level, level)
-	emit_signal("leveled_up")
+	emit_signal("leveled_up", level)
 
 func add_to_inventory(item):
 	if inventory.has(item): inventory[item] = inventory[item] + 1

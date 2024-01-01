@@ -59,7 +59,7 @@ func move_and_rotate(delta):
 	if velocity == Vector2.ZERO:
 		tank_trail.emitting = false
 		tank_trail_2.emitting = false
-	print(bullet_inventory)
+	
 	# Change bullet type
 	if Input.is_action_pressed("use_bullet_1"):
 		change_bullet(1)

@@ -1,6 +1,8 @@
-class_name Fuel
+class_name Heart
 
 extends "res://scripts/items/item.gd"
+
+@export var health_gain = 10
 
 @onready var animation_player = $AnimationPlayer
 
@@ -11,4 +13,4 @@ func play_pickup_sound():
 	pass
 
 func on_pickup_item():
-	player.add_to_inventory(Fuel)
+	player.gain_health(health_gain)

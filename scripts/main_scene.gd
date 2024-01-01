@@ -10,6 +10,7 @@ func _init():
 	randomize()
 func _ready():
 	audio_manager = get_parent().get_node("AudioManager")
+	player.connect("leveled_up", _on_player_leveled_up)
 
 func _on_Tank_shootSignal(bullet, _position, _direction):
 	var b = bullet.instantiate()
@@ -28,7 +29,7 @@ func _on_explode_particles_signal(explosion_particles, _position):
 	p.global_position = _position
 
 
-func _on_enemy_tank_died(score_value, experience_drop, fuel_drop, explosion_particles, _position):
+func _on_enemy_tank_died(score_value, experience_drop, fuel_drop, heart_drop, explosion_particles, _position):
 	# Increase score of game
 	get_parent().increase_score(score_value)
 	get_node("MainCamera/HUD/Score").text = "[center]Score: " + str(get_parent().score)
@@ -54,11 +55,19 @@ func _on_enemy_tank_died(score_value, experience_drop, fuel_drop, explosion_part
 		randomAngle = randf_range(0, 360)
 		randomDirection = Vector2.RIGHT.rotated(deg_to_rad(randomAngle))
 		f.spawn(_position, randomDirection)
+	
+	# Spawn heart
+	var h
+	if heart_drop != null:
+		h = heart_drop.instantiate()
+		add_child(h)
+		randomAngle = randf_range(0, 360)
+		randomDirection = Vector2.RIGHT.rotated(deg_to_rad(randomAngle))
+		h.spawn(_position, randomDirection)
 
 # Enemy types to spawn
 var enemy_list = [
-	#preload("res://scenes/enemy/enemy_tank.tscn"),
-	preload("res://scenes/enemy/enemy_bomber.tscn")
+	preload("res://scenes/enemy/enemy_tank.tscn")
 ]
 
 func _on_spawn_timer_timeout():
@@ -75,3 +84,10 @@ func _on_spawn_timer_timeout():
 	enemy_instance.connect("shootSignal", _on_Tank_shootSignal)
 	enemy_instance.connect("died", _on_enemy_tank_died)
 
+func _on_player_leveled_up(level):
+	# Change difficulty of game
+	if level == 2:
+		enemy_list.append(preload("res://scenes/enemy/enemy_bomber.tscn"))
+	if $SpawnTimer.wait_time > 0.5:
+		$SpawnTimer.wait_time -= 0.2
+	print("Spawntime: " + str($SpawnTimer.wait_time))

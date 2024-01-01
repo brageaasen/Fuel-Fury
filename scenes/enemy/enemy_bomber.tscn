@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://c8hace4v5se8t"]
+[gd_scene load_steps=17 format=3 uid="uid://c8hace4v5se8t"]
 
 [ext_resource type="PackedScene" uid="uid://cs306kobnhuyg" path="res://scenes/enemy/enemy.tscn" id="1_dpo1a"]
 [ext_resource type="Script" path="res://scripts/ai/bomber/enemy_bomber.gd" id="2_tu5iu"]
+[ext_resource type="PackedScene" uid="uid://dt5nldbnh8v0h" path="res://scenes/items/heart.tscn" id="3_wehbs"]
 [ext_resource type="Texture2D" uid="uid://dds2mg7lp6tcw" path="res://assets/sprites/enemy_bomber.png" id="4_8pn7h"]
 [ext_resource type="PackedScene" uid="uid://ba1h2yk2m8uj8" path="res://scenes/items/experience.tscn" id="5_eoh41"]
 [ext_resource type="Script" path="res://scripts/ai/bomber/enemy_bomber_chase_state.gd" id="7_qf1gq"]
@@ -164,6 +165,7 @@ _data = {
 
 [node name="EnemyBomber" instance=ExtResource("1_dpo1a")]
 script = ExtResource("2_tu5iu")
+heart_drop = ExtResource("3_wehbs")
 score_value = 1
 max_health = 20
 experience_drop = ExtResource("5_eoh41")

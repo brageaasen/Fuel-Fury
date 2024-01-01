@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bjj2uflh2plre"]
+[gd_scene load_steps=13 format=3 uid="uid://bjj2uflh2plre"]
 
 [ext_resource type="Script" path="res://scripts/hud/hud.gd" id="1_mtgwt"]
 [ext_resource type="Texture2D" uid="uid://cnb5chdsrk2hw" path="res://assets/sprites/Arrow.png" id="2_0uvut"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://b4j4j1yssrtq" path="res://scenes/UI/info_container.tscn" id="8_1jam8"]
 [ext_resource type="FontFile" uid="uid://beghlpmphs8no" path="res://assets/fonts/kongtext.regular.ttf" id="9_c5ge1"]
 [ext_resource type="PackedScene" uid="uid://bnvulwluwjk7a" path="res://scenes/UI/bullet_choice.tscn" id="10_6x3yk"]
+[ext_resource type="Texture2D" uid="uid://b6see0jlvgqsp" path="res://assets/sprites/player_bullet_icon.png" id="10_utr1a"]
+[ext_resource type="PackedScene" uid="uid://b6oorc1y1ox71" path="res://scenes/UI/animation/button_animation.tscn" id="11_5g4nv"]
 
 [node name="Control" type="Control"]
 z_index = 99
@@ -126,7 +128,40 @@ theme_override_font_sizes/normal_font_size = 8
 bbcode_enabled = true
 text = "[center]Score: 0"
 
-[node name="BulletChoice1" parent="." instance=ExtResource("10_6x3yk")]
+[node name="BulletChoice1" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -326.0
+offset_top = -114.0
+offset_right = -286.0
+offset_bottom = -74.0
+
+[node name="Icon" type="TextureRect" parent="BulletChoice1"]
+layout_mode = 2
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 38.0
+offset_bottom = 30.0
+texture = ExtResource("10_utr1a")
+
+[node name="Info" type="RichTextLabel" parent="BulletChoice1"]
+clip_contents = false
+layout_mode = 2
+offset_left = 6.0
+offset_top = 34.0
+offset_right = 38.0
+offset_bottom = 58.0
+theme_override_fonts/normal_font = ExtResource("9_c5ge1")
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "[center]1"
+scroll_active = false
+
+[node name="HoverAnimation" parent="BulletChoice1" instance=ExtResource("11_5g4nv")]
+position = Vector2(22, 18)
+scale = Vector2(0.6, 0.589)
+animation = &"click"
+frame_progress = 0.669783
 
 [node name="BulletChoice2" parent="." instance=ExtResource("10_6x3yk")]
 offset_left = -277.0
