@@ -11,6 +11,7 @@ var gain_ability_sounds = []
 var shoot_sounds = []
 var gain_fuel_sounds = []
 var hover_sounds = []
+var empty_mag_sounds = []
 
 # TODO: Clean this code section up
 func _ready():
@@ -26,6 +27,8 @@ func _ready():
 			pick_up_sounds.append(child_node)
 		if _name.find("Hover") > -1:
 			hover_sounds.append(child_node)
+		if _name.find("EmptyMag") > -1:
+			empty_mag_sounds.append(child_node)
 		if _name.find("Sfx") > -1:
 			sounds.append(child_node)
 		elif _name.find("Music") > -1:
@@ -53,4 +56,8 @@ func play_music(name: String):
 
 # Play random sound from list
 func play_random_sound(list):
+	list.pick_random().play()
+	
+# Play random sound from list
+func queue_random_sound(list):
 	list.pick_random().play()

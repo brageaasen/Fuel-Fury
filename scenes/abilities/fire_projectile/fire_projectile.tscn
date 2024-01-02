@@ -5,6 +5,6 @@
 
 [node name="fire_projectile" type="Node2D"]
 script = ExtResource("1_pe2wr")
-title = "Let There Be Light!"
+title = "Smoking Hot"
 info = "Bullets that explodes with fire!"
 image = ExtResource("2_i8jrh")

@@ -28,7 +28,8 @@ grow_vertical = 2
 script = ExtResource("1_mtgwt")
 
 [node name="ArrowToBase" type="Sprite2D" parent="."]
-position = Vector2(-4, 3)
+visible = false
+position = Vector2(-41, 53)
 texture = ExtResource("2_0uvut")
 script = ExtResource("3_2p476")
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://doq10a0d0wcng"]
+[gd_scene load_steps=56 format=3 uid="uid://doq10a0d0wcng"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_g57bp"]
 [ext_resource type="PackedScene" uid="uid://darkjs45idgh1" path="res://scenes/main_scene.tscn" id="1_si0i5"]
@@ -13,16 +13,20 @@
 [ext_resource type="PackedScene" uid="uid://dow6yoe12gyje" path="res://scenes/UI/animation/transitions.tscn" id="11_x6ik1"]
 [ext_resource type="Script" path="res://scripts/AudioManager.gd" id="12_e6fbh"]
 [ext_resource type="AudioStream" uid="uid://dswkbg8kc8y7v" path="res://assets/sound/hover/hover_1.wav" id="13_50lc0"]
+[ext_resource type="AudioStream" uid="uid://drvfwr1j2q4ag" path="res://assets/sound/ammo/empt_mag_1.wav" id="13_n3wc5"]
 [ext_resource type="AudioStream" uid="uid://bua0yfyprermq" path="res://assets/sound/select.wav" id="13_su47h"]
 [ext_resource type="AudioStream" uid="uid://cj5ti6xyy3wxq" path="res://assets/sound/hover/hover_2.wav" id="14_awjbj"]
+[ext_resource type="AudioStream" uid="uid://bpklhqe5g4qqn" path="res://assets/sound/ammo/empt_mag_2.wav" id="14_g0t2f"]
 [ext_resource type="AudioStream" uid="uid://mac7phdvrpfc" path="res://assets/sound/explosion.wav" id="14_ixd4a"]
 [ext_resource type="AudioStream" uid="uid://b1y3maeh0y6gw" path="res://assets/sound/gain_ability_1.wav" id="15_3r85j"]
+[ext_resource type="AudioStream" uid="uid://1ntcvoq046ab" path="res://assets/sound/ammo/empt_mag_3.wav" id="15_gtr5y"]
 [ext_resource type="AudioStream" uid="uid://dv4tdvce58vxm" path="res://assets/sound/gain_fuel_1.wav" id="15_k2m3g"]
 [ext_resource type="AudioStream" uid="uid://c72r27lxp0yfo" path="res://assets/sound/hover/hover_3.wav" id="15_uiq6x"]
 [ext_resource type="AudioStream" uid="uid://d2twx2mva0ey3" path="res://assets/sound/gain_ability_2.wav" id="16_0f4xg"]
 [ext_resource type="AudioStream" uid="uid://bhrafwbdu281a" path="res://assets/sound/gain_fuel_2.wav" id="16_i8s6x"]
 [ext_resource type="AudioStream" uid="uid://uw12hug42gg8" path="res://assets/sound/hover/hover_4.wav" id="16_p216i"]
 [ext_resource type="AudioStream" uid="uid://f6a7s0jqy8ve" path="res://assets/sound/hurt.wav" id="16_q8u50"]
+[ext_resource type="AudioStream" uid="uid://d30urqewlgwkh" path="res://assets/sound/ammo/empt_mag_4.wav" id="16_slihc"]
 [ext_resource type="AudioStream" uid="uid://do501q14mpqvv" path="res://assets/sound/hover/hover_5.wav" id="17_1q21r"]
 [ext_resource type="AudioStream" uid="uid://bhtdhghox5nn3" path="res://assets/sound/items/pick_up_1.wav" id="17_5hton"]
 [ext_resource type="AudioStream" uid="uid://dkcndg2xkyifx" path="res://assets/sound/shoot.wav" id="18_hrbxo"]
@@ -142,6 +146,12 @@ _data = {
 }
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vrylp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l6xm0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pjdrt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2232e"]
 
 [sub_resource type="Animation" id="Animation_t28g4"]
 resource_name = "fade_out_logo_and_start_button"
@@ -340,6 +350,9 @@ pivot_offset = Vector2(64, 0)
 theme_override_fonts/font = ExtResource("5_7vuh6")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxEmpty_vrylp")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l6xm0")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_pjdrt")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2232e")
 text = "START"
 
 [node name="BestScore" type="RichTextLabel" parent="CanvasLayer/StartMenu"]
@@ -445,6 +458,18 @@ one_shot = true
 
 [node name="AudioManager" type="Node" parent="."]
 script = ExtResource("12_e6fbh")
+
+[node name="EmptyMagSfx" type="AudioStreamPlayer2D" parent="AudioManager"]
+stream = ExtResource("13_n3wc5")
+
+[node name="EmptyMagSfx2" type="AudioStreamPlayer2D" parent="AudioManager"]
+stream = ExtResource("14_g0t2f")
+
+[node name="EmptyMagSfx3" type="AudioStreamPlayer2D" parent="AudioManager"]
+stream = ExtResource("15_gtr5y")
+
+[node name="EmptyMagSfx4" type="AudioStreamPlayer2D" parent="AudioManager"]
+stream = ExtResource("16_slihc")
 
 [node name="HoverSfx" type="AudioStreamPlayer2D" parent="AudioManager"]
 stream = ExtResource("13_50lc0")

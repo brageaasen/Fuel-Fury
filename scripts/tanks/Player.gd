@@ -17,6 +17,7 @@ signal ammo_updated # Signal for HUD
 
 
 var target_velocity
+var sound_playing = false  # Flag to check if sound is playing
 
 func _ready():
 	super._ready() # Make parent also run its ready function
@@ -32,8 +33,20 @@ func control(delta):
 	if Input.is_action_pressed("left_click"):
 		if ammo_storage > 0:
 			shoot(Bullet)
+		else:
+			if not sound_playing:  # Check if the sound is not already playing
+				sound_playing = true  # Set the flag to indicate sound is playing
+				audio_manager.play_random_sound(audio_manager.empty_mag_sounds)
+				await get_tree().create_timer(0.4).timeout  # Wait for 0.4 seconds
+				sound_playing = false  # Reset the flag after waiting
 	if abilities.has("machine_gun"):
 		load_ability("machine_gun").execute(self)
+		if load_ability("machine_gun").mg_ammo_storage <= 0 and Input.is_action_pressed("right_click"):
+			if not sound_playing:  # Check if the sound is not already playing
+				sound_playing = true  # Set the flag to indicate sound is playing
+				audio_manager.play_random_sound(audio_manager.empty_mag_sounds)
+				await get_tree().create_timer(0.1).timeout  # Wait for 0.1 seconds
+				sound_playing = false  # Reset the flag after waiting
 
 func move_and_rotate(delta):
 	# Rotate the player
