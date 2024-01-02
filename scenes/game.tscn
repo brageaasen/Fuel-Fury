@@ -461,15 +461,19 @@ script = ExtResource("12_e6fbh")
 
 [node name="EmptyMagSfx" type="AudioStreamPlayer2D" parent="AudioManager"]
 stream = ExtResource("13_n3wc5")
+pitch_scale = 1.2
 
 [node name="EmptyMagSfx2" type="AudioStreamPlayer2D" parent="AudioManager"]
 stream = ExtResource("14_g0t2f")
+pitch_scale = 1.2
 
 [node name="EmptyMagSfx3" type="AudioStreamPlayer2D" parent="AudioManager"]
 stream = ExtResource("15_gtr5y")
+pitch_scale = 1.2
 
 [node name="EmptyMagSfx4" type="AudioStreamPlayer2D" parent="AudioManager"]
 stream = ExtResource("16_slihc")
+pitch_scale = 1.2
 
 [node name="HoverSfx" type="AudioStreamPlayer2D" parent="AudioManager"]
 stream = ExtResource("13_50lc0")
@@ -543,6 +547,11 @@ volume_db = -5.0
 [node name="ShootSfx" type="AudioStreamPlayer2D" parent="AudioManager"]
 stream = ExtResource("18_hrbxo")
 volume_db = -12.0
+
+[node name="EnemyShootSfx" type="AudioStreamPlayer2D" parent="AudioManager"]
+stream = ExtResource("18_hrbxo")
+volume_db = -16.0
+pitch_scale = 1.2
 
 [node name="ShootMGSfx1" type="AudioStreamPlayer2D" parent="AudioManager"]
 stream = ExtResource("19_fahk7")

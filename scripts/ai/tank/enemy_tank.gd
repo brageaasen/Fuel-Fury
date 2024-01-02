@@ -7,6 +7,8 @@ extends "res://scripts/ai/enemy.gd"
 @export var machine_gun_cooldown : float
 @export var turret_speed : float
 
+var audio_manager
+
 @onready var burn_timer = $BurnTimer
 @onready var animation_player = $AnimationPlayer
 @onready var ray_cast_player = $PlayerDetection
@@ -21,6 +23,7 @@ var target_dir
 func _ready():
 	super._ready() # Make parent also run its ready function
 	player = get_node("/root/Game/MainScene/Player")
+	audio_manager = get_parent().get_parent().get_node("AudioManager")
 	$GunTimer.wait_time = gun_cooldown
 	$MachineGunTimer.wait_time = machine_gun_cooldown
 	burn_timer.wait_time = 2
@@ -49,6 +52,9 @@ func shoot(bullet):
 	# Check if allowed to shoot
 	if can_shoot:
 		can_shoot = false
+		
+		# Play sound
+		audio_manager.play_sound("EnemyShootSfx")
 		
 		# Check what type of bullet was shot
 		if bullet_scene_path.match("*machine_gun_bullet*"): $MachineGunTimer.start()
