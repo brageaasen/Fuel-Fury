@@ -124,7 +124,7 @@ func _on_player_leveled_up(level):
 
 func ability_chosen(ability_number):
 	# Play audio
-	audio_manager.play_sound("SelectSfx")
+	audio_manager.play_random_sound(audio_manager.gain_ability_sounds)
 	
 	get_node("CanvasLayer/AbilityMenu").visible = false
 	get_node("CanvasLayer/AbilityMenu/LevelUp").visible = false

@@ -1,11 +1,20 @@
-[gd_scene load_steps=11 format=3 uid="uid://dkt8ngtenq443"]
+[gd_scene load_steps=12 format=3 uid="uid://dkt8ngtenq443"]
 
 [ext_resource type="Script" path="res://scripts/base/base.gd" id="1_dmws7"]
 [ext_resource type="Texture2D" uid="uid://76kthr3a7gbn" path="res://assets/sprites/base-circle.png" id="2_dhk1k"]
-[ext_resource type="Texture2D" uid="uid://dweqhien0fcil" path="res://assets/sprites/base-flag.png" id="3_uou7u"]
 [ext_resource type="Texture2D" uid="uid://0w24j3qfardt" path="res://assets/sprites/oil_case.png" id="4_henvn"]
 [ext_resource type="Texture2D" uid="uid://bwc43xm35swqg" path="res://assets/sprites/oil_progress.png" id="5_6yoy3"]
 [ext_resource type="Texture2D" uid="uid://3e1oirqilfhc" path="res://assets/sprites/low_fuel.png" id="6_83nf5"]
+
+[sub_resource type="Gradient" id="Gradient_txk8a"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.00444444, 0.284444, 0.346667)
+colors = PackedColorArray(0.207843, 0.207843, 0.25098, 1, 0.207843, 0.207843, 0.25098, 0.560784, 0.254902, 0.25098, 0.290196, 0.278431, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ak047"]
+gradient = SubResource("Gradient_txk8a")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pkfoc"]
 radius = 24.0208
@@ -43,16 +52,20 @@ ammo_refill_time = 1.0
 MG_ammo_refill_time = 0.5
 max_health = 200
 
+[node name="OilLeak" type="TextureRect" parent="."]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+texture = SubResource("GradientTexture2D_ak047")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.3, 1.3)
 shape = SubResource("CircleShape2D_pkfoc")
 metadata/_edit_group_ = true
 
 [node name="Circle" type="Sprite2D" parent="."]
 texture = ExtResource("2_dhk1k")
-
-[node name="Flag" type="Sprite2D" parent="."]
-visible = false
-texture = ExtResource("3_uou7u")
 
 [node name="AmmoFillTimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -80,9 +93,8 @@ texture_progress = ExtResource("5_6yoy3")
 
 [node name="DangerIcon" type="Sprite2D" parent="."]
 visible = false
-z_index = 15
+z_index = 6
 position = Vector2(0, 18)
-scale = Vector2(1.19602, 1.19602)
 texture = ExtResource("6_83nf5")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="DangerIcon"]

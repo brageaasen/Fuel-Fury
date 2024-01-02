@@ -23,7 +23,7 @@ var fuel_gain = 40
 var fuel
 var level = 1
 var experience = 0
-var experience_to_level = 1
+var experience_to_level = 2
 var alive = true
 var inventory : Dictionary = {}
 var bullet_inventory = ["player_bullet"]
@@ -72,16 +72,16 @@ func shoot(bullet):
 	if can_shoot:
 		can_shoot = false
 		
-		# Play sound effect
-		audio_manager.play_sound("ShootSfx")
-		
 		# Push player in opposite direction (apply force) ?
 		
 		# Check what type of bullet was shot
 		if bullet_scene_path.match("*machine_gun_bullet*"):
+			# Play sound effect
+			audio_manager.play_random_sound(audio_manager.shoot_sounds)
 			$MachineGunTimer.start()
-			#main_camera.shake(0.5)
 		else:
+			# Play sound effect
+			audio_manager.play_sound("ShootSfx")
 			$GunTimer.start()
 			main_camera.shake(1)
 		var dir = Vector2(1, 0).rotated($Weapon.global_rotation)
@@ -179,11 +179,6 @@ func gain_fuel(fuel_gain):
 		fuel += fuel_gain
 	emit_signal("fuel_changed", fuel * 100/max_fuel)
 
-func gain_experience(experience_gain):
-	experience += experience_gain
-	emit_signal("experience_changed", experience * 100/experience_to_level, level)
-	if experience >= experience_to_level:
-		level_up()
 
 func gain_health(health_gain):
 	if health + health_gain > max_health:
@@ -196,8 +191,15 @@ func increase_max_health(new_max_health):
 	max_health = new_max_health
 	emit_signal("max_health_changed", new_max_health)
 
+func gain_experience(experience_gain):
+	experience += experience_gain
+	emit_signal("experience_changed", experience * 100/experience_to_level, level)
+	if experience >= experience_to_level:
+		level_up()
+
 func level_up():
 	level += 1
+	experience_to_level += 4
 	experience -= experience_to_level
 	emit_signal("experience_changed", experience * 100/experience_to_level, level)
 	emit_signal("leveled_up", level)

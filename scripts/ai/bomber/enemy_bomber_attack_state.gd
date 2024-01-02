@@ -39,7 +39,7 @@ func _physics_process(delta) -> void:
 		if ray_cast_player.is_colliding():
 			collider = ray_cast_player.get_collider()
 		if collider == player:
-			animation_player.play("explode")
+			animation_player.play("attack")
 			actor.alive = false
 	
 	# Check if enemy tank should change current state to wander

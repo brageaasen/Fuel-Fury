@@ -33,6 +33,10 @@ func _process(delta):
 	else:
 		$DangerIcon/AnimationPlayer.stop()
 		$DangerIcon.visible = false
+	
+	# If player is inside the base, emit refuel signal
+	if inside_base:
+		emit_signal("entered_base")
 
 # Keep / Remove health for base?
 func take_damage(damage):
@@ -57,13 +61,16 @@ func _on_ammo_fill_timer_timeout():
 func _on_mg_ammo_fill_timer_timeout():
 	ammo_updated.emit("mg")
 
-
+var inside_base = false
 func _on_body_entered(body):
-	emit_signal("entered_base")
+	if body.name == "Player":
+		inside_base = true
 	$AmmoFillTimer.set_paused(false)
 	$MGAmmoFillTimer.set_paused(false)
 
 
 func _on_body_exited(body):
+	if body.name == "Player":
+		inside_base = false
 	$AmmoFillTimer.set_paused(true)
 	$MGAmmoFillTimer.set_paused(true)

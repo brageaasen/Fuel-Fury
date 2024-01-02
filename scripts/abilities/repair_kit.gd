@@ -1,7 +1,7 @@
 extends "res://scripts/abilities/ability.gd"
 
 @export var health_increase = 1
-@export var iteration_time = 1
+@export var iteration_time : float = 0.5
 
 @onready var health_timer = $HealthTimer
 

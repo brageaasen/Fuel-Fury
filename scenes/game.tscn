@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://doq10a0d0wcng"]
+[gd_scene load_steps=39 format=3 uid="uid://doq10a0d0wcng"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_g57bp"]
 [ext_resource type="PackedScene" uid="uid://darkjs45idgh1" path="res://scenes/main_scene.tscn" id="1_si0i5"]
@@ -14,10 +14,18 @@
 [ext_resource type="Script" path="res://scripts/AudioManager.gd" id="12_e6fbh"]
 [ext_resource type="AudioStream" uid="uid://bua0yfyprermq" path="res://assets/sound/select.wav" id="13_su47h"]
 [ext_resource type="AudioStream" uid="uid://mac7phdvrpfc" path="res://assets/sound/explosion.wav" id="14_ixd4a"]
-[ext_resource type="AudioStream" uid="uid://buionl1ov6rwr" path="res://assets/sound/gain_ability.wav" id="15_u4mf2"]
+[ext_resource type="AudioStream" uid="uid://b1y3maeh0y6gw" path="res://assets/sound/gain_ability_1.wav" id="15_3r85j"]
+[ext_resource type="AudioStream" uid="uid://d2twx2mva0ey3" path="res://assets/sound/gain_ability_2.wav" id="16_0f4xg"]
 [ext_resource type="AudioStream" uid="uid://f6a7s0jqy8ve" path="res://assets/sound/hurt.wav" id="16_q8u50"]
-[ext_resource type="AudioStream" uid="uid://b4c2ol6iq7r10" path="res://assets/sound/pick_up.wav" id="17_p8p2x"]
+[ext_resource type="AudioStream" uid="uid://bhtdhghox5nn3" path="res://assets/sound/items/pick_up_1.wav" id="17_5hton"]
 [ext_resource type="AudioStream" uid="uid://dkcndg2xkyifx" path="res://assets/sound/shoot.wav" id="18_hrbxo"]
+[ext_resource type="AudioStream" uid="uid://bkkrtstntkyum" path="res://assets/sound/items/pick_up_2.wav" id="18_hsjtc"]
+[ext_resource type="AudioStream" uid="uid://bnf2q7y0k4xho" path="res://assets/sound/items/pick_up_3.wav" id="19_bvg7n"]
+[ext_resource type="AudioStream" uid="uid://brkdwf0ypgfxa" path="res://assets/sound/shoot/shoot_1.wav" id="19_fahk7"]
+[ext_resource type="AudioStream" uid="uid://canbcamkcs181" path="res://assets/sound/items/pick_up_4.wav" id="20_6r6wu"]
+[ext_resource type="AudioStream" uid="uid://dw0auwbxihl01" path="res://assets/sound/shoot/shoot_2.wav" id="20_r4wca"]
+[ext_resource type="AudioStream" uid="uid://dnbupw5cgqucp" path="res://assets/sound/items/pick_up_5.wav" id="21_a4avw"]
+[ext_resource type="AudioStream" uid="uid://d18ehhk3t88ip" path="res://assets/sound/items/pick_up_6.wav" id="22_g5ewp"]
 
 [sub_resource type="Animation" id="Animation_k7ho0"]
 resource_name = "fade_from_black"
@@ -436,18 +444,44 @@ stream = ExtResource("13_su47h")
 stream = ExtResource("14_ixd4a")
 volume_db = -20.0
 
-[node name="GainAbilitySfx" type="AudioStreamPlayer2D" parent="AudioManager"]
-stream = ExtResource("15_u4mf2")
+[node name="GainAbilitySfx1" type="AudioStreamPlayer2D" parent="AudioManager"]
+stream = ExtResource("15_3r85j")
+
+[node name="GainAbilitySfx2" type="AudioStreamPlayer2D" parent="AudioManager"]
+stream = ExtResource("16_0f4xg")
 
 [node name="HurtSfx" type="AudioStreamPlayer2D" parent="AudioManager"]
 stream = ExtResource("16_q8u50")
 
-[node name="PickUpSfx" type="AudioStreamPlayer2D" parent="AudioManager"]
-stream = ExtResource("17_p8p2x")
-
 [node name="ShootSfx" type="AudioStreamPlayer2D" parent="AudioManager"]
 stream = ExtResource("18_hrbxo")
 volume_db = -10.0
+
+[node name="ShootMGSfx1" type="AudioStreamPlayer2D" parent="AudioManager"]
+stream = ExtResource("19_fahk7")
+volume_db = 1.0
+
+[node name="ShootMGSfx2" type="AudioStreamPlayer2D" parent="AudioManager"]
+stream = ExtResource("20_r4wca")
+volume_db = 1.0
+
+[node name="PickUpSfx1" type="AudioStreamPlayer2D" parent="AudioManager"]
+stream = ExtResource("17_5hton")
+
+[node name="PickUpSfx2" type="AudioStreamPlayer2D" parent="AudioManager"]
+stream = ExtResource("18_hsjtc")
+
+[node name="PickUp3Sfx" type="AudioStreamPlayer2D" parent="AudioManager"]
+stream = ExtResource("19_bvg7n")
+
+[node name="PickUp4Sfx" type="AudioStreamPlayer2D" parent="AudioManager"]
+stream = ExtResource("20_6r6wu")
+
+[node name="PickUp5Sfx" type="AudioStreamPlayer2D" parent="AudioManager"]
+stream = ExtResource("21_a4avw")
+
+[node name="PickUp6Sfx" type="AudioStreamPlayer2D" parent="AudioManager"]
+stream = ExtResource("22_g5ewp")
 
 [connection signal="mouse_entered" from="CanvasLayer/StartMenu" to="." method="_on_start_button_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/StartMenu" to="." method="_on_start_button_mouse_exited"]

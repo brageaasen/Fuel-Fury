@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://darkjs45idgh1"]
+[gd_scene load_steps=20 format=3 uid="uid://darkjs45idgh1"]
 
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_x0pv1"]
 [ext_resource type="PackedScene" uid="uid://crc5y0yl542nf" path="res://scenes/map/map.tscn" id="2_6msir"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dkt8ngtenq443" path="res://scenes/base/base.tscn" id="8_gyq5b"]
 [ext_resource type="PackedScene" uid="uid://c27lt7vwi1j4f" path="res://scenes/tanks/Player.tscn" id="9_ixxsp"]
 [ext_resource type="PackedScene" uid="uid://bjj2uflh2plre" path="res://scenes/hud.tscn" id="10_54g1t"]
+[ext_resource type="PackedScene" uid="uid://ba1h2yk2m8uj8" path="res://scenes/items/experience.tscn" id="13_6hhq1"]
 [ext_resource type="PackedScene" uid="uid://c7m44hs4dccln" path="res://scenes/enemy/spawner.tscn" id="14_xe4kn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lsplo"]
@@ -1091,7 +1092,7 @@ y_sort_enabled = true
 script = ExtResource("1_x0pv1")
 
 [node name="MainCamera" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
+zoom = Vector2(1.8, 1.8)
 script = ExtResource("3_cvfwc")
 
 [node name="HUD" parent="MainCamera" instance=ExtResource("10_54g1t")]
@@ -1141,6 +1142,111 @@ position = Vector2(305, 0)
 
 [node name="Player" parent="." instance=ExtResource("9_ixxsp")]
 position = Vector2(62, 31)
+
+[node name="Experience" parent="." instance=ExtResource("13_6hhq1")]
+position = Vector2(126, -42)
+
+[node name="Experience2" parent="." instance=ExtResource("13_6hhq1")]
+position = Vector2(131, 5)
+
+[node name="Experience3" parent="." instance=ExtResource("13_6hhq1")]
+position = Vector2(136, 49)
+
+[node name="Experience4" parent="." instance=ExtResource("13_6hhq1")]
+position = Vector2(98, -19)
+
+[node name="Experience5" parent="." instance=ExtResource("13_6hhq1")]
+position = Vector2(96, 28)
+
+[node name="Experience6" parent="." instance=ExtResource("13_6hhq1")]
+position = Vector2(77, 10)
+
+[node name="Experience7" parent="." instance=ExtResource("13_6hhq1")]
+position = Vector2(77, -44)
+
+[node name="Experience8" parent="." instance=ExtResource("13_6hhq1")]
+position = Vector2(114, -83)
+
+[node name="Experience9" parent="." instance=ExtResource("13_6hhq1")]
+position = Vector2(119, -33)
+
+[node name="Experience10" parent="." instance=ExtResource("13_6hhq1")]
+position = Vector2(96, -55)
+
+[node name="Experience11" parent="." instance=ExtResource("13_6hhq1")]
+position = Vector2(123, -15)
+
+[node name="Experience12" parent="." instance=ExtResource("13_6hhq1")]
+position = Vector2(83, -17)
+
+[node name="Experience13" parent="." instance=ExtResource("13_6hhq1")]
+position = Vector2(102, 7)
+
+[node name="Experience14" parent="." instance=ExtResource("13_6hhq1")]
+position = Vector2(148, -11)
+
+[node name="Experience15" parent="." instance=ExtResource("13_6hhq1")]
+position = Vector2(148, -11)
+
+[node name="Experience16" parent="." instance=ExtResource("13_6hhq1")]
+position = Vector2(148, -11)
+
+[node name="Experience17" parent="." instance=ExtResource("13_6hhq1")]
+position = Vector2(148, -11)
+
+[node name="Experience18" parent="." instance=ExtResource("13_6hhq1")]
+position = Vector2(148, -11)
+
+[node name="Experience19" parent="." instance=ExtResource("13_6hhq1")]
+position = Vector2(148, -11)
+
+[node name="Experience20" parent="." instance=ExtResource("13_6hhq1")]
+position = Vector2(148, -11)
+
+[node name="Experience21" parent="." instance=ExtResource("13_6hhq1")]
+position = Vector2(148, -11)
+
+[node name="Experience22" parent="." instance=ExtResource("13_6hhq1")]
+position = Vector2(148, -11)
+
+[node name="Experience23" parent="." instance=ExtResource("13_6hhq1")]
+position = Vector2(148, -11)
+
+[node name="Experience24" parent="." instance=ExtResource("13_6hhq1")]
+position = Vector2(148, -11)
+
+[node name="Experience25" parent="." instance=ExtResource("13_6hhq1")]
+position = Vector2(148, -11)
+
+[node name="Experience26" parent="." instance=ExtResource("13_6hhq1")]
+position = Vector2(148, -11)
+
+[node name="Experience27" parent="." instance=ExtResource("13_6hhq1")]
+position = Vector2(148, -11)
+
+[node name="Experience28" parent="." instance=ExtResource("13_6hhq1")]
+position = Vector2(148, -11)
+
+[node name="Experience29" parent="." instance=ExtResource("13_6hhq1")]
+position = Vector2(148, -11)
+
+[node name="Experience30" parent="." instance=ExtResource("13_6hhq1")]
+position = Vector2(148, -11)
+
+[node name="Experience31" parent="." instance=ExtResource("13_6hhq1")]
+position = Vector2(148, -11)
+
+[node name="Experience32" parent="." instance=ExtResource("13_6hhq1")]
+position = Vector2(148, -11)
+
+[node name="Experience33" parent="." instance=ExtResource("13_6hhq1")]
+position = Vector2(148, -11)
+
+[node name="Experience34" parent="." instance=ExtResource("13_6hhq1")]
+position = Vector2(148, -11)
+
+[node name="Experience35" parent="." instance=ExtResource("13_6hhq1")]
+position = Vector2(148, -11)
 
 [connection signal="ammo_updated" from="Base" to="Player" method="_on_base_ammo_updated"]
 [connection signal="entered_base" from="Base" to="Player" method="add_fuel_to_base"]
