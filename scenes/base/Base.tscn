@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://dkt8ngtenq443"]
+[gd_scene load_steps=13 format=3 uid="uid://dkt8ngtenq443"]
 
 [ext_resource type="Script" path="res://scripts/base/base.gd" id="1_dmws7"]
 [ext_resource type="Texture2D" uid="uid://76kthr3a7gbn" path="res://assets/sprites/base-circle.png" id="2_dhk1k"]
 [ext_resource type="Texture2D" uid="uid://0w24j3qfardt" path="res://assets/sprites/oil_case.png" id="4_henvn"]
 [ext_resource type="Texture2D" uid="uid://bwc43xm35swqg" path="res://assets/sprites/oil_progress.png" id="5_6yoy3"]
+[ext_resource type="FontFile" uid="uid://beghlpmphs8no" path="res://assets/fonts/kongtext.regular.ttf" id="6_7i4u0"]
 [ext_resource type="Texture2D" uid="uid://3e1oirqilfhc" path="res://assets/sprites/low_fuel.png" id="6_83nf5"]
 
 [sub_resource type="Gradient" id="Gradient_txk8a"]
@@ -65,6 +66,8 @@ shape = SubResource("CircleShape2D_pkfoc")
 metadata/_edit_group_ = true
 
 [node name="Circle" type="Sprite2D" parent="."]
+z_index = -1
+z_as_relative = false
 texture = ExtResource("2_dhk1k")
 
 [node name="AmmoFillTimer" type="Timer" parent="."]
@@ -82,10 +85,18 @@ position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_rexre")
 
 [node name="FuelBar" type="TextureProgressBar" parent="FuelContainer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
 offset_left = -6.0
-offset_top = -16.5
-offset_right = 34.0
-offset_bottom = 23.5
+offset_top = -17.0
+offset_right = 6.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(6, 13)
 value = 100.0
 fill_mode = 3
 texture_over = ExtResource("4_henvn")
@@ -101,6 +112,23 @@ texture = ExtResource("6_83nf5")
 libraries = {
 "": SubResource("AnimationLibrary_kw1ut")
 }
+
+[node name="FuelText" type="RichTextLabel" parent="."]
+z_index = -1
+z_as_relative = false
+offset_left = -11.0
+offset_top = 16.0
+offset_right = 21.0
+offset_bottom = 25.0
+scale = Vector2(0.7, 0.7)
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.207843, 0.207843, 0.25098, 1)
+theme_override_fonts/normal_font = ExtResource("6_7i4u0")
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "Fuel
+"
+scroll_active = false
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

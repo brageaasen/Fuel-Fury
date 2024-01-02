@@ -39,7 +39,7 @@ func _ready():
 func die():
 	alive = false
 	queue_free()
-	emit_signal("died", score_value, experience_drop, fuel_drop, null, preload("res://scenes/particles/death_explosion.tscn"), global_position)
+	emit_signal("died", self, score_value, experience_drop, fuel_drop, null, preload("res://scenes/particles/death_explosion.tscn"), global_position)
 
 
 func shoot(bullet):

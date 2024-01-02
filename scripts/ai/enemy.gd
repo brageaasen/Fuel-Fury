@@ -22,9 +22,6 @@ var can_shoot = true
 var alive = true
 var target = null 
 
-var bullet_scale_multiplier = 1
-var bullet_damage_multiplier = 1
-
 var health : int
 
 

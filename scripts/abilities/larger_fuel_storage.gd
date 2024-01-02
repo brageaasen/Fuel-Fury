@@ -17,7 +17,6 @@ func execute(s):
 	var p = upgrade_particles.instantiate()
 	get_parent().get_parent().add_child(p)
 	p.global_position = get_parent().get_parent().get_node("Base/FuelContainer").position
-	# TODO: Slowly scale instead of changing sprite?
 	# Change sprite of storage
 	get_parent().get_parent().get_node("Base/FuelContainer/FuelBar").texture_over = texture_over
 	get_parent().get_parent().get_node("Base/FuelContainer/FuelBar").texture_progress = texture_progress

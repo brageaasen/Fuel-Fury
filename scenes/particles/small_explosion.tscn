@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dygh33c2cjrwb"]
 
-[ext_resource type="Script" path="res://scripts/particles/explosion.gd" id="1_s3e4c"]
+[ext_resource type="Script" path="res://scripts/particles/small_explosion.gd" id="1_17fem"]
 
 [sub_resource type="Curve" id="Curve_fy8og"]
 min_value = -360.0
@@ -46,7 +46,7 @@ color_ramp = SubResource("GradientTexture1D_vyr7p")
 
 [node name="SmallExplosion" type="Node2D"]
 z_index = 10
-script = ExtResource("1_s3e4c")
+script = ExtResource("1_17fem")
 
 [node name="Particles" type="GPUParticles2D" parent="."]
 emitting = false

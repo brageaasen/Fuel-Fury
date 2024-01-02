@@ -158,6 +158,8 @@ func ability_chosen(ability_number):
 	ability_non_hover(ability_number)
 
 func ability_hover(ability_number):
+	# Play sound SFX
+	audio_manager.play_random_sound(audio_manager.hover_sounds)
 	# Animation
 	get_node("CanvasLayer/AbilityMenu/AbilityChoice" + str(ability_number)).get_node("HoverAnimation").visible = true
 	get_node("CanvasLayer/AbilityMenu/AbilityChoice" + str(ability_number)).get_node("HoverAnimation").play("hover")

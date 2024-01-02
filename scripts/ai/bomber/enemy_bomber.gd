@@ -26,7 +26,7 @@ func _ready():
 
 func die():
 	queue_free()
-	emit_signal("died", score_value, experience_drop, null, heart_drop, preload("res://scenes/particles/impact_explosion.tscn"), global_position)
+	emit_signal("died", self, score_value, experience_drop, null, heart_drop, preload("res://scenes/particles/impact_explosion.tscn"), global_position)
 
 
 func take_damage(damage):

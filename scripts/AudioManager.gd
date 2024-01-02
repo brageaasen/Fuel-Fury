@@ -9,7 +9,10 @@ var music = []
 var pick_up_sounds = []
 var gain_ability_sounds = []
 var shoot_sounds = []
+var gain_fuel_sounds = []
+var hover_sounds = []
 
+# TODO: Clean this code section up
 func _ready():
 	for child_node in get_children():
 		var _name = child_node.get_name()
@@ -17,8 +20,12 @@ func _ready():
 			shoot_sounds.append(child_node)
 		if _name.find("GainAbility") > -1:
 			gain_ability_sounds.append(child_node)
+		if _name.find("GainFuel") > -1:
+			gain_fuel_sounds.append(child_node)
 		if _name.find("PickUp") > -1:
 			pick_up_sounds.append(child_node)
+		if _name.find("Hover") > -1:
+			hover_sounds.append(child_node)
 		if _name.find("Sfx") > -1:
 			sounds.append(child_node)
 		elif _name.find("Music") > -1:

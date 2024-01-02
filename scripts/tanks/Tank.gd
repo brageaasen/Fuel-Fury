@@ -160,7 +160,7 @@ func take_damage(damage):
 	health -= damage
 	emit_signal("health_changed", health)
 	
-	main_camera.shake(2)
+	main_camera.shake(4)
 	
 	if (health <= 0 and !death_signal_emitted):
 		alive = false
@@ -177,6 +177,7 @@ func gain_fuel(fuel_gain):
 		fuel = max_fuel
 	else:
 		fuel += fuel_gain
+	audio_manager.play_random_sound(audio_manager.gain_fuel_sounds)
 	emit_signal("fuel_changed", fuel * 100/max_fuel)
 
 
@@ -199,7 +200,7 @@ func gain_experience(experience_gain):
 
 func level_up():
 	level += 1
-	experience_to_level += 4
+	experience_to_level += 3
 	experience -= experience_to_level
 	emit_signal("experience_changed", experience * 100/experience_to_level, level)
 	emit_signal("leveled_up", level)
