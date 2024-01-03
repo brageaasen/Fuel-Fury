@@ -4,47 +4,70 @@ extends Node2D
 var audio_manager
 var current_score = 0
 
+@onready var player = $Player
+
 func _init():
 	randomize()
-
 func _ready():
 	audio_manager = get_parent().get_node("AudioManager")
+	player.connect("leveled_up", _on_player_leveled_up)
 
 func _on_Tank_shootSignal(bullet, _position, _direction):
 	var b = bullet.instantiate()
+	if b.name != "EnemyBullet":
+		b.scale *= player.bullet_scale_multiplier
+		b.damage *= player.bullet_damage_multiplier
 	add_child(b)
 	b.start(_position, _direction)
 	b.connect("explode_particles", _on_explode_particles_signal) # Connect
 
 func _on_explode_particles_signal(explosion_particles, _position):
-	# TODO: Make us of generic ( explosion_particles ) instead of just using
-	#		singular explosion particles.
-	#var name = particles.get_filename()
-	
-	# Play sound effect
-	audio_manager.play_sound("ExplosionSfx")
-	
-	var p = preload("res://scenes/particles/explosion.tscn").instantiate()
+	var p = explosion_particles.instantiate()
 	add_child(p)
 	p.global_position = _position
 
-
-func _on_enemy_tank_died(score_value, experience_drop, fuel_drop, _position):
+# TODO: Divide enemy tank and bomber logic
+func _on_enemy_tank_died(type, score_value, experience_drop, fuel_drop, heart_drop, explosion_particles, _position):
+	# Increase score of game
 	get_parent().increase_score(score_value)
 	get_node("MainCamera/HUD/Score").text = "[center]Score: " + str(get_parent().score)
-	var e = experience_drop.instantiate()
-	var f = fuel_drop.instantiate()
+	
+	# Death particles
+	var p = explosion_particles.instantiate()
+	add_child(p)
+	p.global_position = _position
+	
+	## Loot
+	var randomAngle
+	var randomDirection
 	# Spawn experience
-	add_child(e)
-	var randomAngle = randf_range(0, 360)
-	var randomDirection = Vector2.RIGHT.rotated(deg_to_rad(randomAngle))
-	e.spawn(_position, randomDirection)
+	var e
+	for i in range(0, randi_range(2, 3)):
+		randomAngle = randf_range(0, 360)
+		randomDirection = Vector2.RIGHT.rotated(deg_to_rad(randomAngle))
+		e = experience_drop.instantiate()
+		add_child(e)
+		e.spawn(_position, randomDirection)
+		if "EnemyTank" not in type.name:
+			break
 	
 	# Spawn fuel
-	add_child(f)
-	randomAngle = randf_range(0, 360)
-	randomDirection = Vector2.RIGHT.rotated(deg_to_rad(randomAngle))
-	f.spawn(_position, randomDirection)
+	var f
+	if fuel_drop != null:
+		f = fuel_drop.instantiate()
+		add_child(f)
+		randomAngle = randf_range(0, 360)
+		randomDirection = Vector2.RIGHT.rotated(deg_to_rad(randomAngle))
+		f.spawn(_position, randomDirection)
+	
+	# Spawn heart
+	var h
+	if heart_drop != null:
+		h = heart_drop.instantiate()
+		add_child(h)
+		randomAngle = randf_range(0, 360)
+		randomDirection = Vector2.RIGHT.rotated(deg_to_rad(randomAngle))
+		h.spawn(_position, randomDirection)
 
 # Enemy types to spawn
 var enemy_list = [
@@ -65,6 +88,10 @@ func _on_spawn_timer_timeout():
 	enemy_instance.connect("shootSignal", _on_Tank_shootSignal)
 	enemy_instance.connect("died", _on_enemy_tank_died)
 
-
-func update_fuel_container():
-	pass # Replace with function body.
+func _on_player_leveled_up(level):
+	# Change difficulty of game
+	if level == 3:
+		enemy_list.append(preload("res://scenes/enemy/enemy_bomber.tscn"))
+	if $SpawnTimer.wait_time > 0.5:
+		$SpawnTimer.wait_time -= 0.3
+	print("Spawntime: " + str($SpawnTimer.wait_time))

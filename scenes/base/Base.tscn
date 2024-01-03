@@ -1,16 +1,49 @@
-[gd_scene load_steps=8 format=3 uid="uid://dkt8ngtenq443"]
+[gd_scene load_steps=13 format=3 uid="uid://dkt8ngtenq443"]
 
 [ext_resource type="Script" path="res://scripts/base/base.gd" id="1_dmws7"]
 [ext_resource type="Texture2D" uid="uid://76kthr3a7gbn" path="res://assets/sprites/base-circle.png" id="2_dhk1k"]
-[ext_resource type="Texture2D" uid="uid://dweqhien0fcil" path="res://assets/sprites/base-flag.png" id="3_uou7u"]
 [ext_resource type="Texture2D" uid="uid://0w24j3qfardt" path="res://assets/sprites/oil_case.png" id="4_henvn"]
 [ext_resource type="Texture2D" uid="uid://bwc43xm35swqg" path="res://assets/sprites/oil_progress.png" id="5_6yoy3"]
+[ext_resource type="FontFile" uid="uid://beghlpmphs8no" path="res://assets/fonts/kongtext.regular.ttf" id="6_7i4u0"]
+[ext_resource type="Texture2D" uid="uid://3e1oirqilfhc" path="res://assets/sprites/low_fuel.png" id="6_83nf5"]
+
+[sub_resource type="Gradient" id="Gradient_txk8a"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.00444444, 0.284444, 0.346667)
+colors = PackedColorArray(0.207843, 0.207843, 0.25098, 1, 0.207843, 0.207843, 0.25098, 0.560784, 0.254902, 0.25098, 0.290196, 0.278431, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ak047"]
+gradient = SubResource("Gradient_txk8a")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pkfoc"]
 radius = 24.0208
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rexre"]
 size = Vector2(12, 8)
+
+[sub_resource type="Animation" id="Animation_lbu84"]
+resource_name = "pulsate"
+length = 1.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.3, 1.3), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kw1ut"]
+_data = {
+"pulsate": SubResource("Animation_lbu84")
+}
 
 [node name="Base" type="Area2D"]
 scale = Vector2(2, 2)
@@ -20,16 +53,22 @@ ammo_refill_time = 1.0
 MG_ammo_refill_time = 0.5
 max_health = 200
 
+[node name="OilLeak" type="TextureRect" parent="."]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+texture = SubResource("GradientTexture2D_ak047")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.3, 1.3)
 shape = SubResource("CircleShape2D_pkfoc")
 metadata/_edit_group_ = true
 
 [node name="Circle" type="Sprite2D" parent="."]
+z_index = -1
+z_as_relative = false
 texture = ExtResource("2_dhk1k")
-
-[node name="Flag" type="Sprite2D" parent="."]
-visible = false
-texture = ExtResource("3_uou7u")
 
 [node name="AmmoFillTimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -46,14 +85,50 @@ position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_rexre")
 
 [node name="FuelBar" type="TextureProgressBar" parent="FuelContainer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
 offset_left = -6.0
-offset_top = -16.5
-offset_right = 34.0
-offset_bottom = 23.5
+offset_top = -17.0
+offset_right = 6.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(6, 13)
 value = 100.0
 fill_mode = 3
 texture_over = ExtResource("4_henvn")
 texture_progress = ExtResource("5_6yoy3")
+
+[node name="DangerIcon" type="Sprite2D" parent="."]
+visible = false
+z_index = 6
+position = Vector2(0, -30.5)
+texture = ExtResource("6_83nf5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DangerIcon"]
+libraries = {
+"": SubResource("AnimationLibrary_kw1ut")
+}
+
+[node name="FuelText" type="RichTextLabel" parent="."]
+z_index = -1
+z_as_relative = false
+offset_left = -11.0
+offset_top = 16.0
+offset_right = 21.0
+offset_bottom = 25.0
+scale = Vector2(0.7, 0.7)
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.207843, 0.207843, 0.25098, 1)
+theme_override_fonts/normal_font = ExtResource("6_7i4u0")
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "Fuel
+"
+scroll_active = false
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

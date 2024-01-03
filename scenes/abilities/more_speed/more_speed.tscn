@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwasaopantud3"]
+
+[ext_resource type="Script" path="res://scripts/abilities/more_speed.gd" id="1_8bajg"]
+[ext_resource type="Texture2D" uid="uid://cruwisji8f6nt" path="res://assets/sprites/more_speed_icon.png" id="2_webxh"]
+
+[node name="MoreSpeed" type="Node"]
+script = ExtResource("1_8bajg")
+title = "Oiled Engine"
+info = "Drive faster, Dodge Better!"
+image = ExtResource("2_webxh")

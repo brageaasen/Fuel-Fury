@@ -90,7 +90,7 @@ offset_left = -34.0
 offset_top = -31.0
 offset_right = 30.0
 offset_bottom = 33.0
-scale = Vector2(0.1, 0.1)
+scale = Vector2(10, 10)
 pivot_offset = Vector2(32, 32)
 texture = SubResource("GradientTexture2D_1h351")
 

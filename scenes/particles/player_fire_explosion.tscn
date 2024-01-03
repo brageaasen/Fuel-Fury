@@ -1,0 +1,107 @@
+[gd_scene load_steps=13 format=3 uid="uid://cbjhhtisk4p0r"]
+
+[ext_resource type="Script" path="res://scripts/particles/fire_explosion.gd" id="1_4y31d"]
+
+[sub_resource type="Curve" id="Curve_fy8og"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0.0114943, 147.789), 0.0, 0.0, 0, 0, Vector2(1, -140.211), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_nlcf5"]
+width = 200
+curve = SubResource("Curve_fy8og")
+
+[sub_resource type="Gradient" id="Gradient_icncv"]
+offsets = PackedFloat32Array(0, 0.444915, 0.670588, 1)
+colors = PackedColorArray(0.792157, 0.207843, 0.329412, 1, 0.792157, 0.34902, 0.329412, 1, 0.898039, 0.435294, 0.294118, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qiuka"]
+gradient = SubResource("Gradient_icncv")
+
+[sub_resource type="Curve" id="Curve_1x5bt"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_kkfsj"]
+width = 2048
+curve = SubResource("Curve_1x5bt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6y3yw"]
+emission_shape = 6
+emission_ring_axis = Vector3(1, 1, 0)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 40.0
+initial_velocity_max = 80.0
+angular_velocity_max = 100.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.5
+angle_curve = SubResource("CurveTexture_nlcf5")
+scale_min = 1.2
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_kkfsj")
+color_ramp = SubResource("GradientTexture1D_qiuka")
+
+[sub_resource type="Gradient" id="Gradient_h4xxq"]
+offsets = PackedFloat32Array(0, 0.790244)
+colors = PackedColorArray(0.898039, 0.435294, 0.294118, 1, 0.898039, 0.435294, 0.294118, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gjuh2"]
+gradient = SubResource("Gradient_h4xxq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nsbfv"]
+emission_shape = 1
+emission_sphere_radius = 20.0
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 40.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 1.0
+scale_max = 2.5
+color_ramp = SubResource("GradientTexture1D_gjuh2")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4qhek"]
+
+[node name="PlayerFireExplosion" type="Node2D"]
+z_index = 11
+script = ExtResource("1_4y31d")
+
+[node name="ParticlesFire" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_6y3yw")
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+
+[node name="ParticlesFire2" type="GPUParticles2D" parent="."]
+process_material = SubResource("ParticleProcessMaterial_nsbfv")
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+
+[node name="SplashRadius" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SplashRadius"]
+scale = Vector2(5, 5)
+shape = SubResource("CircleShape2D_4qhek")
+
+[node name="ImpactDuration" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="body_entered" from="SplashRadius" to="." method="_on_splash_radius_body_entered"]
+[connection signal="timeout" from="ImpactDuration" to="." method="_on_impact_duration_timeout"]

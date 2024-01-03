@@ -19,9 +19,6 @@ func start(_position, _direction):
 func _process(delta):
 	# Move bullet
 	position += velocity * delta
-	# Rotate bullet
-	#var rotation_direction = 1
-	#rotation += rotation_speed * rotation_direction * delta
 
 # Explode bullet
 func explode():

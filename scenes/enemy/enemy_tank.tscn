@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bn0crofij5cnc"]
+[gd_scene load_steps=19 format=3 uid="uid://bn0crofij5cnc"]
 
 [ext_resource type="PackedScene" uid="uid://cs306kobnhuyg" path="res://scenes/enemy/enemy.tscn" id="1_gkk5u"]
 [ext_resource type="Script" path="res://scripts/ai/tank/enemy_tank.gd" id="2_apri0"]
@@ -11,6 +11,8 @@
 [ext_resource type="Script" path="res://scripts/ai/tank/enemy_tank_wander_state.gd" id="5_ihe5d"]
 [ext_resource type="Script" path="res://scripts/ai/tank/enemy_tank_chase_state.gd" id="6_cby33"]
 [ext_resource type="Script" path="res://scripts/ai/tank/enemy_tank_attack_state.gd" id="8_i2bsh"]
+[ext_resource type="PackedScene" uid="uid://bo1dpf7iwmhyj" path="res://scenes/particles/burn.tscn" id="12_0tquv"]
+[ext_resource type="PackedScene" uid="uid://2oy0fk14a5sc" path="res://scenes/particles/tank_trail.tscn" id="13_4b854"]
 
 [sub_resource type="Animation" id="Animation_rg8k7"]
 length = 0.001
@@ -60,11 +62,40 @@ tracks/0/keys = {
 "values": [Vector2i(0, 0), Vector2i(1, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_y6aga"]
+resource_name = "take_damage"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.278431, 0.278431, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1ywkr"]
 _data = {
 "RESET": SubResource("Animation_rg8k7"),
 "idle": SubResource("Animation_il4o6"),
-"move": SubResource("Animation_dap7q")
+"move": SubResource("Animation_dap7q"),
+"take_damage": SubResource("Animation_y6aga")
 }
 
 [node name="EnemyTank" instance=ExtResource("1_gkk5u")]
@@ -78,7 +109,7 @@ turret_speed = 2.0
 score_value = 10
 max_health = 100
 experience_drop = ExtResource("4_ipql1")
-detect_radius = 100
+detect_radius = 150
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
 libraries = {
@@ -92,7 +123,10 @@ hframes = 2
 [node name="Weapon" parent="." index="3"]
 texture = ExtResource("4_cl8xb")
 
-[node name="FiniteStateMachine" type="Node" parent="." index="7" node_paths=PackedStringArray("state")]
+[node name="BurnTimer" type="Timer" parent="." index="6"]
+one_shot = true
+
+[node name="FiniteStateMachine" type="Node" parent="." index="8" node_paths=PackedStringArray("state")]
 script = ExtResource("5_4s5xb")
 state = NodePath("EnemyTankWanderState")
 
@@ -114,22 +148,37 @@ actor = NodePath("../..")
 animator = NodePath("../../AnimationPlayer")
 ray_cast_player = NodePath("../../PlayerDetection")
 
-[node name="ObstacleDetection1" type="RayCast2D" parent="." index="8"]
-target_position = Vector2(38, 0)
-collision_mask = 0
+[node name="ObstacleDetection1" type="RayCast2D" parent="." index="9"]
+target_position = Vector2(40, 0)
 
-[node name="ObstacleDetection2" type="RayCast2D" parent="." index="9"]
+[node name="ObstacleDetection2" type="RayCast2D" parent="." index="10"]
 position = Vector2(0, -7)
-target_position = Vector2(38, 0)
-collision_mask = 0
+target_position = Vector2(28, 0)
 
-[node name="ObstacleDetection3" type="RayCast2D" parent="." index="10"]
+[node name="ObstacleDetection3" type="RayCast2D" parent="." index="11"]
 position = Vector2(0, 7)
-target_position = Vector2(38, 0)
-collision_mask = 0
+target_position = Vector2(30, 0)
 
-[node name="PlayerDetection" type="RayCast2D" parent="." index="11"]
+[node name="ObstacleDetectionSide1" type="RayCast2D" parent="." index="12"]
+position = Vector2(0, 7)
+target_position = Vector2(14, 8)
+
+[node name="ObstacleDetectionSide2" type="RayCast2D" parent="." index="13"]
+position = Vector2(0, -7)
+target_position = Vector2(14, -8)
+
+[node name="PlayerDetection" type="RayCast2D" parent="." index="14"]
 target_position = Vector2(66, 0)
+collision_mask = 3
+
+[node name="Burn" parent="." index="15" instance=ExtResource("12_0tquv")]
+
+[node name="TankTrail" parent="." index="16" instance=ExtResource("13_4b854")]
+position = Vector2(-7, -5)
+
+[node name="TankTrail2" parent="." index="17" instance=ExtResource("13_4b854")]
+position = Vector2(-7, 5)
 
 [connection signal="timeout" from="GunTimer" to="." method="_on_GunTimer_timeout"]
 [connection signal="timeout" from="MachineGunTimer" to="." method="_on_MachineGunTimer_timeout"]
+[connection signal="timeout" from="BurnTimer" to="." method="_on_burn_timer_timeout"]

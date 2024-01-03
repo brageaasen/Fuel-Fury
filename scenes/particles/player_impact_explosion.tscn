@@ -1,0 +1,84 @@
+[gd_scene load_steps=12 format=3 uid="uid://d0gov2i3m35v2"]
+
+[ext_resource type="Script" path="res://scripts/particles/impact_explosion.gd" id="1_s7ibd"]
+[ext_resource type="Texture2D" uid="uid://cd4vde4tk7v4b" path="res://assets/sprites/grey_explosion.png" id="2_sqm8n"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_pgbpn"]
+particles_animation = true
+particles_anim_h_frames = 8
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_fy8og"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0.0114943, 147.789), 0.0, 0.0, 0, 0, Vector2(1, -140.211), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_8o20n"]
+width = 200
+curve = SubResource("Curve_fy8og")
+
+[sub_resource type="Gradient" id="Gradient_sjjtk"]
+offsets = PackedFloat32Array(0, 0.585366, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.355103, 1, 1, 1, 0.32549)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1ylmj"]
+gradient = SubResource("Gradient_sjjtk")
+
+[sub_resource type="Curve" id="Curve_1x5bt"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_oubt6"]
+width = 2048
+curve = SubResource("Curve_1x5bt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6y3yw"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 40.0
+initial_velocity_max = 60.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_curve = SubResource("CurveTexture_8o20n")
+scale_curve = SubResource("CurveTexture_oubt6")
+color_ramp = SubResource("GradientTexture1D_1ylmj")
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4qhek"]
+
+[node name="ImpactExplosion" type="Node2D"]
+z_index = 10
+script = ExtResource("1_s7ibd")
+
+[node name="Particles" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_pgbpn")
+emitting = false
+amount = 64
+process_material = SubResource("ParticleProcessMaterial_6y3yw")
+texture = ExtResource("2_sqm8n")
+lifetime = 1.5
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+
+[node name="SplashRadius" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SplashRadius"]
+scale = Vector2(4, 4)
+shape = SubResource("CircleShape2D_4qhek")
+
+[node name="ImpactDuration" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="body_entered" from="SplashRadius" to="." method="_on_splash_radius_body_entered"]
+[connection signal="timeout" from="ImpactDuration" to="." method="_on_impact_duration_timeout"]

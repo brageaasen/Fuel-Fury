@@ -7,6 +7,10 @@ extends "res://scripts/ai/enemy.gd"
 @export var machine_gun_cooldown : float
 @export var turret_speed : float
 
+var audio_manager
+
+@onready var burn_timer = $BurnTimer
+@onready var animation_player = $AnimationPlayer
 @onready var ray_cast_player = $PlayerDetection
 @onready var fsm = $FiniteStateMachine as FiniteStateMachine
 @onready var enemy_tank_wander_state = $FiniteStateMachine/EnemyTankWanderState as EnemyTankWanderState
@@ -19,8 +23,10 @@ var target_dir
 func _ready():
 	super._ready() # Make parent also run its ready function
 	player = get_node("/root/Game/MainScene/Player")
+	audio_manager = get_parent().get_parent().get_node("AudioManager")
 	$GunTimer.wait_time = gun_cooldown
 	$MachineGunTimer.wait_time = machine_gun_cooldown
+	burn_timer.wait_time = 2
 	ray_cast_player.target_position.x = detect_radius
 	
 	# On found_player, wander -> chase
@@ -36,7 +42,7 @@ func _ready():
 func die():
 	alive = false
 	queue_free()
-	emit_signal("died", score_value, experience_drop, fuel_drop, global_position)
+	emit_signal("died", self, score_value, experience_drop, fuel_drop, null, preload("res://scenes/particles/death_explosion.tscn"), global_position)
 
 
 func shoot(bullet):
@@ -46,6 +52,9 @@ func shoot(bullet):
 	# Check if allowed to shoot
 	if can_shoot:
 		can_shoot = false
+		
+		# Play sound
+		audio_manager.play_sound("EnemyShootSfx")
 		
 		# Check what type of bullet was shot
 		if bullet_scene_path.match("*machine_gun_bullet*"): $MachineGunTimer.start()
@@ -61,6 +70,23 @@ func shoot(bullet):
 		current_recoil = clamp(current_recoil + recoil_increment, 0.0, max_recoil)
 		
 		emit_signal("shootSignal", bullet, $Weapon/Muzzle.global_position, actual_bullet_direction)
+
+func take_damage(damage):
+	animation_player.play("take_damage")
+	health -= damage
+	emit_signal("health_changed", health * 100/max_health)
+	if (health <= 0):
+		die() # Destroy object
+
+var burn_count = 0
+var burn_damage
+func burn(damage):
+	# Play burn particles
+	$Burn.emitting = true
+	# Apply damage
+	burn_damage = damage
+	take_damage(damage)
+	burn_timer.start()
 
 func _physics_process(delta):
 	if not alive:
@@ -79,6 +105,13 @@ func _on_GunTimer_timeout():
 func _on_MachineGunTimer_timeout():
 	can_shoot = true
 
+func _on_burn_timer_timeout():
+	burn_count += 1
+	if burn_count < 4:
+		burn(burn_damage)
+	else:
+		burn_count = 0
+
 func _on_detect_radius_body_entered(body):
 	if body.name == "Player":
 		target = body
@@ -86,3 +119,5 @@ func _on_detect_radius_body_entered(body):
 func _on_detect_radius_body_exited(body):
 	if body == target:
 		target = null
+
+

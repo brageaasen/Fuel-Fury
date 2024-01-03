@@ -17,6 +17,3 @@ collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MagnetRadius"]
 shape = SubResource("CircleShape2D_sryji")
-
-[connection signal="area_entered" from="MagnetRadius" to="." method="_on_magnet_radius_area_entered"]
-[connection signal="area_exited" from="MagnetRadius" to="." method="_on_magnet_radius_area_exited"]

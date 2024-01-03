@@ -1,8 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://ymrlsq43cspx"]
+[gd_scene load_steps=9 format=3 uid="uid://ymrlsq43cspx"]
 
 [ext_resource type="Theme" uid="uid://byhn61b5urgiv" path="res://default.tres" id="1_eh6pg"]
 [ext_resource type="PackedScene" uid="uid://b6oorc1y1ox71" path="res://scenes/UI/animation/button_animation.tscn" id="3_0enml"]
 [ext_resource type="FontFile" uid="uid://beghlpmphs8no" path="res://assets/fonts/kongtext.regular.ttf" id="3_d1q8n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6ija7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uyr6j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6hl62"]
 
 [sub_resource type="Animation" id="Animation_5vg3b"]
 resource_name = "fade_in"
@@ -45,6 +51,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+theme_override_styles/hover = SubResource("StyleBoxEmpty_6ija7")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_uyr6j")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6hl62")
 text = "
 "
 

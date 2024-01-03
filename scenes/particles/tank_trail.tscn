@@ -25,7 +25,6 @@ turbulence_noise_scale = 10.0
 [node name="TankTrail" type="Node2D"]
 
 [node name="Particles" type="GPUParticles2D" parent="."]
-z_index = 6
 emitting = false
 process_material = SubResource("ParticleProcessMaterial_hsivv")
 lifetime = 0.35

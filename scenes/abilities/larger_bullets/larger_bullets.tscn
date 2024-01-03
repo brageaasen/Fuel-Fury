@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbsr8np6patcm"]
+
+[ext_resource type="Script" path="res://scripts/abilities/larger_bullets.gd" id="1_2qqjr"]
+[ext_resource type="Texture2D" uid="uid://chcqmvxhhrwwa" path="res://assets/sprites/larger_bullet_icon.png" id="2_u014y"]
+
+[node name="LargerBullets" type="Node2D"]
+script = ExtResource("1_2qqjr")
+title = "Larger bullets"
+info = "Twice the size, Twice the damage!"
+image = ExtResource("2_u014y")
