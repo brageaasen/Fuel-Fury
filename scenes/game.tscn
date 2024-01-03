@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://doq10a0d0wcng"]
+[gd_scene load_steps=57 format=3 uid="uid://doq10a0d0wcng"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_g57bp"]
 [ext_resource type="PackedScene" uid="uid://darkjs45idgh1" path="res://scenes/main_scene.tscn" id="1_si0i5"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bepuw4iifh4my" path="res://assets/sprites/logo.png" id="7_70ohi"]
 [ext_resource type="PackedScene" uid="uid://dow6yoe12gyje" path="res://scenes/UI/animation/transitions.tscn" id="11_x6ik1"]
 [ext_resource type="Script" path="res://scripts/AudioManager.gd" id="12_e6fbh"]
+[ext_resource type="AudioStream" uid="uid://bga5pxucrlxko" path="res://assets/sound/music/music.wav" id="13_1pf4l"]
 [ext_resource type="AudioStream" uid="uid://dswkbg8kc8y7v" path="res://assets/sound/hover/hover_1.wav" id="13_50lc0"]
 [ext_resource type="AudioStream" uid="uid://drvfwr1j2q4ag" path="res://assets/sound/ammo/empt_mag_1.wav" id="13_n3wc5"]
 [ext_resource type="AudioStream" uid="uid://bua0yfyprermq" path="res://assets/sound/select.wav" id="13_su47h"]
@@ -458,6 +459,10 @@ one_shot = true
 
 [node name="AudioManager" type="Node" parent="."]
 script = ExtResource("12_e6fbh")
+
+[node name="Music" type="AudioStreamPlayer2D" parent="AudioManager"]
+stream = ExtResource("13_1pf4l")
+volume_db = -5.0
 
 [node name="EmptyMagSfx" type="AudioStreamPlayer2D" parent="AudioManager"]
 stream = ExtResource("13_n3wc5")

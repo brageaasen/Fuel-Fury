@@ -31,7 +31,7 @@ func _ready():
 			empty_mag_sounds.append(child_node)
 		if _name.find("Sfx") > -1:
 			sounds.append(child_node)
-		elif _name.find("Music") > -1:
+		if _name.find("Music") > -1:
 			music.append(child_node)
 
 func play_sound(name: String):
@@ -42,7 +42,7 @@ func play_sound(name: String):
 				sound.stop()  # Stop the sound if it's already playing
 			sound.play()
 			return  # Exit the loop once the sound is found and played
-	print("Sound", name, "not found in the list of sounds.")
+	print("Sound: ", name, " not found in the list of sounds.")
 
 func play_music(name: String):
 	for music_node in music:
@@ -52,7 +52,7 @@ func play_music(name: String):
 				sound.stop()  # Stop the music if it's already playing
 			sound.play()
 			return  # Exit the loop once the sound is found and played
-	print("Sound", name, "not found in the list of music.")
+	print("Sound: ", name, " not found in the list of music.")
 
 # Play random sound from list
 func play_random_sound(list):

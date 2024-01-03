@@ -11,7 +11,7 @@ extends State
 var player # Reference to the player node
 
 signal lost_player
-signal out_of_range
+#signal out_of_range
 
 func _ready() -> void:
 	set_physics_process(false)
@@ -43,10 +43,10 @@ func _physics_process(delta) -> void:
 			actor.alive = false
 	
 	# Check if enemy tank should change current state to wander
-	if not actor.target or ray_cast_player.is_colliding():
-		lost_player.emit()
+	#if not actor.target or ray_cast_player.is_colliding():
+	#	lost_player.emit()
 	
 	# Check if enemy tank should change current state to chase
-	var distance_to_player = actor.global_position.distance_to(player.global_position)
-	if (actor.attack_range < distance_to_player):
-		out_of_range.emit()
+	#var distance_to_player = actor.global_position.distance_to(player.global_position)
+	#if (actor.attack_range < distance_to_player):
+	#	out_of_range.emit()

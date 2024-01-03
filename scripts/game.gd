@@ -49,6 +49,7 @@ func _on_start_button_pressed():
 	best_score.visible = false
 	# Play audio
 	audio_manager.play_sound("SelectSfx")
+	audio_manager.play_music("Music")
 	# Screen shake
 	get_node("MainScene/MainCamera").shake(6)
 	# Animations

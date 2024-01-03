@@ -200,7 +200,7 @@ func gain_experience(experience_gain):
 
 func level_up():
 	level += 1
-	experience_to_level += 3
+	experience_to_level += 2
 	experience -= experience_to_level
 	emit_signal("experience_changed", experience * 100/experience_to_level, level)
 	emit_signal("leveled_up", level)

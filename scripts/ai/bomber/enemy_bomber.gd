@@ -18,10 +18,10 @@ func _ready():
 	burn_timer.wait_time = 2
 	ray_cast_player.target_position.x = detect_radius
 	
-	# On attack_player, chase -> wander
+	# On attack_player, chase -> attack
 	enemy_bomber_chase_state.attack_player.connect(fsm.change_state.bind(enemy_bomber_attack_state))
 	# On out_of_range, attack -> chase
-	enemy_bomber_attack_state.out_of_range.connect(fsm.change_state.bind(enemy_bomber_chase_state))
+	#enemy_bomber_attack_state.out_of_range.connect(fsm.change_state.bind(enemy_bomber_chase_state))
 
 
 func die():

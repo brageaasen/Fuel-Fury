@@ -511,12 +511,6 @@ use_texture_padding = false
 1:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:4/0/physics_layer_0/angular_velocity = 0.0
 1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-3.88909, -5.83363, 3.53553, -5.65686, 3.71231, 2.65165, -3.35876, 2.47487)
-1:1/size_in_atlas = Vector2i(1, 2)
-1:1/0 = 0
-1:1/0/texture_origin = Vector2i(0, 8)
-1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:1/0/physics_layer_0/angular_velocity = 0.0
-1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4.94975, -5.65686, 4.77297, -5.3033, 4.94975, 3.35876, -4.77297, 3.35876)
 3:7/size_in_atlas = Vector2i(1, 2)
 3:7/0 = 0
 3:7/0/texture_origin = Vector2i(0, 8)
@@ -548,6 +542,12 @@ use_texture_padding = false
 1:7/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:7/0/physics_layer_0/angular_velocity = 0.0
 1:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-5.125, -3.375, 4.875, -3.25, 5, 2.125, -5, 1.875)
+1:1/size_in_atlas = Vector2i(1, 2)
+1:1/0 = 0
+1:1/0/texture_origin = Vector2i(0, 8)
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4.94975, -5.65686, 4.77297, -5.3033, 4.94975, 3.35876, -4.77297, 3.35876)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t0i5e"]
 texture = ExtResource("4_ja4ic")
@@ -1116,8 +1116,8 @@ layer_1/enabled = true
 layer_1/modulate = Color(1, 1, 1, 1)
 layer_1/y_sort_enabled = true
 layer_1/y_sort_origin = 0
-layer_1/z_index = 1
-layer_1/tile_data = PackedInt32Array(589809, 65537, 1, 393199, 65537, 1, 458742, 393217, 1, -262160, 393217, 1, 524300, 65537, 1, 458760, 393217, 1, -393203, 393217, 1, -458742, 393217, 1, 327697, 65537, 1, -524298, 65537, 1)
+layer_1/z_index = 4
+layer_1/tile_data = PackedInt32Array(393199, 65537, 1, 458742, 393217, 1, -262160, 393217, 1, -393203, 393217, 1, -458742, 393217, 1, 262159, 65537, 1, 524274, 65537, 1, -458762, 65537, 1, 393224, 393217, 1, 458764, 65537, 1)
 
 [node name="Base" parent="." instance=ExtResource("8_gyq5b")]
 
@@ -1141,7 +1141,6 @@ position = Vector2(305, 0)
 
 [node name="Player" parent="." instance=ExtResource("9_ixxsp")]
 position = Vector2(0, 52)
-ammo_storage = 2
 
 [connection signal="ammo_updated" from="Base" to="Player" method="_on_base_ammo_updated"]
 [connection signal="entered_base" from="Base" to="Player" method="add_fuel_to_base"]
