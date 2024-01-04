@@ -75,6 +75,7 @@ color_ramp = SubResource("GradientTexture1D_gjuh2")
 [node name="PlayerFireExplosion" type="Node2D"]
 z_index = 11
 script = ExtResource("1_4y31d")
+burn_damage = 10
 
 [node name="ParticlesFire" type="GPUParticles2D" parent="."]
 emitting = false
@@ -86,6 +87,7 @@ explosiveness = 1.0
 randomness = 1.0
 
 [node name="ParticlesFire2" type="GPUParticles2D" parent="."]
+emitting = false
 process_material = SubResource("ParticleProcessMaterial_nsbfv")
 lifetime = 3.0
 one_shot = true

@@ -9,6 +9,7 @@ var score = 0
 
 @onready var audio_manager = $AudioManager
 @onready var animation_player = $CanvasLayer/StartMenu/AnimationPlayer
+@onready var hover_animation = $CanvasLayer/StartMenu/HoverAnimation
 @onready var transitions = $CanvasLayer/Transitions
 @onready var restart_timer = $RestartTimer
 @onready var best_score = $CanvasLayer/BestScore
@@ -30,10 +31,14 @@ func _ready():
 	$CanvasLayer/AbilityMenu/AbilityChoice0/Button.connect("pressed", _on_ability_choice_0_pressed)
 	$CanvasLayer/AbilityMenu/AbilityChoice1/Button.connect("pressed", _on_ability_choice_1_pressed)
 	$CanvasLayer/AbilityMenu/AbilityChoice2/Button.connect("pressed", _on_ability_choice_2_pressed)
+	$CanvasLayer/AbilityMenu/SecretAbility/Button.connect("pressed", _on_secret_ability_choice_pressed)
 	best_score.text = "Best Score: " + str(ScoreManager.get_score())
 
 
 func _on_player_death(type):
+	# Check if should update score
+	if score > ScoreManager.get_score():
+		ScoreManager.set_score(score)
 	# Fade out
 	transitions.set_next_animation("fade_out")
 	if type == "death":
@@ -51,6 +56,7 @@ func _on_restart_timer_timeout():
 func _on_start_button_pressed():
 	best_score.visible = false
 	sound_menu.visible = false
+	hover_animation.visible = false
 	# Play audio
 	audio_manager.play_sound("SelectSfx")
 	audio_manager.play_music("Music")
@@ -127,6 +133,14 @@ func _on_player_leveled_up(level):
 			# Set properties based on the index of ability
 			ability_choice.get_node("Button/Icon/Name").text = "[center]" + player.load_ability(abilities_to_display[i]).title
 			ability_choice.get_node("Button/Icon").texture = player.load_ability(abilities_to_display[i]).image
+	
+	# Secret ability
+	var secret_ability = get_node("CanvasLayer/AbilityMenu/SecretAbility")
+	secret_ability.visible = true
+	if player.level < 12:
+		secret_ability.get_node("AnimationPlayer").play("fade_in")
+	else:
+		secret_ability.get_node("AnimationPlayer").play("fade_in_white")
 
 func ability_chosen(ability_number):
 	# Play audio
@@ -163,6 +177,11 @@ func ability_chosen(ability_number):
 	# Reset new abilities list
 	abilities_to_display = []
 	ability_non_hover(ability_number)
+	
+	# Secret ability
+	var secret_abiltiy = get_node("CanvasLayer/AbilityMenu/SecretAbility")
+	secret_abiltiy.visible = false
+	secret_abiltiy.get_node("HoverAnimation").visible = false
 
 func ability_hover(ability_number):
 	# Play sound SFX
@@ -213,5 +232,59 @@ func _on_ability_choice_2_mouse_exited():
 	ability_non_hover(2)
 
 
+func _on_secret_ability_choice_pressed():
+	if player.level < 12:
+		return
+	
+	# Play audio
+	audio_manager.play_random_sound(audio_manager.gain_ability_sounds)
+	
+	get_node("CanvasLayer/AbilityMenu").visible = false
+	get_node("CanvasLayer/AbilityMenu/LevelUp").visible = false
+	sound_menu.visible = false
+	get_tree().paused = false
+	# Animation
+	get_node("CanvasLayer/AbilityMenu/SecretAbility").get_node("HoverAnimation").play("click")
+	get_node("MainScene/AnimationPlayer").play("fade_from_black")
+	
+	get_node("MainScene/MainCamera").shake(1)
+	
+	# Execute ability
+	player.load_ability("secret_ability").execute(player)
+	# Add ability to players ability list
+	player.abilities.append("secret_ability")
+	
+	# Make current button non visble to the player
+	var ability_choice = get_node("CanvasLayer/AbilityMenu/SecretAbility")
+	# Set visibility to false for the current AbilityChoice
+	ability_choice.visible = false
+	# Reset new abilities list
+	abilities_to_display = []
+	
+	get_node("CanvasLayer/AbilityMenu/SecretAbility").get_node("HoverAnimation").visible = false
+	# Disable infobox
+	$CanvasLayer/AbilityMenu/InfoContainer/InfoBox.visible = false
+	# Reset the label's text
+	$CanvasLayer/AbilityMenu/InfoContainer/InfoBox/MarginContainer/Info.text = ""
 
 
+func _on_secret_ability_choice_mouse_entered():
+	# Play sound SFX
+	audio_manager.play_random_sound(audio_manager.hover_sounds)
+	# Animation
+	get_node("CanvasLayer/AbilityMenu/SecretAbility").get_node("HoverAnimation").visible = true
+	get_node("CanvasLayer/AbilityMenu/SecretAbility").get_node("HoverAnimation").play("hover")
+	# Enable infobox
+	$CanvasLayer/AbilityMenu/InfoContainer/InfoBox.visible = true
+	# Set the label's text
+	if player.level < 12:
+		$CanvasLayer/AbilityMenu/InfoContainer/InfoBox/MarginContainer/Info.text = "[center]" + player.load_ability("secret_ability").info
+	else:
+		$CanvasLayer/AbilityMenu/InfoContainer/InfoBox/MarginContainer/Info.text = "[center]What does this do?"
+
+func _on_secret_ability_choice_mouse_exited():
+	get_node("CanvasLayer/AbilityMenu/SecretAbility").get_node("HoverAnimation").visible = false
+	# Disable infobox
+	$CanvasLayer/AbilityMenu/InfoContainer/InfoBox.visible = false
+	# Reset the label's text
+	$CanvasLayer/AbilityMenu/InfoContainer/InfoBox/MarginContainer/Info.text = ""

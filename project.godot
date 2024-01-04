@@ -26,6 +26,7 @@ ScoreManager="*res://scripts/score_manager.gd"
 [display]
 
 window/size/resizable=false
+window/stretch/aspect="ignore"
 window/main_scene="res://Main_Scene.tscn"
 
 [input]

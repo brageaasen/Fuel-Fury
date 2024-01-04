@@ -8,10 +8,6 @@ var machine_gun_bullet : PackedScene = preload("res://scenes/bullets/machine_gun
 @onready var tank_trail_2 = $TankTrail2/Particles
 @onready var gun_timer = $GunTimer
 
-
-# Abilities
-var abilities = []
-
 @onready var animation_player = $AnimationPlayer
 signal ammo_updated # Signal for HUD
 
@@ -26,6 +22,10 @@ func _ready():
 # Move and attack with player
 func control(delta):
 	$Weapon.look_at(get_global_mouse_position())
+	if abilities.has("secret_ability"):
+		$Weapon2.look_at(get_global_mouse_position())
+		$Weapon2.rotate(deg_to_rad(180))
+		
 	move_and_rotate(delta)
 	apply_friction(delta)
 	

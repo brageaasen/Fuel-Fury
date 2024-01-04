@@ -21,12 +21,13 @@ var health
 var fuel_depletion_rate : float = 0.03
 var fuel_gain = 40
 var fuel
-var level = 1
+var level = 11
 var experience = 0
 var experience_to_level = 2
 var alive = true
 var inventory : Dictionary = {}
 var bullet_inventory = ["player_bullet"]
+var abilities = []
 var main_camera
 
 # Movement
@@ -87,12 +88,20 @@ func shoot(bullet):
 		var dir = Vector2(1, 0).rotated($Weapon.global_rotation)
 		var recoil_degree_max = current_recoil * 0.5
 		var recoil_radians_actual = deg_to_rad(randf_range(-recoil_degree_max, recoil_degree_max))
-		var actual_bullet_direction = dir.rotated(recoil_radians_actual)	
+		var actual_bullet_direction = dir.rotated(recoil_radians_actual)
 		
 		var recoil_increment = max_recoil * 0.1
 		current_recoil = clamp(current_recoil + recoil_increment, 0.0, max_recoil)
 		
 		emit_signal("shootSignal", bullet, $Weapon/Muzzle.global_position, actual_bullet_direction)
+		
+		# Secret upgrade
+		if abilities.has("secret_ability"):
+			dir = Vector2(1, 0).rotated($Weapon2.global_rotation)
+			recoil_degree_max = current_recoil * 0.5
+			recoil_radians_actual = deg_to_rad(randf_range(-recoil_degree_max, recoil_degree_max))
+			actual_bullet_direction = dir.rotated(recoil_radians_actual)
+			emit_signal("shootSignal", bullet, $Weapon2/Muzzle.global_position, actual_bullet_direction)
 
 func change_bullet(bullet_number):
 	# Check if player has bullet

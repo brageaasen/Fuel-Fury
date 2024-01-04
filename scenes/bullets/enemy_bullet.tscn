@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bcijncf5y34wm"]
 
-[ext_resource type="PackedScene" uid="uid://bocuou03h0uf3" path="res://scenes/bullets/Bullet.tscn" id="1_mautu"]
-[ext_resource type="PackedScene" uid="uid://dydi1sfsju10l" path="res://scenes/particles/Explosion.tscn" id="2_01dii"]
+[ext_resource type="PackedScene" uid="uid://bocuou03h0uf3" path="res://scenes/bullets/bullet.tscn" id="1_mautu"]
+[ext_resource type="PackedScene" uid="uid://dydi1sfsju10l" path="res://scenes/particles/explosion.tscn" id="2_01dii"]
 
 [node name="EnemyBullet" instance=ExtResource("1_mautu")]
 collision_mask = 3
