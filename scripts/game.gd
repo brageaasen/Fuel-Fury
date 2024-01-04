@@ -12,6 +12,9 @@ var score = 0
 @onready var transitions = $CanvasLayer/Transitions
 @onready var restart_timer = $RestartTimer
 @onready var best_score = $CanvasLayer/BestScore
+@onready var sound_menu = $CanvasLayer/SoundMenu
+
+
 func _ready():
 	get_tree().paused = true
 	restart_timer.wait_time = time_before_restart
@@ -47,6 +50,7 @@ func _on_restart_timer_timeout():
 
 func _on_start_button_pressed():
 	best_score.visible = false
+	sound_menu.visible = false
 	# Play audio
 	audio_manager.play_sound("SelectSfx")
 	audio_manager.play_music("Music")
@@ -87,6 +91,7 @@ var iterations
 func _on_player_leveled_up(level):
 	if possible_abilities.size() == 0:
 		return
+	sound_menu.visible = true
 	get_node("MainScene/AnimationPlayer").play("fade_to_black")
 	get_node("CanvasLayer/AbilityMenu").visible = true
 	get_node("CanvasLayer/AbilityMenu/LevelUp").visible = true
@@ -129,6 +134,7 @@ func ability_chosen(ability_number):
 	
 	get_node("CanvasLayer/AbilityMenu").visible = false
 	get_node("CanvasLayer/AbilityMenu/LevelUp").visible = false
+	sound_menu.visible = false
 	get_tree().paused = false
 	# Animation
 	get_node("CanvasLayer/AbilityMenu/AbilityChoice" + str(ability_number)).get_node("HoverAnimation").play("click")
