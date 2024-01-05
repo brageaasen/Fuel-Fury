@@ -24,7 +24,11 @@
 * Mouse - Aim
 * 1,2,3 - Switch between bullet types
 
+## Screenshots
 
+<img src="/assets/screenshots/screenshot0.png" alt="Screenshot 0" title="Screenshot 0">
+<img src="/assets/screenshots/screenshot1.png" alt="Screenshot 1" title="Screenshot 1">
+<img src="/assets/screenshots/screenshot2.png" alt="Screenshot 2" title="Screenshot 2">
 
 ---
 
