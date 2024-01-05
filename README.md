@@ -1,13 +1,33 @@
-# Godot4 2D Top-Down game
+# Christmas 2023 Project - *Fuel Fury*
 
-Rougelike
 
-# MVP:
 
-Tank(player) defends base against two types of enemies(infantry and tanks). Infantry can destroy base if close enough, tanks will only target player.
+## About the game
 
-Tank(player) has to go out of base to get ammunition off dead enemies. And can store and retrieve ammunition from base.
+* «As the last green tanks alive, you must protect your fuel reserve. Fight against waves of enemies and upgrade your tanks to stay alive.»
+* The player can drive around the map and handle the greedy enemies, but in order to get ammunition and restore fuel, the base is the answer. Collect loot from the enemies, but don't drive too far off. You may run out of your precious fuel.
 
-Tank(Player) weapons:
-	Machine gun is effective against infantry
-	Tank turret is effective against tanks
+* Features:
+  * 12 unique ability upgrades to discover
+  * Scaling difficulty
+
+## How to run
+
+* Head over to my [itch page](https://lovfall.itch.io/fuel-fury), and press play.
+* Or, clone the project and run it in your Godot4 editor.
+
+
+## How do you play the game? / Tutorial
+
+* WASD - Move/Rotate
+* Click/Hold click - Shoot, Mouse1 and Mouse2
+* Mouse - Aim
+* 1,2,3 - Switch between bullet types
+
+
+
+---
+
+## Credits
+
+* Godot, game engine
