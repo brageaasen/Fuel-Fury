@@ -1120,7 +1120,6 @@ layer_1/z_index = 4
 layer_1/tile_data = PackedInt32Array(393199, 65537, 1, 458742, 393217, 1, -262160, 393217, 1, -393203, 393217, 1, -458742, 393217, 1, 262159, 65537, 1, 524274, 65537, 1, -458762, 65537, 1, 393224, 393217, 1, 458764, 65537, 1)
 
 [node name="Base" parent="." instance=ExtResource("8_gyq5b")]
-ammo_refill_time = 0.5
 
 [node name="Spawner" parent="." instance=ExtResource("14_xe4kn")]
 

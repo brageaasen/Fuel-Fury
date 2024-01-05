@@ -20,8 +20,8 @@ func _ready():
 	super._ready() # Make parent also run its ready function
 	ammo_updated.emit(heavy_bullet, ammo_storage)
 
-	# Delay signal connections for 0.1 seconds to ensure nodes are initialized
-	await get_tree().create_timer(0.1).timeout
+	# Delay signal connections for 0.2 seconds to ensure nodes are initialized
+	await get_tree().create_timer(0.2).timeout
 	connect_signals()
 
 func connect_signals():
@@ -97,7 +97,7 @@ func _on_base_ammo_updated(type):
 	if type == "mg" and abilities.has("machine_gun"):
 		load_ability("machine_gun").mg_ammo_storage += 1
 		ammo_updated.emit(machine_gun_bullet, load_ability("machine_gun").mg_ammo_storage)
-	else:
+	if type == "heavy":
 		ammo_storage += 1
 		ammo_updated.emit(heavy_bullet, ammo_storage)
 
