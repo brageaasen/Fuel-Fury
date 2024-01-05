@@ -9,6 +9,7 @@ var machine_gun_bullet : PackedScene = preload("res://scenes/bullets/machine_gun
 @onready var gun_timer = $GunTimer
 
 @onready var animation_player = $AnimationPlayer
+@onready var base = $"../Base"
 signal ammo_updated # Signal for HUD
 
 
@@ -18,6 +19,13 @@ var sound_playing = false  # Flag to check if sound is playing
 func _ready():
 	super._ready() # Make parent also run its ready function
 	ammo_updated.emit(heavy_bullet, ammo_storage)
+
+	# Delay signal connections for 0.1 seconds to ensure nodes are initialized
+	await get_tree().create_timer(0.1).timeout
+	connect_signals()
+
+func connect_signals():
+	base.connect("ammo_updated", _on_base_ammo_updated)
 
 # Move and attack with player
 func control(delta):

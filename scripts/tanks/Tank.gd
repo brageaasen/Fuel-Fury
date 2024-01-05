@@ -21,7 +21,7 @@ var health
 var fuel_depletion_rate : float = 0.03
 var fuel_gain = 40
 var fuel
-var level = 11
+var level = 1
 var experience = 0
 var experience_to_level = 2
 var alive = true

@@ -23,3 +23,4 @@ func execute(s):
 	s.gain_health(max_health_increase)
 	# Add new weapon to tanks
 	s.get_node("Weapon2").visible = true
+	# TODO: Add more ammo to tanks

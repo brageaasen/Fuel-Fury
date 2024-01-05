@@ -99,22 +99,22 @@ texture_progress = ExtResource("5_g2x8q")
 layout_mode = 2
 offset_left = -132.0
 offset_top = -119.0
-offset_right = 1748.0
-offset_bottom = -93.0
+offset_right = -71.0
+offset_bottom = -105.0
 theme_override_fonts/font = ExtResource("9_c5ge1")
 theme_override_font_sizes/font_size = 8
-text = "HP:
+text = "HP:100
 "
 
 [node name="Level" type="Label" parent="."]
 layout_mode = 2
 offset_left = -8.0
 offset_top = -119.0
-offset_right = 1872.0
-offset_bottom = -93.0
+offset_right = 53.0
+offset_bottom = -105.0
 theme_override_fonts/font = ExtResource("9_c5ge1")
 theme_override_font_sizes/font_size = 8
-text = "LvL:"
+text = "LvL:1"
 
 [node name="AbilityChoice0" parent="." instance=ExtResource("7_akf35")]
 visible = false
