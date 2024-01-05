@@ -8,11 +8,8 @@ var machine_gun_bullet : PackedScene = preload("res://scenes/bullets/machine_gun
 @onready var tank_trail_2 = $TankTrail2/Particles
 @onready var gun_timer = $GunTimer
 
-
-# Abilities
-var abilities = []
-
 @onready var animation_player = $AnimationPlayer
+@onready var base = $"../Base"
 signal ammo_updated # Signal for HUD
 
 
@@ -23,9 +20,20 @@ func _ready():
 	super._ready() # Make parent also run its ready function
 	ammo_updated.emit(heavy_bullet, ammo_storage)
 
+	# Delay signal connections for 0.1 seconds to ensure nodes are initialized
+	await get_tree().create_timer(0.1).timeout
+	connect_signals()
+
+func connect_signals():
+	base.connect("ammo_updated", _on_base_ammo_updated)
+
 # Move and attack with player
 func control(delta):
 	$Weapon.look_at(get_global_mouse_position())
+	if abilities.has("secret_ability"):
+		$Weapon2.look_at(get_global_mouse_position())
+		$Weapon2.rotate(deg_to_rad(180))
+		
 	move_and_rotate(delta)
 	apply_friction(delta)
 	

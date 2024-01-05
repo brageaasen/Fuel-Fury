@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://bioupbo3drl67"]
+
+[ext_resource type="Script" path="res://scripts/volume_slider.gd" id="1_1wdpb"]
+[ext_resource type="Texture2D" uid="uid://d3knyg1xg68j" path="res://assets/sprites/volume_slider_grabber.png" id="1_jnheu"]
+[ext_resource type="Texture2D" uid="uid://chosoc0bjx33q" path="res://assets/sprites/volume_slider.png" id="2_0o04v"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a7466"]
+texture = ExtResource("2_0o04v")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_58fhx"]
+texture = ExtResource("2_0o04v")
+
+[node name="VolumeSlider" type="HSlider"]
+offset_right = 8.0
+offset_bottom = 16.0
+scale = Vector2(0.99804, 1)
+theme_override_icons/grabber = ExtResource("1_jnheu")
+theme_override_icons/grabber_highlight = ExtResource("1_jnheu")
+theme_override_styles/grabber_area = SubResource("StyleBoxTexture_a7466")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_58fhx")
+max_value = 1.0
+step = 0.001
+script = ExtResource("1_1wdpb")

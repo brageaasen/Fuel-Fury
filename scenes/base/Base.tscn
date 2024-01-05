@@ -49,9 +49,8 @@ _data = {
 scale = Vector2(2, 2)
 collision_mask = 2
 script = ExtResource("1_dmws7")
-ammo_refill_time = 1.0
+ammo_refill_time = 0.8
 MG_ammo_refill_time = 0.5
-max_health = 200
 
 [node name="OilLeak" type="TextureRect" parent="."]
 offset_left = -32.0

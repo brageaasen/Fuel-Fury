@@ -94,4 +94,3 @@ func _on_player_leveled_up(level):
 		enemy_list.append(preload("res://scenes/enemy/enemy_bomber.tscn"))
 	if $SpawnTimer.wait_time > 0.5:
 		$SpawnTimer.wait_time -= 0.3
-	print("Spawntime: " + str($SpawnTimer.wait_time))

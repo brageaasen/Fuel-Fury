@@ -1,6 +1,6 @@
 extends "res://scripts/abilities/ability.gd"
 
-@export var heavy_bullet_recharge_rate = 1
+@export var heavy_bullet_recharge_rate = 0.3
 @export var machine_gun_bullet_recharge_rate = 0.2
 
 func _ready():

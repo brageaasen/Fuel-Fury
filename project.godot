@@ -13,7 +13,10 @@ config_version=5
 config/name="firstProject"
 run/main_scene="res://scenes/game.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
-config/icon="res://assets/sprites/icon.svg"
+boot_splash/bg_color=Color(0.984314, 0.968627, 0.882353, 1)
+boot_splash/image="res://assets/logo2.png"
+config/icon="res://assets/sprites/logo.png"
+boot_splash/minimum_display_time=4000
 run/canvas_textures/default_texture_filter=0
 
 [autoload]
@@ -22,7 +25,10 @@ ScoreManager="*res://scripts/score_manager.gd"
 
 [display]
 
+window/size/viewport_width=1280
+window/size/viewport_height=720
 window/size/resizable=false
+window/stretch/mode="viewport"
 window/main_scene="res://Main_Scene.tscn"
 
 [input]

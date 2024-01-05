@@ -25,7 +25,6 @@ func _ready() -> void:
 	for child in enemy_bomber.get_children():
 		if child is RayCast2D and child.name.find("ObstacleDetection") != -1:
 			obstacle_raycasts.append(child)
-	print("Entered chase")
 
 func _enter_state() -> void:
 	set_physics_process(true)

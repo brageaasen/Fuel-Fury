@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://doq10a0d0wcng"]
+[gd_scene load_steps=63 format=3 uid="uid://doq10a0d0wcng"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_g57bp"]
 [ext_resource type="PackedScene" uid="uid://darkjs45idgh1" path="res://scenes/main_scene.tscn" id="1_si0i5"]
@@ -10,9 +10,11 @@
 [ext_resource type="FontFile" uid="uid://beghlpmphs8no" path="res://assets/fonts/kongtext.regular.ttf" id="5_7vuh6"]
 [ext_resource type="Texture2D" uid="uid://bhm4yxh4vg7h2" path="res://assets/sprites/background.png" id="5_jaulq"]
 [ext_resource type="Texture2D" uid="uid://bepuw4iifh4my" path="res://assets/sprites/logo.png" id="7_70ohi"]
+[ext_resource type="Texture2D" uid="uid://c2o18mw06ph6x" path="res://assets/sprites/secret_ability_icon.png" id="10_5jyyf"]
 [ext_resource type="PackedScene" uid="uid://dow6yoe12gyje" path="res://scenes/UI/animation/transitions.tscn" id="11_x6ik1"]
 [ext_resource type="Script" path="res://scripts/AudioManager.gd" id="12_e6fbh"]
-[ext_resource type="AudioStream" uid="uid://bga5pxucrlxko" path="res://assets/sound/music/music.wav" id="13_1pf4l"]
+[ext_resource type="PackedScene" uid="uid://bioupbo3drl67" path="res://scenes/UI/volume_slider.tscn" id="12_scah2"]
+[ext_resource type="AudioStream" uid="uid://6nyhjgdgm7h4" path="res://assets/sound/music/music.wav" id="13_1pf4l"]
 [ext_resource type="AudioStream" uid="uid://dswkbg8kc8y7v" path="res://assets/sound/hover/hover_1.wav" id="13_50lc0"]
 [ext_resource type="AudioStream" uid="uid://drvfwr1j2q4ag" path="res://assets/sound/ammo/empt_mag_1.wav" id="13_n3wc5"]
 [ext_resource type="AudioStream" uid="uid://bua0yfyprermq" path="res://assets/sound/select.wav" id="13_su47h"]
@@ -34,11 +36,9 @@
 [ext_resource type="AudioStream" uid="uid://bkkrtstntkyum" path="res://assets/sound/items/pick_up_2.wav" id="18_hsjtc"]
 [ext_resource type="AudioStream" uid="uid://cs1oxkkj5bul5" path="res://assets/sound/hover/hover_6.wav" id="18_t3v0v"]
 [ext_resource type="AudioStream" uid="uid://bnf2q7y0k4xho" path="res://assets/sound/items/pick_up_3.wav" id="19_bvg7n"]
-[ext_resource type="AudioStream" uid="uid://brkdwf0ypgfxa" path="res://assets/sound/shoot/shoot_1.wav" id="19_fahk7"]
 [ext_resource type="AudioStream" uid="uid://lubct0gxb264" path="res://assets/sound/hover/hover_7.wav" id="19_l1ycj"]
 [ext_resource type="AudioStream" uid="uid://canbcamkcs181" path="res://assets/sound/items/pick_up_4.wav" id="20_6r6wu"]
 [ext_resource type="AudioStream" uid="uid://81b2rv0nem8i" path="res://assets/sound/hover/hover_8.wav" id="20_qydk7"]
-[ext_resource type="AudioStream" uid="uid://dw0auwbxihl01" path="res://assets/sound/shoot/shoot_2.wav" id="20_r4wca"]
 [ext_resource type="AudioStream" uid="uid://dnbupw5cgqucp" path="res://assets/sound/items/pick_up_5.wav" id="21_a4avw"]
 [ext_resource type="AudioStream" uid="uid://d18ehhk3t88ip" path="res://assets/sound/items/pick_up_6.wav" id="22_g5ewp"]
 
@@ -243,6 +243,50 @@ _data = {
 "fade_in": SubResource("Animation_5j48x")
 }
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6ija7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uyr6j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6hl62"]
+
+[sub_resource type="Animation" id="Animation_5vg3b"]
+resource_name = "fade_in"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(0.627451, 0.627451, 0.627451, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_h4j70"]
+resource_name = "fade_in_white"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_owo0m"]
+_data = {
+"fade_in": SubResource("Animation_5vg3b"),
+"fade_in_white": SubResource("Animation_h4j70")
+}
+
 [node name="Game" type="Node"]
 process_mode = 3
 script = ExtResource("1_g57bp")
@@ -431,6 +475,75 @@ offset_right = 256.0
 offset_bottom = 9.00001
 scale = Vector2(0.75, 0.75)
 
+[node name="SecretAbility" type="Control" parent="CanvasLayer/AbilityMenu"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 211.0
+offset_top = 71.0
+offset_right = 339.0
+offset_bottom = 165.0
+scale = Vector2(0.75, 0.75)
+size_flags_horizontal = 2
+mouse_filter = 1
+theme = ExtResource("4_onb5j")
+
+[node name="Button" type="Button" parent="CanvasLayer/AbilityMenu/SecretAbility"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/hover = SubResource("StyleBoxEmpty_6ija7")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_uyr6j")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6hl62")
+text = "
+"
+
+[node name="Icon" type="TextureRect" parent="CanvasLayer/AbilityMenu/SecretAbility/Button"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -18.0
+offset_top = 9.0
+offset_right = 14.0
+offset_bottom = 33.0
+grow_horizontal = 2
+scale = Vector2(1.5, 1.5)
+pivot_offset = Vector2(16, 0)
+mouse_filter = 2
+texture = ExtResource("10_5jyyf")
+
+[node name="Name" type="RichTextLabel" parent="CanvasLayer/AbilityMenu/SecretAbility/Button/Icon"]
+layout_mode = 0
+offset_left = -20.0
+offset_top = 29.3333
+offset_right = 55.0
+offset_bottom = 49.3333
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("5_7vuh6")
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "[center]Secret Ability"
+scroll_active = false
+text_direction = 1
+
+[node name="HoverAnimation" parent="CanvasLayer/AbilityMenu/SecretAbility" instance=ExtResource("4_fut7u")]
+visible = false
+position = Vector2(64, 47.5)
+scale = Vector2(2.05556, 2.01786)
+animation = &"click"
+frame_progress = 0.426507
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/AbilityMenu/SecretAbility"]
+libraries = {
+"": SubResource("AnimationLibrary_owo0m")
+}
+
 [node name="InfoContainer" parent="CanvasLayer/AbilityMenu" instance=ExtResource("3_qvjt5")]
 layout_mode = 0
 offset_left = -52.0
@@ -454,6 +567,64 @@ bbcode_enabled = true
 text = "Best Score: 0"
 scroll_active = false
 
+[node name="SoundMenu" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 1
+
+[node name="MusicText" type="RichTextLabel" parent="CanvasLayer/SoundMenu"]
+z_index = 10
+layout_mode = 0
+offset_left = -286.0
+offset_top = 66.0
+offset_right = -131.0
+offset_bottom = 106.0
+scale = Vector2(1.4, 1.4)
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("5_7vuh6")
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "Music"
+scroll_active = false
+
+[node name="MusicSlider" parent="CanvasLayer/SoundMenu" instance=ExtResource("12_scah2")]
+z_index = 10
+layout_mode = 0
+offset_left = -286.0
+offset_top = 79.0
+offset_right = -240.0
+offset_bottom = 95.0
+scale = Vector2(1.4, 1.403)
+bus_name = "Music"
+
+[node name="SfxText" type="RichTextLabel" parent="CanvasLayer/SoundMenu"]
+z_index = 10
+layout_mode = 0
+offset_left = -286.0
+offset_top = 109.0
+offset_right = -131.0
+offset_bottom = 149.0
+scale = Vector2(1.4, 1.4)
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("5_7vuh6")
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "Sfx
+"
+scroll_active = false
+
+[node name="SfxSlider" parent="CanvasLayer/SoundMenu" instance=ExtResource("12_scah2")]
+z_index = 10
+layout_mode = 0
+offset_left = -286.0
+offset_top = 122.0
+offset_right = -240.0
+offset_bottom = 138.0
+scale = Vector2(1.4, 1.403)
+bus_name = "Sfx"
+
 [node name="RestartTimer" type="Timer" parent="."]
 one_shot = true
 
@@ -463,128 +634,161 @@ script = ExtResource("12_e6fbh")
 [node name="Music" type="AudioStreamPlayer2D" parent="AudioManager"]
 stream = ExtResource("13_1pf4l")
 volume_db = -5.0
+bus = &"Music"
 
 [node name="EmptyMagSfx" type="AudioStreamPlayer2D" parent="AudioManager"]
 stream = ExtResource("13_n3wc5")
 pitch_scale = 1.2
+bus = &"Sfx"
 
 [node name="EmptyMagSfx2" type="AudioStreamPlayer2D" parent="AudioManager"]
 stream = ExtResource("14_g0t2f")
 pitch_scale = 1.2
+bus = &"Sfx"
 
 [node name="EmptyMagSfx3" type="AudioStreamPlayer2D" parent="AudioManager"]
 stream = ExtResource("15_gtr5y")
 pitch_scale = 1.2
+bus = &"Sfx"
 
 [node name="EmptyMagSfx4" type="AudioStreamPlayer2D" parent="AudioManager"]
 stream = ExtResource("16_slihc")
 pitch_scale = 1.2
+bus = &"Sfx"
 
 [node name="HoverSfx" type="AudioStreamPlayer2D" parent="AudioManager"]
 stream = ExtResource("13_50lc0")
 volume_db = 1.0
 pitch_scale = 2.0
+bus = &"Sfx"
 
 [node name="HoverSfx2" type="AudioStreamPlayer2D" parent="AudioManager"]
 stream = ExtResource("14_awjbj")
 volume_db = 1.0
 pitch_scale = 2.0
+bus = &"Sfx"
 
 [node name="HoverSfx3" type="AudioStreamPlayer2D" parent="AudioManager"]
 stream = ExtResource("15_uiq6x")
 volume_db = 1.0
 pitch_scale = 2.0
+bus = &"Sfx"
 
 [node name="HoverSfx4" type="AudioStreamPlayer2D" parent="AudioManager"]
 stream = ExtResource("16_p216i")
 volume_db = 1.0
 pitch_scale = 2.0
+bus = &"Sfx"
 
 [node name="HoverSfx5" type="AudioStreamPlayer2D" parent="AudioManager"]
 stream = ExtResource("17_1q21r")
 volume_db = 1.0
 pitch_scale = 2.0
+bus = &"Sfx"
 
 [node name="HoverSfx6" type="AudioStreamPlayer2D" parent="AudioManager"]
 stream = ExtResource("18_t3v0v")
 volume_db = 1.0
 pitch_scale = 2.0
+bus = &"Sfx"
 
 [node name="HoverSfx7" type="AudioStreamPlayer2D" parent="AudioManager"]
 stream = ExtResource("19_l1ycj")
 volume_db = 1.0
 pitch_scale = 2.0
+bus = &"Sfx"
 
 [node name="HoverSfx8" type="AudioStreamPlayer2D" parent="AudioManager"]
 stream = ExtResource("20_qydk7")
 volume_db = 1.0
 pitch_scale = 2.0
+bus = &"Sfx"
 
 [node name="SelectSfx" type="AudioStreamPlayer2D" parent="AudioManager"]
 stream = ExtResource("13_su47h")
+bus = &"Sfx"
 
 [node name="ExplosionSfx" type="AudioStreamPlayer2D" parent="AudioManager"]
 stream = ExtResource("14_ixd4a")
 volume_db = -20.0
+bus = &"Sfx"
 
 [node name="SmallExplosionSfx" type="AudioStreamPlayer2D" parent="AudioManager"]
 stream = ExtResource("14_ixd4a")
 volume_db = -40.0
+bus = &"Sfx"
 
 [node name="GainFuelSfx1" type="AudioStreamPlayer2D" parent="AudioManager"]
 stream = ExtResource("15_k2m3g")
 volume_db = 2.0
+bus = &"Sfx"
 
 [node name="GainFuelSfx2" type="AudioStreamPlayer2D" parent="AudioManager"]
 stream = ExtResource("16_i8s6x")
 volume_db = 2.0
+bus = &"Sfx"
 
 [node name="GainAbilitySfx1" type="AudioStreamPlayer2D" parent="AudioManager"]
 stream = ExtResource("15_3r85j")
+bus = &"Sfx"
 
 [node name="GainAbilitySfx2" type="AudioStreamPlayer2D" parent="AudioManager"]
 stream = ExtResource("16_0f4xg")
+bus = &"Sfx"
 
 [node name="HurtSfx" type="AudioStreamPlayer2D" parent="AudioManager"]
 stream = ExtResource("16_q8u50")
 volume_db = -5.0
+bus = &"Sfx"
 
 [node name="ShootSfx" type="AudioStreamPlayer2D" parent="AudioManager"]
 stream = ExtResource("18_hrbxo")
 volume_db = -12.0
+bus = &"Sfx"
 
 [node name="EnemyShootSfx" type="AudioStreamPlayer2D" parent="AudioManager"]
 stream = ExtResource("18_hrbxo")
 volume_db = -16.0
 pitch_scale = 1.2
+bus = &"Sfx"
 
 [node name="ShootMGSfx1" type="AudioStreamPlayer2D" parent="AudioManager"]
-stream = ExtResource("19_fahk7")
-volume_db = -10.0
+stream = ExtResource("18_hrbxo")
+volume_db = -20.0
+pitch_scale = 0.9
+bus = &"Sfx"
 
 [node name="ShootMGSfx2" type="AudioStreamPlayer2D" parent="AudioManager"]
-stream = ExtResource("20_r4wca")
-volume_db = -10.0
+stream = ExtResource("18_hrbxo")
+volume_db = -20.0
+pitch_scale = 0.83
+bus = &"Sfx"
 
 [node name="PickUpSfx1" type="AudioStreamPlayer2D" parent="AudioManager"]
 stream = ExtResource("17_5hton")
 volume_db = -8.0
+bus = &"Sfx"
 
 [node name="PickUpSfx2" type="AudioStreamPlayer2D" parent="AudioManager"]
 stream = ExtResource("18_hsjtc")
+bus = &"Sfx"
 
 [node name="PickUp3Sfx" type="AudioStreamPlayer2D" parent="AudioManager"]
 stream = ExtResource("19_bvg7n")
 volume_db = -5.0
+bus = &"Sfx"
 
 [node name="PickUp4Sfx" type="AudioStreamPlayer2D" parent="AudioManager"]
 stream = ExtResource("20_6r6wu")
+bus = &"Sfx"
 
 [node name="PickUp5Sfx" type="AudioStreamPlayer2D" parent="AudioManager"]
 stream = ExtResource("21_a4avw")
+bus = &"Sfx"
 
 [node name="PickUp6Sfx" type="AudioStreamPlayer2D" parent="AudioManager"]
 stream = ExtResource("22_g5ewp")
+bus = &"Sfx"
 
 [connection signal="mouse_entered" from="CanvasLayer/StartMenu" to="." method="_on_start_button_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/StartMenu" to="." method="_on_start_button_mouse_exited"]
@@ -595,4 +799,6 @@ stream = ExtResource("22_g5ewp")
 [connection signal="mouse_exited" from="CanvasLayer/AbilityMenu/AbilityChoice1" to="." method="_on_ability_choice_1_mouse_exited"]
 [connection signal="mouse_entered" from="CanvasLayer/AbilityMenu/AbilityChoice2" to="." method="_on_ability_choice_2_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/AbilityMenu/AbilityChoice2" to="." method="_on_ability_choice_2_mouse_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/AbilityMenu/SecretAbility" to="." method="_on_secret_ability_choice_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/AbilityMenu/SecretAbility" to="." method="_on_secret_ability_choice_mouse_exited"]
 [connection signal="timeout" from="RestartTimer" to="." method="_on_restart_timer_timeout"]
