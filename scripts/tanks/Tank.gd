@@ -56,8 +56,8 @@ func _ready():
 	health = max_health
 	emit_signal("health_changed", health)
 	fuel = max_fuel
-	emit_signal("fuel_changed", fuel * 100/max_fuel)
-	emit_signal("experience_changed", experience * 100/experience_to_level, level)
+	emit_signal("fuel_changed", fuel * 100.0/max_fuel)
+	emit_signal("experience_changed", experience * 100.0/experience_to_level, level)
 	$GunTimer.wait_time = gun_cooldown
 	$MachineGunTimer.wait_time = machine_gun_cooldown
 	$FuelUsageTimer.wait_time = fuel_depletion_rate
@@ -181,12 +181,19 @@ func die():
 	pass
 	#queue_free() # Should maybe not queue free the player object?
 
-func gain_fuel(fuel_gain):
-	if fuel + fuel_gain > max_fuel:
+func gain_fuel(gain):
+	if fuel + gain > max_fuel:
 		fuel = max_fuel
 	else:
-		fuel += fuel_gain
+		fuel += gain
 	audio_manager.play_random_sound(audio_manager.gain_fuel_sounds)
+	emit_signal("fuel_changed", fuel * 100/max_fuel)
+
+func gain_fuel_no_sound(gain):
+	if fuel + gain > max_fuel:
+		fuel = max_fuel
+	else:
+		fuel += gain
 	emit_signal("fuel_changed", fuel * 100/max_fuel)
 
 
@@ -230,15 +237,15 @@ func add_fuel_to_base():
 
 var loaded_abilities = {}
 
-func load_ability(name):
-	if loaded_abilities.has(name):
-		var scene_instance = loaded_abilities[name]
+func load_ability(_name):
+	if loaded_abilities.has(_name):
+		var scene_instance = loaded_abilities[_name]
 		return scene_instance
 	else:
-		var scene = load("res://scenes/abilities/" + name + "/" + name + ".tscn")
+		var scene = load("res://scenes/abilities/" + _name + "/" + _name + ".tscn")
 		var scene_instance = scene.instantiate()
-		add_child(scene_instance)
-		loaded_abilities[name] = scene_instance
+		call_deferred("add_child", scene_instance)
+		loaded_abilities[_name] = scene_instance
 		return scene_instance
 
 func _physics_process(delta):

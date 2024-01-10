@@ -17,7 +17,7 @@ func _ready():
 	$MGAmmoFillTimer.set_paused(true)
 
 
-func _process(delta):
+func _process(_delta):
 	# Play danger icon animation of value is less than or equal 30% of max value
 	if $FuelContainer/FuelBar.value / $FuelContainer/FuelBar.max_value * 100 <= 30:
 		$DangerIcon/AnimationPlayer.play("pulsate")

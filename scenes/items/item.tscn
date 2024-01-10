@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/items/item.gd" id="1_6xvsc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kglsy"]
-radius = 4.0
+radius = 6.0
 
 [node name="Item" type="Area2D"]
 collision_mask = 3

@@ -7,6 +7,8 @@ var possible_abilities
 var current_abilities
 var score = 0
 
+var level_to_activate_secret_ability = 13
+
 @onready var audio_manager = $AudioManager
 @onready var animation_player = $CanvasLayer/StartMenu/AnimationPlayer
 @onready var hover_animation = $CanvasLayer/StartMenu/HoverAnimation
@@ -95,7 +97,7 @@ var abilities_to_display = []
 var iterations
 
 func _on_player_leveled_up(level):
-	if possible_abilities.size() == 0:
+	if possible_abilities.size() == 0 and player.abilities.has("secret_ability"):
 		return
 	sound_menu.visible = true
 	get_node("MainScene/AnimationPlayer").play("fade_to_black")
@@ -107,10 +109,12 @@ func _on_player_leveled_up(level):
 	
 	iterations = 3 # Default value for possible_abilities.size() >= 3
 	match possible_abilities.size():
+		0: iterations = 0
 		1: iterations = 1
 		2: iterations = 2
 	var count = 0
 	while count < iterations:
+		if iterations == 0: break
 		# Get random new ability
 		var random_ability = possible_abilities[randi() % possible_abilities.size()]
 		# Check if ability is already displayed
@@ -137,7 +141,7 @@ func _on_player_leveled_up(level):
 	# Secret ability
 	var secret_ability = get_node("CanvasLayer/AbilityMenu/SecretAbility")
 	secret_ability.visible = true
-	if player.level < 12:
+	if player.level < level_to_activate_secret_ability:
 		secret_ability.get_node("AnimationPlayer").play("fade_in")
 	else:
 		secret_ability.get_node("AnimationPlayer").play("fade_in_white")
@@ -233,7 +237,7 @@ func _on_ability_choice_2_mouse_exited():
 
 
 func _on_secret_ability_choice_pressed():
-	if player.level < 12:
+	if player.level < level_to_activate_secret_ability:
 		return
 	
 	# Play audio
@@ -277,7 +281,7 @@ func _on_secret_ability_choice_mouse_entered():
 	# Enable infobox
 	$CanvasLayer/AbilityMenu/InfoContainer/InfoBox.visible = true
 	# Set the label's text
-	if player.level < 12:
+	if player.level < level_to_activate_secret_ability:
 		$CanvasLayer/AbilityMenu/InfoContainer/InfoBox/MarginContainer/Info.text = "[center]" + player.load_ability("secret_ability").info
 	else:
 		$CanvasLayer/AbilityMenu/InfoContainer/InfoBox/MarginContainer/Info.text = "[center]What does this do?"

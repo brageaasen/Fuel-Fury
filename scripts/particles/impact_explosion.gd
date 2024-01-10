@@ -12,7 +12,8 @@ func _ready():
 	# Play sound effect
 	audio_manager.play_sound("ExplosionSfx")
 	particles.emitting = true
-func _process(delta):
+
+func _process(_delta):
 	if !particles.emitting:
 		queue_free()
 

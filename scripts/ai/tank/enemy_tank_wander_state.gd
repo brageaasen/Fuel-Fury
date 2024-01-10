@@ -97,4 +97,4 @@ func avoid_obstacles_steering() -> Vector2:
 			var dynamic_avoid_force = actor.avoid_force * (1.0 - distance_to_collision / raycast.target_position.length())
 			total_avoidance_force += collision_normal * dynamic_avoid_force
 			
-	return total_avoidance_force # Removed .normalized()
+	return total_avoidance_force

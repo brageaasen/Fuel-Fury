@@ -12,7 +12,7 @@ config_version=5
 
 config/name="firstProject"
 run/main_scene="res://scenes/game.tscn"
-config/features=PackedStringArray("4.1", "Forward Plus")
+config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/bg_color=Color(0.984314, 0.968627, 0.882353, 1)
 boot_splash/image="res://assets/logo2.png"
 config/icon="res://assets/sprites/logo.png"

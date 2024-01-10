@@ -5,7 +5,7 @@ extends Camera2D
 
 var shake_amount : float = 0.0
 
-func _process(delta):
+func _process(_delta):
 	if shake_amount > 0:
 		position.x = randf_range(-shake_base_amount, shake_base_amount) * shake_amount
 		position.y = randf_range(-shake_base_amount, shake_base_amount) * shake_amount
