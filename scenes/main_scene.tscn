@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://duowx7jwcwu2x" path="res://assets/tilesets/fantasy_ [version 2.0]/forest_/forest_ [fencesAndWalls].png" id="4_ja4ic"]
 [ext_resource type="Texture2D" uid="uid://cstunfouic7av" path="res://assets/tilesets/fantasy_ [version 2.0]/forest_/forest_ [bridgeVertical].png" id="5_4f0jg"]
 [ext_resource type="Texture2D" uid="uid://cg32oc5n1wcj4" path="res://assets/tilesets/fantasy_ [version 2.0]/forest_/forest_ [bridgeHorizontal].png" id="6_uc7s2"]
-[ext_resource type="PackedScene" uid="uid://dkt8ngtenq443" path="res://scenes/base/Base.tscn" id="8_gyq5b"]
+[ext_resource type="PackedScene" uid="uid://dkt8ngtenq443" path="res://scenes/base/base.tscn" id="8_gyq5b"]
 [ext_resource type="PackedScene" uid="uid://c27lt7vwi1j4f" path="res://scenes/tanks/Player.tscn" id="9_ixxsp"]
 [ext_resource type="PackedScene" uid="uid://bjj2uflh2plre" path="res://scenes/hud.tscn" id="10_54g1t"]
 [ext_resource type="PackedScene" uid="uid://c7m44hs4dccln" path="res://scenes/enemy/spawner.tscn" id="14_xe4kn"]
@@ -1140,8 +1140,13 @@ position = Vector2(305, 0)
 [node name="Player" parent="." instance=ExtResource("9_ixxsp")]
 position = Vector2(0, 52)
 
+[connection signal="ammo_updated" from="Base" to="Player" method="_on_base_ammo_updated"]
 [connection signal="entered_base" from="Base" to="Player" method="add_fuel_to_base"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="ammo_updated" from="Player" to="MainCamera/HUD" method="_on_player_ammo_updated"]
+[connection signal="experience_changed" from="Player" to="MainCamera/HUD" method="update_experiencebar"]
 [connection signal="fuel_changed" from="Player" to="Base" method="update_fuel_container"]
+[connection signal="health_changed" from="Player" to="MainCamera/HUD" method="update_healthbar"]
+[connection signal="leveled_up" from="Player" to="." method="_on_player_leveled_up"]
+[connection signal="max_health_changed" from="Player" to="MainCamera/HUD" method="update_healthbar_max_value"]
 [connection signal="shootSignal" from="Player" to="." method="_on_Tank_shootSignal"]
