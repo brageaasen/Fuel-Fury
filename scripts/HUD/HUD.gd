@@ -3,14 +3,15 @@ extends Control
 @onready var player = $"../../Player"
 
 func _ready():
-	# Delay signal connections for 0.1 seconds to ensure nodes are initialized
-	await get_tree().create_timer(0.1).timeout
+	# Delay signal connections for 0.2 seconds to ensure nodes are initialized
+	await get_tree().create_timer(0.2).timeout
 	connect_signals()
 
 func connect_signals():
 	player.connect("health_changed", update_healthbar)
 	player.connect("max_health_changed", update_healthbar_max_value)
 	player.connect("experience_changed", update_experiencebar)
+	player.connect("ammo_updated", _on_player_ammo_updated)
 
 
 func update_healthbar(value):

@@ -1117,7 +1117,6 @@ layer_1/z_index = 4
 layer_1/tile_data = PackedInt32Array(393199, 65537, 1, 458742, 393217, 1, -262160, 393217, 1, -393203, 393217, 1, -458742, 393217, 1, 262159, 65537, 1, 524274, 65537, 1, -458762, 65537, 1, 393224, 393217, 1, 458764, 65537, 1)
 
 [node name="Base" parent="." instance=ExtResource("8_gyq5b")]
-ammo_refill_time = 0.5
 
 [node name="Spawner" parent="." instance=ExtResource("14_xe4kn")]
 
@@ -1140,13 +1139,12 @@ position = Vector2(305, 0)
 [node name="Player" parent="." instance=ExtResource("9_ixxsp")]
 position = Vector2(0, 52)
 
-[connection signal="ammo_updated" from="Base" to="Player" method="_on_base_ammo_updated"]
 [connection signal="entered_base" from="Base" to="Player" method="add_fuel_to_base"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
-[connection signal="ammo_updated" from="Player" to="MainCamera/HUD" method="_on_player_ammo_updated"]
-[connection signal="experience_changed" from="Player" to="MainCamera/HUD" method="update_experiencebar"]
 [connection signal="fuel_changed" from="Player" to="Base" method="update_fuel_container"]
+
 [connection signal="health_changed" from="Player" to="MainCamera/HUD" method="update_healthbar"]
 [connection signal="leveled_up" from="Player" to="." method="_on_player_leveled_up"]
 [connection signal="max_health_changed" from="Player" to="MainCamera/HUD" method="update_healthbar_max_value"]
+
 [connection signal="shootSignal" from="Player" to="." method="_on_Tank_shootSignal"]
