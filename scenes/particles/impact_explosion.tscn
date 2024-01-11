@@ -36,17 +36,15 @@ width = 2048
 curve = SubResource("Curve_1x5bt")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6y3yw"]
+particle_flag_disable_z = true
 emission_shape = 1
 emission_sphere_radius = 1.0
-particle_flag_disable_z = true
+angle_curve = SubResource("CurveTexture_8o20n")
 direction = Vector3(0, 0, 0)
 spread = 180.0
-gravity = Vector3(0, 0, 0)
 initial_velocity_min = 40.0
 initial_velocity_max = 60.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
-angle_curve = SubResource("CurveTexture_8o20n")
+gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_oubt6")
 color_ramp = SubResource("GradientTexture1D_1ylmj")
 anim_speed_min = 1.0

@@ -34,7 +34,7 @@ func take_damage(damage):
 		return
 	animation_player.play("take_damage")
 	health -= damage
-	emit_signal("health_changed", health * 100/max_health)
+	emit_signal("health_changed", health * 100.0/max_health)
 	if (health <= 0):
 		alive = false
 		animation_player.play("explode") # Destroy object
@@ -49,7 +49,7 @@ func burn(damage):
 	take_damage(damage)
 	burn_timer.start()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if not alive:
 		return
 	

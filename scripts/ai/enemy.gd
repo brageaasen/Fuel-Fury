@@ -27,15 +27,15 @@ var health : int
 
 func _ready():
 	health = max_health
-	emit_signal("health_changed", health * 100/max_health)
+	emit_signal("health_changed", health * 100.0/max_health)
 	$DetectRadius/CollisionShape2D.shape.radius = detect_radius
 
-func shoot(bullet):
+func shoot(_bullet):
 	pass
 
 func take_damage(damage):
 	health -= damage
-	emit_signal("health_changed", health * 100/max_health)
+	emit_signal("health_changed", health * 100.0/max_health)
 	if (health <= 0):
 		die() # Destroy object
 

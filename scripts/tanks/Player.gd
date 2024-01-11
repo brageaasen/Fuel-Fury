@@ -75,7 +75,7 @@ func move_and_rotate(delta):
 		tank_trail.emitting = true
 		tank_trail_2.emitting = true
 	if Input.is_action_pressed("back"):
-		velocity = Vector2(-max_speed/2, 0).rotated(rotation)
+		velocity = Vector2(-max_speed/2.0, 0).rotated(rotation)
 		animation_player.play("move")
 	if velocity == Vector2.ZERO:
 		tank_trail.emitting = false

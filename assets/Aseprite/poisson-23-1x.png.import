@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ba0kcjuqqb3es"
-path="res://.godot/imported/low_fuel.png-b075833d5603bcfaff05080efafb4f70.ctex"
+uid="uid://s67jrnmli12v"
+path="res://.godot/imported/poisson-23-1x.png-b1b48954ac81a66a25cb8a9fcbc00435.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/low_fuel.png"
-dest_files=["res://.godot/imported/low_fuel.png-b075833d5603bcfaff05080efafb4f70.ctex"]
+source_file="res://assets/aseprite/poisson-23-1x.png"
+dest_files=["res://.godot/imported/poisson-23-1x.png-b1b48954ac81a66a25cb8a9fcbc00435.ctex"]
 
 [params]
 

@@ -6,5 +6,9 @@
 [node name="GainFuel" type="Node"]
 script = ExtResource("1_fjaij")
 title = "Fuel Supply"
-info = "Gain a boost of fuel!"
+info = "Supplies fuel over time!"
 image = ExtResource("2_c4wu7")
+
+[node name="FuelTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="FuelTimer" to="." method="_on_fuel_timer_timeout"]

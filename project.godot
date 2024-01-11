@@ -10,12 +10,12 @@ config_version=5
 
 [application]
 
-config/name="firstProject"
+config/name="Fuel Fury"
 run/main_scene="res://scenes/game.tscn"
-config/features=PackedStringArray("4.1", "Forward Plus")
+config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/bg_color=Color(0.984314, 0.968627, 0.882353, 1)
 boot_splash/image="res://assets/logo2.png"
-config/icon="res://assets/sprites/logo.png"
+config/icon="res://assets/mainlogo.png"
 boot_splash/minimum_display_time=4000
 run/canvas_textures/default_texture_filter=0
 
@@ -90,3 +90,4 @@ use_bullet_3={
 
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
+textures/vram_compression/import_s3tc_bptc=true

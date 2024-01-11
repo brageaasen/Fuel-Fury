@@ -6,7 +6,7 @@ extends "res://scripts/abilities/ability.gd"
 func _ready():
 	_name = "faster_ammo_recharge"
 
-func execute(s):
+func execute(_s):
 	# Decrease recharge time
 	get_parent().get_parent().get_node("Base/AmmoFillTimer").wait_time = heavy_bullet_recharge_rate
 	get_parent().get_parent().get_node("Base/MGAmmoFillTimer").wait_time = machine_gun_bullet_recharge_rate

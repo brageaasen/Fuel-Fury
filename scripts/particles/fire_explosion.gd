@@ -15,7 +15,8 @@ func _ready():
 	
 	particles_fire.emitting = true
 	particles_fire_2.emitting = true
-func _process(delta):
+
+func _process(_delta):
 	if !particles_fire_2.emitting:
 		queue_free()
 
